@@ -1,4 +1,4 @@
-# Go API client for sendpost
+# Go API client for sendpost [![Go Reference](https://pkg.go.dev/badge/github.com/sendpost/sendpost-go-sdk.svg)](https://pkg.go.dev/github.com/sendpost/sendpost-go-sdk)
 
 # Introduction
 
