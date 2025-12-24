@@ -597,7 +597,7 @@ Each of these functions takes a value of the given basic type and returns a poin
 
 ## Examples
 
-For complete working examples, check out the [example-sdk-go](https://github.com/sendpost/example-sdk-go) repository which demonstrates:
+For complete working examples, check out the [example-sdk-go](https://github.com/sendpost/go-esp-example) repository which demonstrates:
 
 - Sending emails
 - Managing domains
