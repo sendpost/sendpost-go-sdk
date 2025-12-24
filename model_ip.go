@@ -23,6 +23,8 @@ var _ MappedNullable = &IP{}
 type IP struct {
 	// Unique ID for the IP
 	Id int32 `json:"id"`
+	// Labels associated with the IP
+	Labels []string `json:"labels,omitempty"`
 	// The public IP address associated with the resource
 	PublicIP string `json:"publicIP"`
 	// Details of the system domain associated with the IP
@@ -57,6 +59,34 @@ type IP struct {
 	DefaultSettings *string `json:"defaultSettings,omitempty"`
 	// Configuration for AT&T delivery settings in JSON format
 	AttSettings *string `json:"attSettings,omitempty"`
+	// Configuration for Office365 delivery settings in JSON format
+	Office365Settings *string `json:"office365Settings,omitempty"`
+	// Configuration for Google Workspace delivery settings in JSON format
+	GoogleworkspaceSettings *string `json:"googleworkspaceSettings,omitempty"`
+	// Configuration for Proofpoint delivery settings in JSON format
+	ProofpointSettings *string `json:"proofpointSettings,omitempty"`
+	// Configuration for Mimecast delivery settings in JSON format
+	MimecastSettings *string `json:"mimecastSettings,omitempty"`
+	// Configuration for Barracuda delivery settings in JSON format
+	BarracudaSettings *string `json:"barracudaSettings,omitempty"`
+	// Configuration for Cisco IronPort delivery settings in JSON format
+	CiscoironportSettings *string `json:"ciscoironportSettings,omitempty"`
+	// Configuration for Rackspace delivery settings in JSON format
+	RackspaceSettings *string `json:"rackspaceSettings,omitempty"`
+	// Configuration for Zoho Business delivery settings in JSON format
+	ZohobusinessSettings *string `json:"zohobusinessSettings,omitempty"`
+	// Configuration for Amazon WorkMail delivery settings in JSON format
+	AmazonworkmailSettings *string `json:"amazonworkmailSettings,omitempty"`
+	// Configuration for Symantec delivery settings in JSON format
+	SymantecSettings *string `json:"symantecSettings,omitempty"`
+	// Configuration for Fortinet delivery settings in JSON format
+	FortinetSettings *string `json:"fortinetSettings,omitempty"`
+	// Configuration for Sophos delivery settings in JSON format
+	SophosSettings *string `json:"sophosSettings,omitempty"`
+	// Configuration for Trend Micro delivery settings in JSON format
+	TrendmicroSettings *string `json:"trendmicroSettings,omitempty"`
+	// Configuration for Checkpoint delivery settings in JSON format
+	CheckpointSettings *string `json:"checkpointSettings,omitempty"`
 	// The timestamp (UNIX epoch) when the IP was created
 	Created int64 `json:"created"`
 	// Classification of the infrastructure
@@ -113,6 +143,38 @@ func (o *IP) GetIdOk() (*int32, bool) {
 // SetId sets field value
 func (o *IP) SetId(v int32) {
 	o.Id = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *IP) GetLabels() []string {
+	if o == nil || IsNil(o.Labels) {
+		var ret []string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetLabelsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *IP) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *IP) SetLabels(v []string) {
+	o.Labels = v
 }
 
 // GetPublicIP returns the PublicIP field value
@@ -651,6 +713,454 @@ func (o *IP) SetAttSettings(v string) {
 	o.AttSettings = &v
 }
 
+// GetOffice365Settings returns the Office365Settings field value if set, zero value otherwise.
+func (o *IP) GetOffice365Settings() string {
+	if o == nil || IsNil(o.Office365Settings) {
+		var ret string
+		return ret
+	}
+	return *o.Office365Settings
+}
+
+// GetOffice365SettingsOk returns a tuple with the Office365Settings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetOffice365SettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.Office365Settings) {
+		return nil, false
+	}
+	return o.Office365Settings, true
+}
+
+// HasOffice365Settings returns a boolean if a field has been set.
+func (o *IP) HasOffice365Settings() bool {
+	if o != nil && !IsNil(o.Office365Settings) {
+		return true
+	}
+
+	return false
+}
+
+// SetOffice365Settings gets a reference to the given string and assigns it to the Office365Settings field.
+func (o *IP) SetOffice365Settings(v string) {
+	o.Office365Settings = &v
+}
+
+// GetGoogleworkspaceSettings returns the GoogleworkspaceSettings field value if set, zero value otherwise.
+func (o *IP) GetGoogleworkspaceSettings() string {
+	if o == nil || IsNil(o.GoogleworkspaceSettings) {
+		var ret string
+		return ret
+	}
+	return *o.GoogleworkspaceSettings
+}
+
+// GetGoogleworkspaceSettingsOk returns a tuple with the GoogleworkspaceSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetGoogleworkspaceSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.GoogleworkspaceSettings) {
+		return nil, false
+	}
+	return o.GoogleworkspaceSettings, true
+}
+
+// HasGoogleworkspaceSettings returns a boolean if a field has been set.
+func (o *IP) HasGoogleworkspaceSettings() bool {
+	if o != nil && !IsNil(o.GoogleworkspaceSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetGoogleworkspaceSettings gets a reference to the given string and assigns it to the GoogleworkspaceSettings field.
+func (o *IP) SetGoogleworkspaceSettings(v string) {
+	o.GoogleworkspaceSettings = &v
+}
+
+// GetProofpointSettings returns the ProofpointSettings field value if set, zero value otherwise.
+func (o *IP) GetProofpointSettings() string {
+	if o == nil || IsNil(o.ProofpointSettings) {
+		var ret string
+		return ret
+	}
+	return *o.ProofpointSettings
+}
+
+// GetProofpointSettingsOk returns a tuple with the ProofpointSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetProofpointSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.ProofpointSettings) {
+		return nil, false
+	}
+	return o.ProofpointSettings, true
+}
+
+// HasProofpointSettings returns a boolean if a field has been set.
+func (o *IP) HasProofpointSettings() bool {
+	if o != nil && !IsNil(o.ProofpointSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetProofpointSettings gets a reference to the given string and assigns it to the ProofpointSettings field.
+func (o *IP) SetProofpointSettings(v string) {
+	o.ProofpointSettings = &v
+}
+
+// GetMimecastSettings returns the MimecastSettings field value if set, zero value otherwise.
+func (o *IP) GetMimecastSettings() string {
+	if o == nil || IsNil(o.MimecastSettings) {
+		var ret string
+		return ret
+	}
+	return *o.MimecastSettings
+}
+
+// GetMimecastSettingsOk returns a tuple with the MimecastSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetMimecastSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.MimecastSettings) {
+		return nil, false
+	}
+	return o.MimecastSettings, true
+}
+
+// HasMimecastSettings returns a boolean if a field has been set.
+func (o *IP) HasMimecastSettings() bool {
+	if o != nil && !IsNil(o.MimecastSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetMimecastSettings gets a reference to the given string and assigns it to the MimecastSettings field.
+func (o *IP) SetMimecastSettings(v string) {
+	o.MimecastSettings = &v
+}
+
+// GetBarracudaSettings returns the BarracudaSettings field value if set, zero value otherwise.
+func (o *IP) GetBarracudaSettings() string {
+	if o == nil || IsNil(o.BarracudaSettings) {
+		var ret string
+		return ret
+	}
+	return *o.BarracudaSettings
+}
+
+// GetBarracudaSettingsOk returns a tuple with the BarracudaSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetBarracudaSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.BarracudaSettings) {
+		return nil, false
+	}
+	return o.BarracudaSettings, true
+}
+
+// HasBarracudaSettings returns a boolean if a field has been set.
+func (o *IP) HasBarracudaSettings() bool {
+	if o != nil && !IsNil(o.BarracudaSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetBarracudaSettings gets a reference to the given string and assigns it to the BarracudaSettings field.
+func (o *IP) SetBarracudaSettings(v string) {
+	o.BarracudaSettings = &v
+}
+
+// GetCiscoironportSettings returns the CiscoironportSettings field value if set, zero value otherwise.
+func (o *IP) GetCiscoironportSettings() string {
+	if o == nil || IsNil(o.CiscoironportSettings) {
+		var ret string
+		return ret
+	}
+	return *o.CiscoironportSettings
+}
+
+// GetCiscoironportSettingsOk returns a tuple with the CiscoironportSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetCiscoironportSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.CiscoironportSettings) {
+		return nil, false
+	}
+	return o.CiscoironportSettings, true
+}
+
+// HasCiscoironportSettings returns a boolean if a field has been set.
+func (o *IP) HasCiscoironportSettings() bool {
+	if o != nil && !IsNil(o.CiscoironportSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetCiscoironportSettings gets a reference to the given string and assigns it to the CiscoironportSettings field.
+func (o *IP) SetCiscoironportSettings(v string) {
+	o.CiscoironportSettings = &v
+}
+
+// GetRackspaceSettings returns the RackspaceSettings field value if set, zero value otherwise.
+func (o *IP) GetRackspaceSettings() string {
+	if o == nil || IsNil(o.RackspaceSettings) {
+		var ret string
+		return ret
+	}
+	return *o.RackspaceSettings
+}
+
+// GetRackspaceSettingsOk returns a tuple with the RackspaceSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetRackspaceSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.RackspaceSettings) {
+		return nil, false
+	}
+	return o.RackspaceSettings, true
+}
+
+// HasRackspaceSettings returns a boolean if a field has been set.
+func (o *IP) HasRackspaceSettings() bool {
+	if o != nil && !IsNil(o.RackspaceSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetRackspaceSettings gets a reference to the given string and assigns it to the RackspaceSettings field.
+func (o *IP) SetRackspaceSettings(v string) {
+	o.RackspaceSettings = &v
+}
+
+// GetZohobusinessSettings returns the ZohobusinessSettings field value if set, zero value otherwise.
+func (o *IP) GetZohobusinessSettings() string {
+	if o == nil || IsNil(o.ZohobusinessSettings) {
+		var ret string
+		return ret
+	}
+	return *o.ZohobusinessSettings
+}
+
+// GetZohobusinessSettingsOk returns a tuple with the ZohobusinessSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetZohobusinessSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.ZohobusinessSettings) {
+		return nil, false
+	}
+	return o.ZohobusinessSettings, true
+}
+
+// HasZohobusinessSettings returns a boolean if a field has been set.
+func (o *IP) HasZohobusinessSettings() bool {
+	if o != nil && !IsNil(o.ZohobusinessSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetZohobusinessSettings gets a reference to the given string and assigns it to the ZohobusinessSettings field.
+func (o *IP) SetZohobusinessSettings(v string) {
+	o.ZohobusinessSettings = &v
+}
+
+// GetAmazonworkmailSettings returns the AmazonworkmailSettings field value if set, zero value otherwise.
+func (o *IP) GetAmazonworkmailSettings() string {
+	if o == nil || IsNil(o.AmazonworkmailSettings) {
+		var ret string
+		return ret
+	}
+	return *o.AmazonworkmailSettings
+}
+
+// GetAmazonworkmailSettingsOk returns a tuple with the AmazonworkmailSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetAmazonworkmailSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.AmazonworkmailSettings) {
+		return nil, false
+	}
+	return o.AmazonworkmailSettings, true
+}
+
+// HasAmazonworkmailSettings returns a boolean if a field has been set.
+func (o *IP) HasAmazonworkmailSettings() bool {
+	if o != nil && !IsNil(o.AmazonworkmailSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetAmazonworkmailSettings gets a reference to the given string and assigns it to the AmazonworkmailSettings field.
+func (o *IP) SetAmazonworkmailSettings(v string) {
+	o.AmazonworkmailSettings = &v
+}
+
+// GetSymantecSettings returns the SymantecSettings field value if set, zero value otherwise.
+func (o *IP) GetSymantecSettings() string {
+	if o == nil || IsNil(o.SymantecSettings) {
+		var ret string
+		return ret
+	}
+	return *o.SymantecSettings
+}
+
+// GetSymantecSettingsOk returns a tuple with the SymantecSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetSymantecSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.SymantecSettings) {
+		return nil, false
+	}
+	return o.SymantecSettings, true
+}
+
+// HasSymantecSettings returns a boolean if a field has been set.
+func (o *IP) HasSymantecSettings() bool {
+	if o != nil && !IsNil(o.SymantecSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetSymantecSettings gets a reference to the given string and assigns it to the SymantecSettings field.
+func (o *IP) SetSymantecSettings(v string) {
+	o.SymantecSettings = &v
+}
+
+// GetFortinetSettings returns the FortinetSettings field value if set, zero value otherwise.
+func (o *IP) GetFortinetSettings() string {
+	if o == nil || IsNil(o.FortinetSettings) {
+		var ret string
+		return ret
+	}
+	return *o.FortinetSettings
+}
+
+// GetFortinetSettingsOk returns a tuple with the FortinetSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetFortinetSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.FortinetSettings) {
+		return nil, false
+	}
+	return o.FortinetSettings, true
+}
+
+// HasFortinetSettings returns a boolean if a field has been set.
+func (o *IP) HasFortinetSettings() bool {
+	if o != nil && !IsNil(o.FortinetSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetFortinetSettings gets a reference to the given string and assigns it to the FortinetSettings field.
+func (o *IP) SetFortinetSettings(v string) {
+	o.FortinetSettings = &v
+}
+
+// GetSophosSettings returns the SophosSettings field value if set, zero value otherwise.
+func (o *IP) GetSophosSettings() string {
+	if o == nil || IsNil(o.SophosSettings) {
+		var ret string
+		return ret
+	}
+	return *o.SophosSettings
+}
+
+// GetSophosSettingsOk returns a tuple with the SophosSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetSophosSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.SophosSettings) {
+		return nil, false
+	}
+	return o.SophosSettings, true
+}
+
+// HasSophosSettings returns a boolean if a field has been set.
+func (o *IP) HasSophosSettings() bool {
+	if o != nil && !IsNil(o.SophosSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetSophosSettings gets a reference to the given string and assigns it to the SophosSettings field.
+func (o *IP) SetSophosSettings(v string) {
+	o.SophosSettings = &v
+}
+
+// GetTrendmicroSettings returns the TrendmicroSettings field value if set, zero value otherwise.
+func (o *IP) GetTrendmicroSettings() string {
+	if o == nil || IsNil(o.TrendmicroSettings) {
+		var ret string
+		return ret
+	}
+	return *o.TrendmicroSettings
+}
+
+// GetTrendmicroSettingsOk returns a tuple with the TrendmicroSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetTrendmicroSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.TrendmicroSettings) {
+		return nil, false
+	}
+	return o.TrendmicroSettings, true
+}
+
+// HasTrendmicroSettings returns a boolean if a field has been set.
+func (o *IP) HasTrendmicroSettings() bool {
+	if o != nil && !IsNil(o.TrendmicroSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrendmicroSettings gets a reference to the given string and assigns it to the TrendmicroSettings field.
+func (o *IP) SetTrendmicroSettings(v string) {
+	o.TrendmicroSettings = &v
+}
+
+// GetCheckpointSettings returns the CheckpointSettings field value if set, zero value otherwise.
+func (o *IP) GetCheckpointSettings() string {
+	if o == nil || IsNil(o.CheckpointSettings) {
+		var ret string
+		return ret
+	}
+	return *o.CheckpointSettings
+}
+
+// GetCheckpointSettingsOk returns a tuple with the CheckpointSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetCheckpointSettingsOk() (*string, bool) {
+	if o == nil || IsNil(o.CheckpointSettings) {
+		return nil, false
+	}
+	return o.CheckpointSettings, true
+}
+
+// HasCheckpointSettings returns a boolean if a field has been set.
+func (o *IP) HasCheckpointSettings() bool {
+	if o != nil && !IsNil(o.CheckpointSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckpointSettings gets a reference to the given string and assigns it to the CheckpointSettings field.
+func (o *IP) SetCheckpointSettings(v string) {
+	o.CheckpointSettings = &v
+}
+
 // GetCreated returns the Created field value
 func (o *IP) GetCreated() int64 {
 	if o == nil {
@@ -814,6 +1324,9 @@ func (o IP) MarshalJSON() ([]byte, error) {
 func (o IP) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["publicIP"] = o.PublicIP
 	if !IsNil(o.SystemDomain) {
 		toSerialize["systemDomain"] = o.SystemDomain
@@ -862,6 +1375,48 @@ func (o IP) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AttSettings) {
 		toSerialize["attSettings"] = o.AttSettings
+	}
+	if !IsNil(o.Office365Settings) {
+		toSerialize["office365Settings"] = o.Office365Settings
+	}
+	if !IsNil(o.GoogleworkspaceSettings) {
+		toSerialize["googleworkspaceSettings"] = o.GoogleworkspaceSettings
+	}
+	if !IsNil(o.ProofpointSettings) {
+		toSerialize["proofpointSettings"] = o.ProofpointSettings
+	}
+	if !IsNil(o.MimecastSettings) {
+		toSerialize["mimecastSettings"] = o.MimecastSettings
+	}
+	if !IsNil(o.BarracudaSettings) {
+		toSerialize["barracudaSettings"] = o.BarracudaSettings
+	}
+	if !IsNil(o.CiscoironportSettings) {
+		toSerialize["ciscoironportSettings"] = o.CiscoironportSettings
+	}
+	if !IsNil(o.RackspaceSettings) {
+		toSerialize["rackspaceSettings"] = o.RackspaceSettings
+	}
+	if !IsNil(o.ZohobusinessSettings) {
+		toSerialize["zohobusinessSettings"] = o.ZohobusinessSettings
+	}
+	if !IsNil(o.AmazonworkmailSettings) {
+		toSerialize["amazonworkmailSettings"] = o.AmazonworkmailSettings
+	}
+	if !IsNil(o.SymantecSettings) {
+		toSerialize["symantecSettings"] = o.SymantecSettings
+	}
+	if !IsNil(o.FortinetSettings) {
+		toSerialize["fortinetSettings"] = o.FortinetSettings
+	}
+	if !IsNil(o.SophosSettings) {
+		toSerialize["sophosSettings"] = o.SophosSettings
+	}
+	if !IsNil(o.TrendmicroSettings) {
+		toSerialize["trendmicroSettings"] = o.TrendmicroSettings
+	}
+	if !IsNil(o.CheckpointSettings) {
+		toSerialize["checkpointSettings"] = o.CheckpointSettings
 	}
 	toSerialize["created"] = o.Created
 	if !IsNil(o.InfraClassification) {

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | Unique ID for the IP | 
+**Labels** | Pointer to **[]string** | Labels associated with the IP | [optional] 
 **PublicIP** | **string** | The public IP address associated with the resource | 
 **SystemDomain** | Pointer to [**Domain**](Domain.md) | Details of the system domain associated with the IP | [optional] 
 **ReverseDNSHostname** | Pointer to **string** | The reverse DNS hostname for the IP | [optional] 
@@ -22,6 +23,20 @@ Name | Type | Description | Notes
 **QqSettings** | Pointer to **string** | Configuration for QQ delivery settings in JSON format | [optional] 
 **DefaultSettings** | Pointer to **string** | Default delivery settings in JSON format | [optional] 
 **AttSettings** | Pointer to **string** | Configuration for AT&amp;T delivery settings in JSON format | [optional] 
+**Office365Settings** | Pointer to **string** | Configuration for Office365 delivery settings in JSON format | [optional] 
+**GoogleworkspaceSettings** | Pointer to **string** | Configuration for Google Workspace delivery settings in JSON format | [optional] 
+**ProofpointSettings** | Pointer to **string** | Configuration for Proofpoint delivery settings in JSON format | [optional] 
+**MimecastSettings** | Pointer to **string** | Configuration for Mimecast delivery settings in JSON format | [optional] 
+**BarracudaSettings** | Pointer to **string** | Configuration for Barracuda delivery settings in JSON format | [optional] 
+**CiscoironportSettings** | Pointer to **string** | Configuration for Cisco IronPort delivery settings in JSON format | [optional] 
+**RackspaceSettings** | Pointer to **string** | Configuration for Rackspace delivery settings in JSON format | [optional] 
+**ZohobusinessSettings** | Pointer to **string** | Configuration for Zoho Business delivery settings in JSON format | [optional] 
+**AmazonworkmailSettings** | Pointer to **string** | Configuration for Amazon WorkMail delivery settings in JSON format | [optional] 
+**SymantecSettings** | Pointer to **string** | Configuration for Symantec delivery settings in JSON format | [optional] 
+**FortinetSettings** | Pointer to **string** | Configuration for Fortinet delivery settings in JSON format | [optional] 
+**SophosSettings** | Pointer to **string** | Configuration for Sophos delivery settings in JSON format | [optional] 
+**TrendmicroSettings** | Pointer to **string** | Configuration for Trend Micro delivery settings in JSON format | [optional] 
+**CheckpointSettings** | Pointer to **string** | Configuration for Checkpoint delivery settings in JSON format | [optional] 
 **Created** | **int64** | The timestamp (UNIX epoch) when the IP was created | 
 **InfraClassification** | Pointer to **string** | Classification of the infrastructure | [optional] 
 **InfraMonitor** | Pointer to **bool** | Indicates whether infrastructure monitoring is enabled | [optional] 
@@ -66,6 +81,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetLabels
+
+`func (o *IP) GetLabels() []string`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### GetLabelsOk
+
+`func (o *IP) GetLabelsOk() (*[]string, bool)`
+
+GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabels
+
+`func (o *IP) SetLabels(v []string)`
+
+SetLabels sets Labels field to given value.
+
+### HasLabels
+
+`func (o *IP) HasLabels() bool`
+
+HasLabels returns a boolean if a field has been set.
 
 ### GetPublicIP
 
@@ -486,6 +526,356 @@ SetAttSettings sets AttSettings field to given value.
 `func (o *IP) HasAttSettings() bool`
 
 HasAttSettings returns a boolean if a field has been set.
+
+### GetOffice365Settings
+
+`func (o *IP) GetOffice365Settings() string`
+
+GetOffice365Settings returns the Office365Settings field if non-nil, zero value otherwise.
+
+### GetOffice365SettingsOk
+
+`func (o *IP) GetOffice365SettingsOk() (*string, bool)`
+
+GetOffice365SettingsOk returns a tuple with the Office365Settings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOffice365Settings
+
+`func (o *IP) SetOffice365Settings(v string)`
+
+SetOffice365Settings sets Office365Settings field to given value.
+
+### HasOffice365Settings
+
+`func (o *IP) HasOffice365Settings() bool`
+
+HasOffice365Settings returns a boolean if a field has been set.
+
+### GetGoogleworkspaceSettings
+
+`func (o *IP) GetGoogleworkspaceSettings() string`
+
+GetGoogleworkspaceSettings returns the GoogleworkspaceSettings field if non-nil, zero value otherwise.
+
+### GetGoogleworkspaceSettingsOk
+
+`func (o *IP) GetGoogleworkspaceSettingsOk() (*string, bool)`
+
+GetGoogleworkspaceSettingsOk returns a tuple with the GoogleworkspaceSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoogleworkspaceSettings
+
+`func (o *IP) SetGoogleworkspaceSettings(v string)`
+
+SetGoogleworkspaceSettings sets GoogleworkspaceSettings field to given value.
+
+### HasGoogleworkspaceSettings
+
+`func (o *IP) HasGoogleworkspaceSettings() bool`
+
+HasGoogleworkspaceSettings returns a boolean if a field has been set.
+
+### GetProofpointSettings
+
+`func (o *IP) GetProofpointSettings() string`
+
+GetProofpointSettings returns the ProofpointSettings field if non-nil, zero value otherwise.
+
+### GetProofpointSettingsOk
+
+`func (o *IP) GetProofpointSettingsOk() (*string, bool)`
+
+GetProofpointSettingsOk returns a tuple with the ProofpointSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProofpointSettings
+
+`func (o *IP) SetProofpointSettings(v string)`
+
+SetProofpointSettings sets ProofpointSettings field to given value.
+
+### HasProofpointSettings
+
+`func (o *IP) HasProofpointSettings() bool`
+
+HasProofpointSettings returns a boolean if a field has been set.
+
+### GetMimecastSettings
+
+`func (o *IP) GetMimecastSettings() string`
+
+GetMimecastSettings returns the MimecastSettings field if non-nil, zero value otherwise.
+
+### GetMimecastSettingsOk
+
+`func (o *IP) GetMimecastSettingsOk() (*string, bool)`
+
+GetMimecastSettingsOk returns a tuple with the MimecastSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMimecastSettings
+
+`func (o *IP) SetMimecastSettings(v string)`
+
+SetMimecastSettings sets MimecastSettings field to given value.
+
+### HasMimecastSettings
+
+`func (o *IP) HasMimecastSettings() bool`
+
+HasMimecastSettings returns a boolean if a field has been set.
+
+### GetBarracudaSettings
+
+`func (o *IP) GetBarracudaSettings() string`
+
+GetBarracudaSettings returns the BarracudaSettings field if non-nil, zero value otherwise.
+
+### GetBarracudaSettingsOk
+
+`func (o *IP) GetBarracudaSettingsOk() (*string, bool)`
+
+GetBarracudaSettingsOk returns a tuple with the BarracudaSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBarracudaSettings
+
+`func (o *IP) SetBarracudaSettings(v string)`
+
+SetBarracudaSettings sets BarracudaSettings field to given value.
+
+### HasBarracudaSettings
+
+`func (o *IP) HasBarracudaSettings() bool`
+
+HasBarracudaSettings returns a boolean if a field has been set.
+
+### GetCiscoironportSettings
+
+`func (o *IP) GetCiscoironportSettings() string`
+
+GetCiscoironportSettings returns the CiscoironportSettings field if non-nil, zero value otherwise.
+
+### GetCiscoironportSettingsOk
+
+`func (o *IP) GetCiscoironportSettingsOk() (*string, bool)`
+
+GetCiscoironportSettingsOk returns a tuple with the CiscoironportSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCiscoironportSettings
+
+`func (o *IP) SetCiscoironportSettings(v string)`
+
+SetCiscoironportSettings sets CiscoironportSettings field to given value.
+
+### HasCiscoironportSettings
+
+`func (o *IP) HasCiscoironportSettings() bool`
+
+HasCiscoironportSettings returns a boolean if a field has been set.
+
+### GetRackspaceSettings
+
+`func (o *IP) GetRackspaceSettings() string`
+
+GetRackspaceSettings returns the RackspaceSettings field if non-nil, zero value otherwise.
+
+### GetRackspaceSettingsOk
+
+`func (o *IP) GetRackspaceSettingsOk() (*string, bool)`
+
+GetRackspaceSettingsOk returns a tuple with the RackspaceSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRackspaceSettings
+
+`func (o *IP) SetRackspaceSettings(v string)`
+
+SetRackspaceSettings sets RackspaceSettings field to given value.
+
+### HasRackspaceSettings
+
+`func (o *IP) HasRackspaceSettings() bool`
+
+HasRackspaceSettings returns a boolean if a field has been set.
+
+### GetZohobusinessSettings
+
+`func (o *IP) GetZohobusinessSettings() string`
+
+GetZohobusinessSettings returns the ZohobusinessSettings field if non-nil, zero value otherwise.
+
+### GetZohobusinessSettingsOk
+
+`func (o *IP) GetZohobusinessSettingsOk() (*string, bool)`
+
+GetZohobusinessSettingsOk returns a tuple with the ZohobusinessSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetZohobusinessSettings
+
+`func (o *IP) SetZohobusinessSettings(v string)`
+
+SetZohobusinessSettings sets ZohobusinessSettings field to given value.
+
+### HasZohobusinessSettings
+
+`func (o *IP) HasZohobusinessSettings() bool`
+
+HasZohobusinessSettings returns a boolean if a field has been set.
+
+### GetAmazonworkmailSettings
+
+`func (o *IP) GetAmazonworkmailSettings() string`
+
+GetAmazonworkmailSettings returns the AmazonworkmailSettings field if non-nil, zero value otherwise.
+
+### GetAmazonworkmailSettingsOk
+
+`func (o *IP) GetAmazonworkmailSettingsOk() (*string, bool)`
+
+GetAmazonworkmailSettingsOk returns a tuple with the AmazonworkmailSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAmazonworkmailSettings
+
+`func (o *IP) SetAmazonworkmailSettings(v string)`
+
+SetAmazonworkmailSettings sets AmazonworkmailSettings field to given value.
+
+### HasAmazonworkmailSettings
+
+`func (o *IP) HasAmazonworkmailSettings() bool`
+
+HasAmazonworkmailSettings returns a boolean if a field has been set.
+
+### GetSymantecSettings
+
+`func (o *IP) GetSymantecSettings() string`
+
+GetSymantecSettings returns the SymantecSettings field if non-nil, zero value otherwise.
+
+### GetSymantecSettingsOk
+
+`func (o *IP) GetSymantecSettingsOk() (*string, bool)`
+
+GetSymantecSettingsOk returns a tuple with the SymantecSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSymantecSettings
+
+`func (o *IP) SetSymantecSettings(v string)`
+
+SetSymantecSettings sets SymantecSettings field to given value.
+
+### HasSymantecSettings
+
+`func (o *IP) HasSymantecSettings() bool`
+
+HasSymantecSettings returns a boolean if a field has been set.
+
+### GetFortinetSettings
+
+`func (o *IP) GetFortinetSettings() string`
+
+GetFortinetSettings returns the FortinetSettings field if non-nil, zero value otherwise.
+
+### GetFortinetSettingsOk
+
+`func (o *IP) GetFortinetSettingsOk() (*string, bool)`
+
+GetFortinetSettingsOk returns a tuple with the FortinetSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFortinetSettings
+
+`func (o *IP) SetFortinetSettings(v string)`
+
+SetFortinetSettings sets FortinetSettings field to given value.
+
+### HasFortinetSettings
+
+`func (o *IP) HasFortinetSettings() bool`
+
+HasFortinetSettings returns a boolean if a field has been set.
+
+### GetSophosSettings
+
+`func (o *IP) GetSophosSettings() string`
+
+GetSophosSettings returns the SophosSettings field if non-nil, zero value otherwise.
+
+### GetSophosSettingsOk
+
+`func (o *IP) GetSophosSettingsOk() (*string, bool)`
+
+GetSophosSettingsOk returns a tuple with the SophosSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSophosSettings
+
+`func (o *IP) SetSophosSettings(v string)`
+
+SetSophosSettings sets SophosSettings field to given value.
+
+### HasSophosSettings
+
+`func (o *IP) HasSophosSettings() bool`
+
+HasSophosSettings returns a boolean if a field has been set.
+
+### GetTrendmicroSettings
+
+`func (o *IP) GetTrendmicroSettings() string`
+
+GetTrendmicroSettings returns the TrendmicroSettings field if non-nil, zero value otherwise.
+
+### GetTrendmicroSettingsOk
+
+`func (o *IP) GetTrendmicroSettingsOk() (*string, bool)`
+
+GetTrendmicroSettingsOk returns a tuple with the TrendmicroSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrendmicroSettings
+
+`func (o *IP) SetTrendmicroSettings(v string)`
+
+SetTrendmicroSettings sets TrendmicroSettings field to given value.
+
+### HasTrendmicroSettings
+
+`func (o *IP) HasTrendmicroSettings() bool`
+
+HasTrendmicroSettings returns a boolean if a field has been set.
+
+### GetCheckpointSettings
+
+`func (o *IP) GetCheckpointSettings() string`
+
+GetCheckpointSettings returns the CheckpointSettings field if non-nil, zero value otherwise.
+
+### GetCheckpointSettingsOk
+
+`func (o *IP) GetCheckpointSettingsOk() (*string, bool)`
+
+GetCheckpointSettingsOk returns a tuple with the CheckpointSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckpointSettings
+
+`func (o *IP) SetCheckpointSettings(v string)`
+
+SetCheckpointSettings sets CheckpointSettings field to given value.
+
+### HasCheckpointSettings
+
+`func (o *IP) HasCheckpointSettings() bool`
+
+HasCheckpointSettings returns a boolean if a field has been set.
 
 ### GetCreated
 

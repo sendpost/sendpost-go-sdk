@@ -1365,11 +1365,23 @@ paths:
           content:
             application/json:
               example:
-                id: 11322
-                autoWarmupEnabled: true
-                autoWarmupStage: 10
-                publicIP: 34.21.14.11
-                created: 1567512491588017564
+                id: 1645
+                labels: null
+                publicIP: 142.249.159.230
+                systemDomain:
+                  id: 2228
+                  name: sp01527.mtaspg.email
+                  dkimVerified: true
+                  spfVerified: true
+                  trackVerified: true
+                  mailboxVerified: false
+                reverseDNSHostname: sp01527.mtaspg.email
+                type: 0
+                created: 1765418983326943700
+                infraClassification: ""
+                infraMonitor: true
+                state: 1
+                autoWarmupPlan: null
               schema:
                 $ref: '#/components/schemas/IP'
           description: Information about the specified IP
@@ -2888,13 +2900,16 @@ components:
           type: integer
     IP:
       example:
+        trendmicroSettings: "{\"name\":\"trendmicro\",\"maxConcurrentConnections\"\
+          :100,...}"
+        proofpointSettings: "{\"name\":\"proofpoint\",\"maxConcurrentConnections\"\
+          :100,...}"
         autoWarmupPlan: autoWarmupPlan
         yahooSettings: "{\"name\":\"yahoo\",\"maxConcurrentConnections\":16,...}"
+        mimecastSettings: "{\"name\":\"mimecast\",\"maxConcurrentConnections\":100,...}"
         comcastSettings: "{\"name\":\"comcast\",\"maxConcurrentConnections\":20,...}"
-        created: 1703224038766344700
         icloudSettings: "{\"name\":\"icloud\",\"maxConcurrentConnections\":20,...}"
         publicIP: 52.34.11.12
-        attSettings: "{\"name\":\"att\",\"maxConcurrentConnections\":1,...}"
         type: 0
         zohoSettings: "{\"name\":\"zoho\",\"maxConcurrentConnections\":1,...}"
         systemDomain:
@@ -2933,24 +2948,51 @@ components:
             type: TXT
           domainRegisteredDate: 1995-08-14
           returnPathFailureReason: ""
-        gmxSettings: "{\"name\":\"gmx\",\"maxConcurrentConnections\":2,...}"
-        reverseDNSHostname: example.mtaspg.email
-        infraMonitor: true
-        mailruSettings: "{\"name\":\"mailru\",\"maxConcurrentConnections\":1,...}"
-        aolSettings: "{\"name\":\"aol\",\"maxConcurrentConnections\":20,...}"
+        checkpointSettings: "{\"name\":\"checkpoint\",\"maxConcurrentConnections\"\
+          :100,...}"
+        googleworkspaceSettings: "{\"name\":\"googleworkspace\",\"maxConcurrentConnections\"\
+          :100,...}"
         id: 11321
-        yandexSettings: "{\"name\":\"yandex\",\"maxConcurrentConnections\":2,...}"
         state: 1
+        ciscoironportSettings: "{\"name\":\"ciscoironport\",\"maxConcurrentConnections\"\
+          :100,...}"
         qqSettings: "{\"name\":\"qq\",\"maxConcurrentConnections\":1,...}"
-        infraClassification: ""
-        gmailSettings: "{\"name\":\"gmail\",\"maxConcurrentConnections\":100,...}"
         microsoftSettings: "{\"name\":\"microsoft\",\"maxConcurrentConnections\":16,...}"
         defaultSettings: "{\"name\":\"default\",\"maxConcurrentConnections\":14,...}"
+        amazonworkmailSettings: "{\"name\":\"amazonworkmail\",\"maxConcurrentConnections\"\
+          :100,...}"
+        rackspaceSettings: "{\"name\":\"rackspace\",\"maxConcurrentConnections\":100,...}"
+        created: 1703224038766344700
+        attSettings: "{\"name\":\"att\",\"maxConcurrentConnections\":1,...}"
+        barracudaSettings: "{\"name\":\"barracuda\",\"maxConcurrentConnections\":100,...}"
+        zohobusinessSettings: "{\"name\":\"zohobusiness\",\"maxConcurrentConnections\"\
+          :100,...}"
+        labels:
+        - labels
+        - labels
+        gmxSettings: "{\"name\":\"gmx\",\"maxConcurrentConnections\":2,...}"
+        reverseDNSHostname: example.mtaspg.email
+        symantecSettings: "{\"name\":\"symantec\",\"maxConcurrentConnections\":100,...}"
+        infraMonitor: true
+        office365Settings: "{\"name\":\"office365\",\"maxConcurrentConnections\":100,...}"
+        mailruSettings: "{\"name\":\"mailru\",\"maxConcurrentConnections\":1,...}"
+        aolSettings: "{\"name\":\"aol\",\"maxConcurrentConnections\":20,...}"
+        yandexSettings: "{\"name\":\"yandex\",\"maxConcurrentConnections\":2,...}"
+        fortinetSettings: "{\"name\":\"fortinet\",\"maxConcurrentConnections\":100,...}"
+        sophosSettings: "{\"name\":\"sophos\",\"maxConcurrentConnections\":100,...}"
+        infraClassification: ""
+        gmailSettings: "{\"name\":\"gmail\",\"maxConcurrentConnections\":100,...}"
       properties:
         id:
           description: Unique ID for the IP
           example: 11321
           type: integer
+        labels:
+          description: Labels associated with the IP
+          items:
+            type: string
+          type: array
+          nullable: true
         publicIP:
           description: The public IP address associated with the resource
           example: 52.34.11.12
@@ -3016,6 +3058,65 @@ components:
         attSettings:
           description: Configuration for AT&T delivery settings in JSON format
           example: "{\"name\":\"att\",\"maxConcurrentConnections\":1,...}"
+          type: string
+        office365Settings:
+          description: Configuration for Office365 delivery settings in JSON format
+          example: "{\"name\":\"office365\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        googleworkspaceSettings:
+          description: Configuration for Google Workspace delivery settings in JSON
+            format
+          example: "{\"name\":\"googleworkspace\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        proofpointSettings:
+          description: Configuration for Proofpoint delivery settings in JSON format
+          example: "{\"name\":\"proofpoint\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        mimecastSettings:
+          description: Configuration for Mimecast delivery settings in JSON format
+          example: "{\"name\":\"mimecast\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        barracudaSettings:
+          description: Configuration for Barracuda delivery settings in JSON format
+          example: "{\"name\":\"barracuda\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        ciscoironportSettings:
+          description: Configuration for Cisco IronPort delivery settings in JSON
+            format
+          example: "{\"name\":\"ciscoironport\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        rackspaceSettings:
+          description: Configuration for Rackspace delivery settings in JSON format
+          example: "{\"name\":\"rackspace\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        zohobusinessSettings:
+          description: Configuration for Zoho Business delivery settings in JSON format
+          example: "{\"name\":\"zohobusiness\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        amazonworkmailSettings:
+          description: Configuration for Amazon WorkMail delivery settings in JSON
+            format
+          example: "{\"name\":\"amazonworkmail\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        symantecSettings:
+          description: Configuration for Symantec delivery settings in JSON format
+          example: "{\"name\":\"symantec\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        fortinetSettings:
+          description: Configuration for Fortinet delivery settings in JSON format
+          example: "{\"name\":\"fortinet\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        sophosSettings:
+          description: Configuration for Sophos delivery settings in JSON format
+          example: "{\"name\":\"sophos\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        trendmicroSettings:
+          description: Configuration for Trend Micro delivery settings in JSON format
+          example: "{\"name\":\"trendmicro\",\"maxConcurrentConnections\":100,...}"
+          type: string
+        checkpointSettings:
+          description: Configuration for Checkpoint delivery settings in JSON format
+          example: "{\"name\":\"checkpoint\",\"maxConcurrentConnections\":100,...}"
           type: string
         created:
           description: The timestamp (UNIX epoch) when the IP was created
@@ -3119,13 +3220,16 @@ components:
         created: 1597511124804000
         routingMetaData: "{}"
         ips:
-        - autoWarmupPlan: autoWarmupPlan
+        - trendmicroSettings: "{\"name\":\"trendmicro\",\"maxConcurrentConnections\"\
+            :100,...}"
+          proofpointSettings: "{\"name\":\"proofpoint\",\"maxConcurrentConnections\"\
+            :100,...}"
+          autoWarmupPlan: autoWarmupPlan
           yahooSettings: "{\"name\":\"yahoo\",\"maxConcurrentConnections\":16,...}"
+          mimecastSettings: "{\"name\":\"mimecast\",\"maxConcurrentConnections\":100,...}"
           comcastSettings: "{\"name\":\"comcast\",\"maxConcurrentConnections\":20,...}"
-          created: 1703224038766344700
           icloudSettings: "{\"name\":\"icloud\",\"maxConcurrentConnections\":20,...}"
           publicIP: 52.34.11.12
-          attSettings: "{\"name\":\"att\",\"maxConcurrentConnections\":1,...}"
           type: 0
           zohoSettings: "{\"name\":\"zoho\",\"maxConcurrentConnections\":1,...}"
           systemDomain:
@@ -3164,27 +3268,54 @@ components:
               type: TXT
             domainRegisteredDate: 1995-08-14
             returnPathFailureReason: ""
-          gmxSettings: "{\"name\":\"gmx\",\"maxConcurrentConnections\":2,...}"
-          reverseDNSHostname: example.mtaspg.email
-          infraMonitor: true
-          mailruSettings: "{\"name\":\"mailru\",\"maxConcurrentConnections\":1,...}"
-          aolSettings: "{\"name\":\"aol\",\"maxConcurrentConnections\":20,...}"
+          checkpointSettings: "{\"name\":\"checkpoint\",\"maxConcurrentConnections\"\
+            :100,...}"
+          googleworkspaceSettings: "{\"name\":\"googleworkspace\",\"maxConcurrentConnections\"\
+            :100,...}"
           id: 11321
-          yandexSettings: "{\"name\":\"yandex\",\"maxConcurrentConnections\":2,...}"
           state: 1
+          ciscoironportSettings: "{\"name\":\"ciscoironport\",\"maxConcurrentConnections\"\
+            :100,...}"
           qqSettings: "{\"name\":\"qq\",\"maxConcurrentConnections\":1,...}"
-          infraClassification: ""
-          gmailSettings: "{\"name\":\"gmail\",\"maxConcurrentConnections\":100,...}"
           microsoftSettings: "{\"name\":\"microsoft\",\"maxConcurrentConnections\"\
             :16,...}"
           defaultSettings: "{\"name\":\"default\",\"maxConcurrentConnections\":14,...}"
-        - autoWarmupPlan: autoWarmupPlan
-          yahooSettings: "{\"name\":\"yahoo\",\"maxConcurrentConnections\":16,...}"
-          comcastSettings: "{\"name\":\"comcast\",\"maxConcurrentConnections\":20,...}"
+          amazonworkmailSettings: "{\"name\":\"amazonworkmail\",\"maxConcurrentConnections\"\
+            :100,...}"
+          rackspaceSettings: "{\"name\":\"rackspace\",\"maxConcurrentConnections\"\
+            :100,...}"
           created: 1703224038766344700
+          attSettings: "{\"name\":\"att\",\"maxConcurrentConnections\":1,...}"
+          barracudaSettings: "{\"name\":\"barracuda\",\"maxConcurrentConnections\"\
+            :100,...}"
+          zohobusinessSettings: "{\"name\":\"zohobusiness\",\"maxConcurrentConnections\"\
+            :100,...}"
+          labels:
+          - labels
+          - labels
+          gmxSettings: "{\"name\":\"gmx\",\"maxConcurrentConnections\":2,...}"
+          reverseDNSHostname: example.mtaspg.email
+          symantecSettings: "{\"name\":\"symantec\",\"maxConcurrentConnections\":100,...}"
+          infraMonitor: true
+          office365Settings: "{\"name\":\"office365\",\"maxConcurrentConnections\"\
+            :100,...}"
+          mailruSettings: "{\"name\":\"mailru\",\"maxConcurrentConnections\":1,...}"
+          aolSettings: "{\"name\":\"aol\",\"maxConcurrentConnections\":20,...}"
+          yandexSettings: "{\"name\":\"yandex\",\"maxConcurrentConnections\":2,...}"
+          fortinetSettings: "{\"name\":\"fortinet\",\"maxConcurrentConnections\":100,...}"
+          sophosSettings: "{\"name\":\"sophos\",\"maxConcurrentConnections\":100,...}"
+          infraClassification: ""
+          gmailSettings: "{\"name\":\"gmail\",\"maxConcurrentConnections\":100,...}"
+        - trendmicroSettings: "{\"name\":\"trendmicro\",\"maxConcurrentConnections\"\
+            :100,...}"
+          proofpointSettings: "{\"name\":\"proofpoint\",\"maxConcurrentConnections\"\
+            :100,...}"
+          autoWarmupPlan: autoWarmupPlan
+          yahooSettings: "{\"name\":\"yahoo\",\"maxConcurrentConnections\":16,...}"
+          mimecastSettings: "{\"name\":\"mimecast\",\"maxConcurrentConnections\":100,...}"
+          comcastSettings: "{\"name\":\"comcast\",\"maxConcurrentConnections\":20,...}"
           icloudSettings: "{\"name\":\"icloud\",\"maxConcurrentConnections\":20,...}"
           publicIP: 52.34.11.12
-          attSettings: "{\"name\":\"att\",\"maxConcurrentConnections\":1,...}"
           type: 0
           zohoSettings: "{\"name\":\"zoho\",\"maxConcurrentConnections\":1,...}"
           systemDomain:
@@ -3223,20 +3354,44 @@ components:
               type: TXT
             domainRegisteredDate: 1995-08-14
             returnPathFailureReason: ""
-          gmxSettings: "{\"name\":\"gmx\",\"maxConcurrentConnections\":2,...}"
-          reverseDNSHostname: example.mtaspg.email
-          infraMonitor: true
-          mailruSettings: "{\"name\":\"mailru\",\"maxConcurrentConnections\":1,...}"
-          aolSettings: "{\"name\":\"aol\",\"maxConcurrentConnections\":20,...}"
+          checkpointSettings: "{\"name\":\"checkpoint\",\"maxConcurrentConnections\"\
+            :100,...}"
+          googleworkspaceSettings: "{\"name\":\"googleworkspace\",\"maxConcurrentConnections\"\
+            :100,...}"
           id: 11321
-          yandexSettings: "{\"name\":\"yandex\",\"maxConcurrentConnections\":2,...}"
           state: 1
+          ciscoironportSettings: "{\"name\":\"ciscoironport\",\"maxConcurrentConnections\"\
+            :100,...}"
           qqSettings: "{\"name\":\"qq\",\"maxConcurrentConnections\":1,...}"
-          infraClassification: ""
-          gmailSettings: "{\"name\":\"gmail\",\"maxConcurrentConnections\":100,...}"
           microsoftSettings: "{\"name\":\"microsoft\",\"maxConcurrentConnections\"\
             :16,...}"
           defaultSettings: "{\"name\":\"default\",\"maxConcurrentConnections\":14,...}"
+          amazonworkmailSettings: "{\"name\":\"amazonworkmail\",\"maxConcurrentConnections\"\
+            :100,...}"
+          rackspaceSettings: "{\"name\":\"rackspace\",\"maxConcurrentConnections\"\
+            :100,...}"
+          created: 1703224038766344700
+          attSettings: "{\"name\":\"att\",\"maxConcurrentConnections\":1,...}"
+          barracudaSettings: "{\"name\":\"barracuda\",\"maxConcurrentConnections\"\
+            :100,...}"
+          zohobusinessSettings: "{\"name\":\"zohobusiness\",\"maxConcurrentConnections\"\
+            :100,...}"
+          labels:
+          - labels
+          - labels
+          gmxSettings: "{\"name\":\"gmx\",\"maxConcurrentConnections\":2,...}"
+          reverseDNSHostname: example.mtaspg.email
+          symantecSettings: "{\"name\":\"symantec\",\"maxConcurrentConnections\":100,...}"
+          infraMonitor: true
+          office365Settings: "{\"name\":\"office365\",\"maxConcurrentConnections\"\
+            :100,...}"
+          mailruSettings: "{\"name\":\"mailru\",\"maxConcurrentConnections\":1,...}"
+          aolSettings: "{\"name\":\"aol\",\"maxConcurrentConnections\":20,...}"
+          yandexSettings: "{\"name\":\"yandex\",\"maxConcurrentConnections\":2,...}"
+          fortinetSettings: "{\"name\":\"fortinet\",\"maxConcurrentConnections\":100,...}"
+          sophosSettings: "{\"name\":\"sophos\",\"maxConcurrentConnections\":100,...}"
+          infraClassification: ""
+          gmailSettings: "{\"name\":\"gmail\",\"maxConcurrentConnections\":100,...}"
         overflowPoolName: Transactional
         warmupInterval: 60
         infraMonitor: true
