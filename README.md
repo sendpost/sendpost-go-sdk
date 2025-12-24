@@ -172,353 +172,205 @@ Sub-Account API operations enable common email sending API use-cases like sendin
 The Account API operations allow users to manage multiple sub-accounts and manage IPs. A single parent SendPost account can have 100's of sub-accounts. You may want to create sub-accounts for different products your company is running or to segregate types of emails or for managing email sending across multiple customers of yours.
 
 
-# SMTP Reference
+# Installation
 
-Simple Mail Transfer Protocol (SMTP) is a quick and easy way to send email from one server to another. SendPost provides an SMTP service that allows you to deliver your email via our servers instead of your own client or server. 
-This means you can count on SendPost's delivery at scale for your SMTP needs. 
+## Prerequisites
 
+Before installing the SendPost Go SDK, ensure you have the following installed:
 
-## Integrating SMTP 
+1. **Go 1.18 or higher** - The SDK requires Go 1.18 or later
+   - Check your Go version: `go version`
+   - If you need to install or update Go, visit [https://golang.org/dl/](https://golang.org/dl/)
+   - For macOS: `brew install go` or download from the official website
+   - For Linux: Use your distribution's package manager or download from the official website
+   - For Windows: Download the installer from the official website
 
+2. **Git** - Required for cloning repositories (if installing from source)
+   - Check if Git is installed: `git --version`
+   - Install Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-1. Get the SMTP `username` and `password` from your SendPost account.
+3. **A SendPost account** - You'll need API keys to use the SDK
+   - Sign up at [https://app.sendpost.io/register](https://app.sendpost.io/register)
+   - Get your API keys from the dashboard
 
-2. Set the server host in your email client or application to `smtp.sendpost.io`. This setting is sometimes referred to as the external SMTP server or the SMTP relay.
+## Installing the SDK
 
-3. Set the `username` and `password`.
+### Option 1: Using go get (Recommended)
 
-4. Set the port to `587` (or as specified below).
+The easiest way to install the SendPost Go SDK is using `go get`:
 
-## SMTP Ports
-
-
-- For an unencrypted or a TLS connection, use port `25`, `2525` or `587`.
-
-- For a SSL connection, use port `465`
-
-- Check your firewall and network to ensure they're not blocking any of our SMTP Endpoints.
-
-
-SendPost supports STARTTLS for establishing a TLS-encrypted connection. STARTTLS is a means of upgrading an unencrypted connection to an encrypted connection. There are versions of STARTTLS for a variety of protocols; the SMTP version is defined in [RFC 3207](https://www.ietf.org/rfc/rfc3207.txt).
-
-
-To set up a STARTTLS connection, the SMTP client connects to the SendPost SMTP endpoint `smtp.sendpost.io` on port 25, 587, or 2525, issues an EHLO command, and waits for the server to announce that it supports the STARTTLS SMTP extension. The client then issues the STARTTLS command, initiating TLS negotiation. When negotiation is complete, the client issues an EHLO command over the new encrypted connection, and the SMTP session proceeds normally.
-
-
-<aside class=\"success\">
-If you are unsure which port to use, a TLS connection on port 587 is typically recommended.
-</aside>
-
-
-## Sending email from your application
-
-
-```javascript
-\"use strict\";
-
-const nodemailer = require(\"nodemailer\");
-
-async function main() {
-// create reusable transporter object using the default SMTP transport
-let transporter = nodemailer.createTransport({
-host: \"smtp.sendpost.io\",
-port: 587,
-secure: false, // true for 465, false for other ports
-auth: {
-user:  \"<username>\" , // generated ethereal user
-pass: \"<password>\", // generated ethereal password
-},
-requireTLS: true,
-debug: true,
-logger: true,
-});
-
-// send mail with defined transport object
-try {
-let info = await transporter.sendMail({
-from: 'erlich@piedpiper.com',
-to: 'gilfoyle@piedpiper.com',
-subject: 'Test Email Subject',
-html: '<h1>Hello Geeks!!!</h1>',
-});
-console.log(\"Message sent: %s\", info.messageId);
-} catch (e) {
-console.log(e)
-}
-}
-
-main().catch(console.error);
+```bash
+go get github.com/sendpost/sendpost-go-sdk
 ```
 
-For PHP
+This will download and install the SDK to your Go module cache.
 
+### Option 2: Adding to your go.mod
 
-```php
-<?php
-// Import PHPMailer classes into the global namespace
-use PHPMailer\\PHPMailer\\PHPMailer;
-use PHPMailer\\PHPMailer\\SMTP;
-use PHPMailer\\PHPMailer\\Exception;
+If you're working in a Go module project, add the SDK to your `go.mod` file:
 
-// Load Composer's autoloader
-require 'vendor/autoload.php';
-
-$mail = new PHPMailer(true);
-
-// Settings
-try {
-$mail->SMTPDebug = SMTP::DEBUG_CONNECTION;                  // Enable verbose debug output
-$mail->isSMTP();                                            // Send using SMTP
-$mail->Host       = 'smtp.sendpost.io';                     // Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-$mail->Username   = '<username>';                           // SMTP username
-$mail->Password   = '<password>';                           // SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable implicit TLS encryption
-$mail->Port       = 587;                                    // TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-//Recipients
-$mail->setFrom('erlich@piedpiper.com', 'Erlich');
-$mail->addAddress('gilfoyle@piedpiper.com', 'Gilfoyle');
-
-//Content
-$mail->isHTML(true);                                  //Set email format to HTML
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-$mail->send();
-echo 'Message has been sent';
-
-} catch (Exception $e) {
-echo \"Message could not be sent. Mailer Error: {$mail->ErrorInfo}\";
-}
+```bash
+go mod init your-project-name
+go get github.com/sendpost/sendpost-go-sdk
 ```
-For Python
-```python
-#!/usr/bin/python3
 
-import sys
-import os
-import re
+Or manually add it to your `go.mod`:
 
-from smtplib import SMTP
-import ssl
+```go
+module your-project-name
 
-from email.mime.text import MIMEText
+go 1.18
 
-SMTPserver = 'smtp.sendpost.io'
-PORT = 587
-sender =     'erlich@piedpiper.com'
-destination = ['gilfoyle@piedpiper.com']
-
-USERNAME = \"<username>\"
-PASSWORD = \"<password>\"
-
-# typical values for text_subtype are plain, html, xml
-text_subtype = 'plain'
-
-content=\"\"\"\\
-Test message
-\"\"\"
-
-subject=\"Sent from Python\"
-
-try:
-msg = MIMEText(content, text_subtype)
-msg['Subject']= subject
-msg['From']   = sender
-
-conn = SMTP(SMTPserver, PORT)
-conn.ehlo()
-context = ssl.create_default_context()
-conn.starttls(context=context)  # upgrade to tls
-conn.ehlo()
-conn.set_debuglevel(True)
-conn.login(USERNAME, PASSWORD)
-
-try:
-resp = conn.sendmail(sender, destination, msg.as_string())
-print(\"Send Mail Response: \", resp)
-except Exception as e:
-print(\"Send Email Error: \", e)
-finally:
-conn.quit()
-
-except Exception as e:
-print(\"Error:\", e)
+require (
+    github.com/sendpost/sendpost-go-sdk v1.0.0
+)
 ```
-For Golang
+
+Then run:
+
+```bash
+go mod tidy
+```
+
+### Option 3: Installing from source
+
+If you need to install from a specific branch or fork:
+
+```bash
+git clone https://github.com/sendpost/sendpost-go-sdk.git
+cd sendpost-go-sdk
+go mod download
+```
+
+## Verifying Installation
+
+To verify that the SDK is installed correctly, create a simple test file:
+
 ```go
 package main
 
 import (
-\"fmt\"
-\"net/smtp\"
-\"os\"
+    "fmt"
+    sendpost "github.com/sendpost/sendpost-go-sdk"
 )
 
-// Sending Email Using Smtp in Golang
-
 func main() {
-
-username := \"<username>\"
-password := \"<password>\"
-
-from := \"erlich@piedpiper.com\"
-toList := []string{\"gilfoyle@piedpiper.com\"}
-host := \"smtp.sendpost.io\"
-port := \"587\" // recommended
-
-// This is the message to send in the mail
-msg := \"Hello geeks!!!\"
-
-// We can't send strings directly in mail,
-// strings need to be converted into slice bytes
-body := []byte(msg)
-
-// PlainAuth uses the given username and password to
-// authenticate to host and act as identity.
-// Usually identity should be the empty string,
-// to act as username.
-auth := smtp.PlainAuth(\"\", username, password, host)
-
-// SendMail uses TLS connection to send the mail
-// The email is sent to all address in the toList,
-// the body should be of type bytes, not strings
-// This returns error if any occured.
-err := smtp.SendMail(host+\":\"+port, auth, from, toList, body)
-
-// handling the errors
-if err != nil {
-fmt.Println(err)
-os.Exit(1)
-}
-
-fmt.Println(\"Successfully sent mail to all user in toList\")
-}
-
-```
-For Java
-```java
-// implementation 'com.sun.mail:javax.mail:1.6.2'
-
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
-public class SMTPConnect {
-
-// This address must be verified.
-static final String FROM = \"erlich@piedpiper.com\";
-static final String FROMNAME = \"Erlich Bachman\";
-
-// Replace recipient@example.com with a \"To\" address. If your account
-// is still in the sandbox, this address must be verified.
-static final String TO = \"gilfoyle@piedpiper.com\";
-
-// Replace smtp_username with your SendPost SMTP user name.
-static final String SMTP_USERNAME = \"<username>\";
-
-// Replace smtp_password with your SendPost SMTP password.
-static final String SMTP_PASSWORD = \"<password>\";
-
-// SMTP Host Name
-static final String HOST = \"smtp.sendpost.io\";
-
-// The port you will connect to on SendPost SMTP Endpoint.
-static final int PORT = 587;
-
-static final String SUBJECT = \"SendPost SMTP Test (SMTP interface accessed using Java)\";
-
-static final String BODY = String.join(
-System.getProperty(\"line.separator\"),
-\"<h1>SendPost SMTP Test</h1>\",
-\"<p>This email was sent with SendPost using the \",
-\"<a href='https://github.com/eclipse-ee4j/mail'>Javamail Package</a>\",
-\" for <a href='https://www.java.com'>Java</a>.\"
-);
-
-public static void main(String[] args) throws Exception {
-
-// Create a Properties object to contain connection configuration information.
-Properties props = System.getProperties();
-props.put(\"mail.transport.protocol\", \"smtp\");
-props.put(\"mail.smtp.port\", PORT);
-props.put(\"mail.smtp.starttls.enable\", \"true\");
-props.put(\"mail.smtp.debug\", \"true\");
-props.put(\"mail.smtp.auth\", \"true\");
-
-// Create a Session object to represent a mail session with the specified properties.
-Session session = Session.getDefaultInstance(props);
-
-// Create a message with the specified information.
-MimeMessage msg = new MimeMessage(session);
-msg.setFrom(new InternetAddress(FROM,FROMNAME));
-msg.setRecipient(Message.RecipientType.TO, new InternetAddress(TO));
-msg.setSubject(SUBJECT);
-msg.setContent(BODY,\"text/html\");
-
-// Create a transport.
-Transport transport = session.getTransport();
-
-// Send the message.
-try {
-System.out.println(\"Sending...\");
-
-// Connect to SendPost SMTP using the SMTP username and password you specified above.
-transport.connect(HOST, SMTP_USERNAME, SMTP_PASSWORD);
-
-// Send the email.
-transport.sendMessage(msg, msg.getAllRecipients());
-System.out.println(\"Email sent!\");
-
-} catch (Exception ex) {
-
-System.out.println(\"The email was not sent.\");
-System.out.println(\"Error message: \" + ex.getMessage());
-System.out.println(ex);
-}
-// Close and terminate the connection.
-}
+    cfg := sendpost.NewConfiguration()
+    fmt.Printf("SendPost SDK version: %s\n", cfg.UserAgent)
+    fmt.Println("SDK installed successfully!")
 }
 ```
 
-Many programming languages support sending email using SMTP. This capability might be built into the programming language itself, or it might be available as an add-on, plug-in, or library. You can take advantage of this capability by sending email through SendPost from within application programs that you write.
+Run it with:
 
-We have provided examples in Python3, Golang, Java, PHP, JS.
-
-
-## Overview
-This API client was generated by the [OpenAPI Generator](https://openapi-generator.tech) project.  By using the [OpenAPI-spec](https://www.openapis.org/) from a remote server, you can easily generate an API client.
-
-- API version: 1.0.0
-- Package version: 1.0.0
-- Generator version: 7.13.0
-- Build package: org.openapitools.codegen.languages.GoClientCodegen
-
-## Installation
-
-Install the following dependencies:
-
-```sh
-go get github.com/stretchr/testify/assert
-go get golang.org/x/net/context
+```bash
+go run main.go
 ```
 
-Put the package under your project folder and add the following in import:
+If you see the success message, the SDK is installed correctly.
+
+## Dependencies
+
+The SendPost Go SDK uses only standard Go libraries and has minimal external dependencies. The SDK automatically handles:
+
+- HTTP client operations (using `net/http`)
+- JSON encoding/decoding (using `encoding/json`)
+- Context management (using `context`)
+
+No additional dependencies need to be installed manually.
+
+## Quick Start
+
+Once installed, you can start using the SDK. Here's a basic example:
 
 ```go
-import sendpost "github.com/sendpost/sendpost-go-sdk"
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    
+    sendpost "github.com/sendpost/sendpost-go-sdk"
+)
+
+func main() {
+    // Get your API key from environment variable or set it directly
+    apiKey := os.Getenv("SENDPOST_SUB_ACCOUNT_API_KEY")
+    if apiKey == "" {
+        apiKey = "YOUR_SUB_ACCOUNT_API_KEY_HERE"
+    }
+
+    // Create configuration
+    cfg := sendpost.NewConfiguration()
+    cfg.Servers = sendpost.ServerConfigurations{
+        {
+            URL: "https://api.sendpost.io/api/v1",
+            Description: "SendPost API Server",
+        },
+    }
+
+    // Create API client
+    client := sendpost.NewAPIClient(cfg)
+
+    // Set up authentication context
+    ctx := context.WithValue(
+        context.Background(),
+        sendpost.ContextAPIKeys,
+        map[string]sendpost.APIKey{
+            "subAccountAuth": {Key: apiKey},
+        },
+    )
+
+    // Example: Get all domains
+    domains, resp, err := client.DomainAPI.SubaccountDomainGet(ctx).Execute()
+    if err != nil {
+        fmt.Printf("Error: %v\n", err)
+        return
+    }
+
+    fmt.Printf("Response status: %s\n", resp.Status)
+    fmt.Printf("Number of domains: %d\n", len(domains))
+}
 ```
+
+## Configuration
+
+### Setting up API Keys
+
+You can set API keys in several ways:
+
+1. **Environment Variables** (Recommended for production):
+```bash
+export SENDPOST_ACCOUNT_API_KEY="your_account_api_key"
+export SENDPOST_SUB_ACCOUNT_API_KEY="your_sub_account_api_key"
+```
+
+2. **In your code**:
+```go
+ctx := context.WithValue(
+    context.Background(),
+    sendpost.ContextAPIKeys,
+    map[string]sendpost.APIKey{
+        "accountAuth": {Key: "your_account_api_key"},
+        "subAccountAuth": {Key: "your_sub_account_api_key"},
+    },
+)
+```
+
+### Using a Proxy
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
 
 ```go
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
+```
+
+Or configure it in your HTTP client:
+
+```go
+cfg := sendpost.NewConfiguration()
+// Configure custom HTTP client with proxy if needed
 ```
 
 ## Configuration of Server URL
@@ -743,7 +595,37 @@ Each of these functions takes a value of the given basic type and returns a poin
 * `PtrString`
 * `PtrTime`
 
+## Examples
+
+For complete working examples, check out the [example-sdk-go](https://github.com/sendpost/example-sdk-go) repository which demonstrates:
+
+- Sending emails
+- Managing domains
+- Creating sub-accounts
+- Managing IPs and IP pools
+- Working with webhooks
+- Retrieving statistics
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Module not found errors**: Make sure you've run `go mod tidy` after adding the SDK
+2. **Authentication errors**: Verify your API keys are correct and set in the context
+3. **Network errors**: Check your internet connection and firewall settings
+4. **Version conflicts**: Ensure you're using Go 1.18 or higher
+
+### Getting Help
+
+- Check the [API documentation](https://docs.sendpost.io)
+- Review the [example code](https://github.com/sendpost/example-sdk-go)
+- Contact support: **hello@sendpost.io**
+- Visit our [developer portal](https://app.sendpost.io)
+
 ## Author
 
+SendPost Team
 
+## License
 
+See LICENSE file for details.
