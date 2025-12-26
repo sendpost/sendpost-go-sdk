@@ -36,11 +36,11 @@ type Message struct {
 	// Type of email service used.
 	EmailType *string `json:"emailType,omitempty"`
 	// UNIX epoch nano timestamp when message was submitted.
-	SubmittedAt *int32 `json:"submittedAt,omitempty"`
+	SubmittedAt *int64 `json:"submittedAt,omitempty"`
 	// Object comprising name and email address of the sender
-	From Person `json:"from,omitempty"`
+	From *Person `json:"from,omitempty"`
 	// Object comprising name and email addresses to which email replies will go to
-	ReplyTo Person `json:"replyTo,omitempty"`
+	ReplyTo *Person `json:"replyTo,omitempty"`
 	To *MessageTo `json:"to,omitempty"`
 	HeaderTo *MessageHeaderTo `json:"headerTo,omitempty"`
 	// List of CC recipients from email headers
@@ -353,9 +353,9 @@ func (o *Message) SetEmailType(v string) {
 }
 
 // GetSubmittedAt returns the SubmittedAt field value if set, zero value otherwise.
-func (o *Message) GetSubmittedAt() int32 {
+func (o *Message) GetSubmittedAt() int64 {
 	if o == nil || IsNil(o.SubmittedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SubmittedAt
@@ -363,7 +363,7 @@ func (o *Message) GetSubmittedAt() int32 {
 
 // GetSubmittedAtOk returns a tuple with the SubmittedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Message) GetSubmittedAtOk() (*int32, bool) {
+func (o *Message) GetSubmittedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.SubmittedAt) {
 		return nil, false
 	}
@@ -379,8 +379,8 @@ func (o *Message) HasSubmittedAt() bool {
 	return false
 }
 
-// SetSubmittedAt gets a reference to the given int32 and assigns it to the SubmittedAt field.
-func (o *Message) SetSubmittedAt(v int32) {
+// SetSubmittedAt gets a reference to the given int64 and assigns it to the SubmittedAt field.
+func (o *Message) SetSubmittedAt(v int64) {
 	o.SubmittedAt = &v
 }
 
@@ -390,14 +390,14 @@ func (o *Message) GetFrom() Person {
 		var ret Person
 		return ret
 	}
-	return o.From
+	return *o.From
 }
 
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Message) GetFromOk() (Person, bool) {
+func (o *Message) GetFromOk() (*Person, bool) {
 	if o == nil || IsNil(o.From) {
-		return Person{}, false
+		return nil, false
 	}
 	return o.From, true
 }
@@ -413,7 +413,7 @@ func (o *Message) HasFrom() bool {
 
 // SetFrom gets a reference to the given Person and assigns it to the From field.
 func (o *Message) SetFrom(v Person) {
-	o.From = v
+	o.From = &v
 }
 
 // GetReplyTo returns the ReplyTo field value if set, zero value otherwise.
@@ -422,14 +422,14 @@ func (o *Message) GetReplyTo() Person {
 		var ret Person
 		return ret
 	}
-	return o.ReplyTo
+	return *o.ReplyTo
 }
 
 // GetReplyToOk returns a tuple with the ReplyTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Message) GetReplyToOk() (Person, bool) {
+func (o *Message) GetReplyToOk() (*Person, bool) {
 	if o == nil || IsNil(o.ReplyTo) {
-		return Person{}, false
+		return nil, false
 	}
 	return o.ReplyTo, true
 }
@@ -445,7 +445,7 @@ func (o *Message) HasReplyTo() bool {
 
 // SetReplyTo gets a reference to the given Person and assigns it to the ReplyTo field.
 func (o *Message) SetReplyTo(v Person) {
-	o.ReplyTo = v
+	o.ReplyTo = &v
 }
 
 // GetTo returns the To field value if set, zero value otherwise.

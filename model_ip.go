@@ -23,12 +23,9 @@ var _ MappedNullable = &IP{}
 type IP struct {
 	// Unique ID for the IP
 	Id int32 `json:"id"`
-	// Labels associated with the IP
-	Labels []string `json:"labels,omitempty"`
 	// The public IP address associated with the resource
 	PublicIP string `json:"publicIP"`
-	// Details of the system domain associated with the IP
-	SystemDomain Domain `json:"systemDomain,omitempty"`
+	SystemDomain *Domain `json:"systemDomain,omitempty"`
 	// The reverse DNS hostname for the IP
 	ReverseDNSHostname *string `json:"reverseDNSHostname,omitempty"`
 	// Type of the IP
@@ -83,9 +80,9 @@ type IP struct {
 	FortinetSettings *string `json:"fortinetSettings,omitempty"`
 	// Configuration for Sophos delivery settings in JSON format
 	SophosSettings *string `json:"sophosSettings,omitempty"`
-	// Configuration for Trend Micro delivery settings in JSON format
+	// Configuration for TrendMicro delivery settings in JSON format
 	TrendmicroSettings *string `json:"trendmicroSettings,omitempty"`
-	// Configuration for Checkpoint delivery settings in JSON format
+	// Configuration for CheckPoint delivery settings in JSON format
 	CheckpointSettings *string `json:"checkpointSettings,omitempty"`
 	// The timestamp (UNIX epoch) when the IP was created
 	Created int64 `json:"created"`
@@ -95,8 +92,10 @@ type IP struct {
 	InfraMonitor *bool `json:"infraMonitor,omitempty"`
 	// The state of the IP
 	State *int32 `json:"state,omitempty"`
-	// The auto-warmup plan associated with the IP
-	AutoWarmupPlan *string `json:"autoWarmupPlan,omitempty"`
+	// The auto-warmup plan associated with the IP. Can be null if no warmup plan is assigned.
+	AutoWarmupPlan *AutoWarmupPlan `json:"autoWarmupPlan,omitempty"`
+	// Labels associated with the IP
+	Labels []Label `json:"labels,omitempty"`
 }
 
 type _IP IP
@@ -145,38 +144,6 @@ func (o *IP) SetId(v int32) {
 	o.Id = v
 }
 
-// GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *IP) GetLabels() []string {
-	if o == nil || IsNil(o.Labels) {
-		var ret []string
-		return ret
-	}
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IP) GetLabelsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *IP) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given []string and assigns it to the Labels field.
-func (o *IP) SetLabels(v []string) {
-	o.Labels = v
-}
-
 // GetPublicIP returns the PublicIP field value
 func (o *IP) GetPublicIP() string {
 	if o == nil {
@@ -207,14 +174,14 @@ func (o *IP) GetSystemDomain() Domain {
 		var ret Domain
 		return ret
 	}
-	return o.SystemDomain
+	return *o.SystemDomain
 }
 
 // GetSystemDomainOk returns a tuple with the SystemDomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IP) GetSystemDomainOk() (Domain, bool) {
+func (o *IP) GetSystemDomainOk() (*Domain, bool) {
 	if o == nil || IsNil(o.SystemDomain) {
-		return Domain{}, false
+		return nil, false
 	}
 	return o.SystemDomain, true
 }
@@ -230,7 +197,7 @@ func (o *IP) HasSystemDomain() bool {
 
 // SetSystemDomain gets a reference to the given Domain and assigns it to the SystemDomain field.
 func (o *IP) SetSystemDomain(v Domain) {
-	o.SystemDomain = v
+	o.SystemDomain = &v
 }
 
 // GetReverseDNSHostname returns the ReverseDNSHostname field value if set, zero value otherwise.
@@ -1282,9 +1249,9 @@ func (o *IP) SetState(v int32) {
 }
 
 // GetAutoWarmupPlan returns the AutoWarmupPlan field value if set, zero value otherwise.
-func (o *IP) GetAutoWarmupPlan() string {
+func (o *IP) GetAutoWarmupPlan() AutoWarmupPlan {
 	if o == nil || IsNil(o.AutoWarmupPlan) {
-		var ret string
+		var ret AutoWarmupPlan
 		return ret
 	}
 	return *o.AutoWarmupPlan
@@ -1292,7 +1259,7 @@ func (o *IP) GetAutoWarmupPlan() string {
 
 // GetAutoWarmupPlanOk returns a tuple with the AutoWarmupPlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IP) GetAutoWarmupPlanOk() (*string, bool) {
+func (o *IP) GetAutoWarmupPlanOk() (*AutoWarmupPlan, bool) {
 	if o == nil || IsNil(o.AutoWarmupPlan) {
 		return nil, false
 	}
@@ -1308,9 +1275,41 @@ func (o *IP) HasAutoWarmupPlan() bool {
 	return false
 }
 
-// SetAutoWarmupPlan gets a reference to the given string and assigns it to the AutoWarmupPlan field.
-func (o *IP) SetAutoWarmupPlan(v string) {
+// SetAutoWarmupPlan gets a reference to the given AutoWarmupPlan and assigns it to the AutoWarmupPlan field.
+func (o *IP) SetAutoWarmupPlan(v AutoWarmupPlan) {
 	o.AutoWarmupPlan = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *IP) GetLabels() []Label {
+	if o == nil || IsNil(o.Labels) {
+		var ret []Label
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IP) GetLabelsOk() ([]Label, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *IP) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []Label and assigns it to the Labels field.
+func (o *IP) SetLabels(v []Label) {
+	o.Labels = v
 }
 
 func (o IP) MarshalJSON() ([]byte, error) {
@@ -1324,9 +1323,6 @@ func (o IP) MarshalJSON() ([]byte, error) {
 func (o IP) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
-	}
 	toSerialize["publicIP"] = o.PublicIP
 	if !IsNil(o.SystemDomain) {
 		toSerialize["systemDomain"] = o.SystemDomain
@@ -1430,6 +1426,9 @@ func (o IP) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AutoWarmupPlan) {
 		toSerialize["autoWarmupPlan"] = o.AutoWarmupPlan
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
 	}
 	return toSerialize, nil
 }

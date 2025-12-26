@@ -14,44 +14,70 @@ import (
 	"encoding/json"
 )
 
-// checks if the IPPoolCreateRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IPPoolCreateRequest{}
+// checks if the Label type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Label{}
 
-// IPPoolCreateRequest struct for IPPoolCreateRequest
-type IPPoolCreateRequest struct {
+// Label struct for Label
+type Label struct {
+	// Unique ID for the label
+	Id *int32 `json:"id,omitempty"`
+	// Name of the label
 	Name *string `json:"name,omitempty"`
-	Ips []EIP `json:"ips,omitempty"`
-	Tpsps []int32 `json:"tpsps,omitempty"`
-	RoutingStrategy *int32 `json:"routingStrategy,omitempty"`
-	RoutingMetaData *string `json:"routingMetaData,omitempty"`
-	OverflowPool *bool `json:"overflowPool,omitempty"`
-	// Warmup interval in hours. Must be greater than 0.
-	WarmupInterval *int32 `json:"warmupInterval,omitempty"`
-	// Overflow strategy (0 = None, 1 = Use overflow pool)
-	OverflowStrategy *int32 `json:"overflowStrategy,omitempty"`
-	// Name of the overflow pool (required if overflowStrategy is 1)
-	OverflowPoolName *string `json:"overflowPoolName,omitempty"`
+	// UNIX epoch nano timestamp when the label was created
+	Created *int64 `json:"created,omitempty"`
 }
 
-// NewIPPoolCreateRequest instantiates a new IPPoolCreateRequest object
+// NewLabel instantiates a new Label object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPPoolCreateRequest() *IPPoolCreateRequest {
-	this := IPPoolCreateRequest{}
+func NewLabel() *Label {
+	this := Label{}
 	return &this
 }
 
-// NewIPPoolCreateRequestWithDefaults instantiates a new IPPoolCreateRequest object
+// NewLabelWithDefaults instantiates a new Label object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIPPoolCreateRequestWithDefaults() *IPPoolCreateRequest {
-	this := IPPoolCreateRequest{}
+func NewLabelWithDefaults() *Label {
+	this := Label{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Label) GetId() int32 {
+	if o == nil || IsNil(o.Id) {
+		var ret int32
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Label) GetIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Label) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
+func (o *Label) SetId(v int32) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetName() string {
+func (o *Label) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -61,7 +87,7 @@ func (o *IPPoolCreateRequest) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetNameOk() (*string, bool) {
+func (o *Label) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -69,7 +95,7 @@ func (o *IPPoolCreateRequest) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasName() bool {
+func (o *Label) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -78,267 +104,43 @@ func (o *IPPoolCreateRequest) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *IPPoolCreateRequest) SetName(v string) {
+func (o *Label) SetName(v string) {
 	o.Name = &v
 }
 
-// GetIps returns the Ips field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetIps() []EIP {
-	if o == nil || IsNil(o.Ips) {
-		var ret []EIP
+// GetCreated returns the Created field value if set, zero value otherwise.
+func (o *Label) GetCreated() int64 {
+	if o == nil || IsNil(o.Created) {
+		var ret int64
 		return ret
 	}
-	return o.Ips
+	return *o.Created
 }
 
-// GetIpsOk returns a tuple with the Ips field value if set, nil otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetIpsOk() ([]EIP, bool) {
-	if o == nil || IsNil(o.Ips) {
+func (o *Label) GetCreatedOk() (*int64, bool) {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
-	return o.Ips, true
+	return o.Created, true
 }
 
-// HasIps returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasIps() bool {
-	if o != nil && !IsNil(o.Ips) {
+// HasCreated returns a boolean if a field has been set.
+func (o *Label) HasCreated() bool {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
 	return false
 }
 
-// SetIps gets a reference to the given []EIP and assigns it to the Ips field.
-func (o *IPPoolCreateRequest) SetIps(v []EIP) {
-	o.Ips = v
+// SetCreated gets a reference to the given int64 and assigns it to the Created field.
+func (o *Label) SetCreated(v int64) {
+	o.Created = &v
 }
 
-// GetTpsps returns the Tpsps field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetTpsps() []int32 {
-	if o == nil || IsNil(o.Tpsps) {
-		var ret []int32
-		return ret
-	}
-	return o.Tpsps
-}
-
-// GetTpspsOk returns a tuple with the Tpsps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetTpspsOk() ([]int32, bool) {
-	if o == nil || IsNil(o.Tpsps) {
-		return nil, false
-	}
-	return o.Tpsps, true
-}
-
-// HasTpsps returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasTpsps() bool {
-	if o != nil && !IsNil(o.Tpsps) {
-		return true
-	}
-
-	return false
-}
-
-// SetTpsps gets a reference to the given []int32 and assigns it to the Tpsps field.
-func (o *IPPoolCreateRequest) SetTpsps(v []int32) {
-	o.Tpsps = v
-}
-
-// GetRoutingStrategy returns the RoutingStrategy field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetRoutingStrategy() int32 {
-	if o == nil || IsNil(o.RoutingStrategy) {
-		var ret int32
-		return ret
-	}
-	return *o.RoutingStrategy
-}
-
-// GetRoutingStrategyOk returns a tuple with the RoutingStrategy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetRoutingStrategyOk() (*int32, bool) {
-	if o == nil || IsNil(o.RoutingStrategy) {
-		return nil, false
-	}
-	return o.RoutingStrategy, true
-}
-
-// HasRoutingStrategy returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasRoutingStrategy() bool {
-	if o != nil && !IsNil(o.RoutingStrategy) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoutingStrategy gets a reference to the given int32 and assigns it to the RoutingStrategy field.
-func (o *IPPoolCreateRequest) SetRoutingStrategy(v int32) {
-	o.RoutingStrategy = &v
-}
-
-// GetRoutingMetaData returns the RoutingMetaData field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetRoutingMetaData() string {
-	if o == nil || IsNil(o.RoutingMetaData) {
-		var ret string
-		return ret
-	}
-	return *o.RoutingMetaData
-}
-
-// GetRoutingMetaDataOk returns a tuple with the RoutingMetaData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetRoutingMetaDataOk() (*string, bool) {
-	if o == nil || IsNil(o.RoutingMetaData) {
-		return nil, false
-	}
-	return o.RoutingMetaData, true
-}
-
-// HasRoutingMetaData returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasRoutingMetaData() bool {
-	if o != nil && !IsNil(o.RoutingMetaData) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoutingMetaData gets a reference to the given string and assigns it to the RoutingMetaData field.
-func (o *IPPoolCreateRequest) SetRoutingMetaData(v string) {
-	o.RoutingMetaData = &v
-}
-
-// GetOverflowPool returns the OverflowPool field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetOverflowPool() bool {
-	if o == nil || IsNil(o.OverflowPool) {
-		var ret bool
-		return ret
-	}
-	return *o.OverflowPool
-}
-
-// GetOverflowPoolOk returns a tuple with the OverflowPool field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetOverflowPoolOk() (*bool, bool) {
-	if o == nil || IsNil(o.OverflowPool) {
-		return nil, false
-	}
-	return o.OverflowPool, true
-}
-
-// HasOverflowPool returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasOverflowPool() bool {
-	if o != nil && !IsNil(o.OverflowPool) {
-		return true
-	}
-
-	return false
-}
-
-// SetOverflowPool gets a reference to the given bool and assigns it to the OverflowPool field.
-func (o *IPPoolCreateRequest) SetOverflowPool(v bool) {
-	o.OverflowPool = &v
-}
-
-// GetWarmupInterval returns the WarmupInterval field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetWarmupInterval() int32 {
-	if o == nil || IsNil(o.WarmupInterval) {
-		var ret int32
-		return ret
-	}
-	return *o.WarmupInterval
-}
-
-// GetWarmupIntervalOk returns a tuple with the WarmupInterval field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetWarmupIntervalOk() (*int32, bool) {
-	if o == nil || IsNil(o.WarmupInterval) {
-		return nil, false
-	}
-	return o.WarmupInterval, true
-}
-
-// HasWarmupInterval returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasWarmupInterval() bool {
-	if o != nil && !IsNil(o.WarmupInterval) {
-		return true
-	}
-
-	return false
-}
-
-// SetWarmupInterval gets a reference to the given int32 and assigns it to the WarmupInterval field.
-func (o *IPPoolCreateRequest) SetWarmupInterval(v int32) {
-	o.WarmupInterval = &v
-}
-
-// GetOverflowStrategy returns the OverflowStrategy field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetOverflowStrategy() int32 {
-	if o == nil || IsNil(o.OverflowStrategy) {
-		var ret int32
-		return ret
-	}
-	return *o.OverflowStrategy
-}
-
-// GetOverflowStrategyOk returns a tuple with the OverflowStrategy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetOverflowStrategyOk() (*int32, bool) {
-	if o == nil || IsNil(o.OverflowStrategy) {
-		return nil, false
-	}
-	return o.OverflowStrategy, true
-}
-
-// HasOverflowStrategy returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasOverflowStrategy() bool {
-	if o != nil && !IsNil(o.OverflowStrategy) {
-		return true
-	}
-
-	return false
-}
-
-// SetOverflowStrategy gets a reference to the given int32 and assigns it to the OverflowStrategy field.
-func (o *IPPoolCreateRequest) SetOverflowStrategy(v int32) {
-	o.OverflowStrategy = &v
-}
-
-// GetOverflowPoolName returns the OverflowPoolName field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetOverflowPoolName() string {
-	if o == nil || IsNil(o.OverflowPoolName) {
-		var ret string
-		return ret
-	}
-	return *o.OverflowPoolName
-}
-
-// GetOverflowPoolNameOk returns a tuple with the OverflowPoolName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetOverflowPoolNameOk() (*string, bool) {
-	if o == nil || IsNil(o.OverflowPoolName) {
-		return nil, false
-	}
-	return o.OverflowPoolName, true
-}
-
-// HasOverflowPoolName returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasOverflowPoolName() bool {
-	if o != nil && !IsNil(o.OverflowPoolName) {
-		return true
-	}
-
-	return false
-}
-
-// SetOverflowPoolName gets a reference to the given string and assigns it to the OverflowPoolName field.
-func (o *IPPoolCreateRequest) SetOverflowPoolName(v string) {
-	o.OverflowPoolName = &v
-}
-
-func (o IPPoolCreateRequest) MarshalJSON() ([]byte, error) {
+func (o Label) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -346,70 +148,52 @@ func (o IPPoolCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o IPPoolCreateRequest) ToMap() (map[string]interface{}, error) {
+func (o Label) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Ips) {
-		toSerialize["ips"] = o.Ips
-	}
-	if !IsNil(o.Tpsps) {
-		toSerialize["tpsps"] = o.Tpsps
-	}
-	if !IsNil(o.RoutingStrategy) {
-		toSerialize["routingStrategy"] = o.RoutingStrategy
-	}
-	if !IsNil(o.RoutingMetaData) {
-		toSerialize["routingMetaData"] = o.RoutingMetaData
-	}
-	if !IsNil(o.OverflowPool) {
-		toSerialize["overflowPool"] = o.OverflowPool
-	}
-	if !IsNil(o.WarmupInterval) {
-		toSerialize["warmupInterval"] = o.WarmupInterval
-	}
-	if !IsNil(o.OverflowStrategy) {
-		toSerialize["overflowStrategy"] = o.OverflowStrategy
-	}
-	if !IsNil(o.OverflowPoolName) {
-		toSerialize["overflowPoolName"] = o.OverflowPoolName
+	if !IsNil(o.Created) {
+		toSerialize["created"] = o.Created
 	}
 	return toSerialize, nil
 }
 
-type NullableIPPoolCreateRequest struct {
-	value *IPPoolCreateRequest
+type NullableLabel struct {
+	value *Label
 	isSet bool
 }
 
-func (v NullableIPPoolCreateRequest) Get() *IPPoolCreateRequest {
+func (v NullableLabel) Get() *Label {
 	return v.value
 }
 
-func (v *NullableIPPoolCreateRequest) Set(val *IPPoolCreateRequest) {
+func (v *NullableLabel) Set(val *Label) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIPPoolCreateRequest) IsSet() bool {
+func (v NullableLabel) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIPPoolCreateRequest) Unset() {
+func (v *NullableLabel) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIPPoolCreateRequest(val *IPPoolCreateRequest) *NullableIPPoolCreateRequest {
-	return &NullableIPPoolCreateRequest{value: val, isSet: true}
+func NewNullableLabel(val *Label) *NullableLabel {
+	return &NullableLabel{value: val, isSet: true}
 }
 
-func (v NullableIPPoolCreateRequest) MarshalJSON() ([]byte, error) {
+func (v NullableLabel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIPPoolCreateRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableLabel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

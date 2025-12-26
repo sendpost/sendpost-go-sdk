@@ -26,7 +26,7 @@ type SubAccount struct {
 	// Name of the sub-account.
 	Name *string `json:"name,omitempty"`
 	// Labels associated with the sub-account
-	Labels []string `json:"labels,omitempty"`
+	Labels []Label `json:"labels,omitempty"`
 	// SMTP Auths associated with the sub-account
 	SmtpAuths []SMTPAuth `json:"smtpAuths,omitempty"`
 	// Type of the sub-account
@@ -36,9 +36,9 @@ type SubAccount struct {
 	// UNIX epoch nano timestamp when the sub-account was created.
 	Created *int64 `json:"created,omitempty"`
 	// Member who created the sub-account
-	CreatedBy Member `json:"created_by,omitempty"`
+	CreatedBy map[string]interface{} `json:"created_by,omitempty"`
 	// Member who updated the sub-account
-	UpdatedBy Member `json:"updated_by,omitempty"`
+	UpdatedBy map[string]interface{} `json:"updated_by,omitempty"`
 	// Indicates whether the sub-account is blocked
 	Blocked *bool `json:"blocked,omitempty"`
 	// UNIX epoch nano timestamp when the sub-account was blocked (0 if not blocked)
@@ -167,9 +167,9 @@ func (o *SubAccount) SetName(v string) {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *SubAccount) GetLabels() []string {
+func (o *SubAccount) GetLabels() []Label {
 	if o == nil || IsNil(o.Labels) {
-		var ret []string
+		var ret []Label
 		return ret
 	}
 	return o.Labels
@@ -177,7 +177,7 @@ func (o *SubAccount) GetLabels() []string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubAccount) GetLabelsOk() ([]string, bool) {
+func (o *SubAccount) GetLabelsOk() ([]Label, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -193,8 +193,8 @@ func (o *SubAccount) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given []string and assigns it to the Labels field.
-func (o *SubAccount) SetLabels(v []string) {
+// SetLabels gets a reference to the given []Label and assigns it to the Labels field.
+func (o *SubAccount) SetLabels(v []Label) {
 	o.Labels = v
 }
 
@@ -327,9 +327,9 @@ func (o *SubAccount) SetCreated(v int64) {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *SubAccount) GetCreatedBy() Member {
+func (o *SubAccount) GetCreatedBy() map[string]interface{} {
 	if o == nil || IsNil(o.CreatedBy) {
-		var ret Member
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.CreatedBy
@@ -337,9 +337,9 @@ func (o *SubAccount) GetCreatedBy() Member {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubAccount) GetCreatedByOk() (Member, bool) {
+func (o *SubAccount) GetCreatedByOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.CreatedBy) {
-		return Member{}, false
+		return map[string]interface{}{}, false
 	}
 	return o.CreatedBy, true
 }
@@ -353,15 +353,15 @@ func (o *SubAccount) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given Member and assigns it to the CreatedBy field.
-func (o *SubAccount) SetCreatedBy(v Member) {
+// SetCreatedBy gets a reference to the given map[string]interface{} and assigns it to the CreatedBy field.
+func (o *SubAccount) SetCreatedBy(v map[string]interface{}) {
 	o.CreatedBy = v
 }
 
 // GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
-func (o *SubAccount) GetUpdatedBy() Member {
+func (o *SubAccount) GetUpdatedBy() map[string]interface{} {
 	if o == nil || IsNil(o.UpdatedBy) {
-		var ret Member
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.UpdatedBy
@@ -369,9 +369,9 @@ func (o *SubAccount) GetUpdatedBy() Member {
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubAccount) GetUpdatedByOk() (Member, bool) {
+func (o *SubAccount) GetUpdatedByOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.UpdatedBy) {
-		return Member{}, false
+		return map[string]interface{}{}, false
 	}
 	return o.UpdatedBy, true
 }
@@ -385,8 +385,8 @@ func (o *SubAccount) HasUpdatedBy() bool {
 	return false
 }
 
-// SetUpdatedBy gets a reference to the given Member and assigns it to the UpdatedBy field.
-func (o *SubAccount) SetUpdatedBy(v Member) {
+// SetUpdatedBy gets a reference to the given map[string]interface{} and assigns it to the UpdatedBy field.
+func (o *SubAccount) SetUpdatedBy(v map[string]interface{}) {
 	o.UpdatedBy = v
 }
 

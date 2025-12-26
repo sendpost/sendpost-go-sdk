@@ -54,9 +54,9 @@ type Webhook struct {
 	// UNIX epoch nano timestamp when the webhook was created.
 	Created *int64 `json:"created,omitempty"`
 	// Member who created the webhook
-	CreatedBy Member `json:"created_by,omitempty"`
+	CreatedBy map[string]interface{} `json:"created_by,omitempty"`
 	// Member who updated the webhook
-	UpdatedBy Member `json:"updated_by,omitempty"`
+	UpdatedBy map[string]interface{} `json:"updated_by,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -624,9 +624,9 @@ func (o *Webhook) SetCreated(v int64) {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *Webhook) GetCreatedBy() Member {
+func (o *Webhook) GetCreatedBy() map[string]interface{} {
 	if o == nil || IsNil(o.CreatedBy) {
-		var ret Member
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.CreatedBy
@@ -634,9 +634,9 @@ func (o *Webhook) GetCreatedBy() Member {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetCreatedByOk() (Member, bool) {
+func (o *Webhook) GetCreatedByOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.CreatedBy) {
-		return Member{}, false
+		return map[string]interface{}{}, false
 	}
 	return o.CreatedBy, true
 }
@@ -650,15 +650,15 @@ func (o *Webhook) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given Member and assigns it to the CreatedBy field.
-func (o *Webhook) SetCreatedBy(v Member) {
+// SetCreatedBy gets a reference to the given map[string]interface{} and assigns it to the CreatedBy field.
+func (o *Webhook) SetCreatedBy(v map[string]interface{}) {
 	o.CreatedBy = v
 }
 
 // GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
-func (o *Webhook) GetUpdatedBy() Member {
+func (o *Webhook) GetUpdatedBy() map[string]interface{} {
 	if o == nil || IsNil(o.UpdatedBy) {
-		var ret Member
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.UpdatedBy
@@ -666,9 +666,9 @@ func (o *Webhook) GetUpdatedBy() Member {
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetUpdatedByOk() (Member, bool) {
+func (o *Webhook) GetUpdatedByOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.UpdatedBy) {
-		return Member{}, false
+		return map[string]interface{}{}, false
 	}
 	return o.UpdatedBy, true
 }
@@ -682,8 +682,8 @@ func (o *Webhook) HasUpdatedBy() bool {
 	return false
 }
 
-// SetUpdatedBy gets a reference to the given Member and assigns it to the UpdatedBy field.
-func (o *Webhook) SetUpdatedBy(v Member) {
+// SetUpdatedBy gets a reference to the given map[string]interface{} and assigns it to the UpdatedBy field.
+func (o *Webhook) SetUpdatedBy(v map[string]interface{}) {
 	o.UpdatedBy = v
 }
 

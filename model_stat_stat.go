@@ -14,331 +14,405 @@ import (
 	"encoding/json"
 )
 
-// checks if the IPPoolCreateRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IPPoolCreateRequest{}
+// checks if the StatStat type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatStat{}
 
-// IPPoolCreateRequest struct for IPPoolCreateRequest
-type IPPoolCreateRequest struct {
-	Name *string `json:"name,omitempty"`
-	Ips []EIP `json:"ips,omitempty"`
-	Tpsps []int32 `json:"tpsps,omitempty"`
-	RoutingStrategy *int32 `json:"routingStrategy,omitempty"`
-	RoutingMetaData *string `json:"routingMetaData,omitempty"`
-	OverflowPool *bool `json:"overflowPool,omitempty"`
-	// Warmup interval in hours. Must be greater than 0.
-	WarmupInterval *int32 `json:"warmupInterval,omitempty"`
-	// Overflow strategy (0 = None, 1 = Use overflow pool)
-	OverflowStrategy *int32 `json:"overflowStrategy,omitempty"`
-	// Name of the overflow pool (required if overflowStrategy is 1)
-	OverflowPoolName *string `json:"overflowPoolName,omitempty"`
+// StatStat Statistics data for the date
+type StatStat struct {
+	// Number of emails accepted by SendPost API.
+	Processed *int32 `json:"processed,omitempty"`
+	// Number of emails sent.
+	Sent *int32 `json:"sent,omitempty"`
+	// Number of emails we were able to successfully deliver at SMTP without encountering any error
+	Delivered *int32 `json:"delivered,omitempty"`
+	// Number of emails drop without attempting to deliver either because the email is invalid or email in in existing suppression list
+	Dropped *int32 `json:"dropped,omitempty"`
+	// Number of emails dropped by SMTP.
+	SmtpDropped *int32 `json:"smtpDropped,omitempty"`
+	// Number of emails where we got SMTP hard bounce error code by the recipient mail provider
+	HardBounced *int32 `json:"hardBounced,omitempty"`
+	// Number of emails where we got temporary soft bounce error by the recipent mail provider. Soft bounced emails are retried upto 5 times over 24 hour period before marking them as hardBounced.
+	SoftBounced *int32 `json:"softBounced,omitempty"`
+	// Number of emails opened by recipients
+	Opened *int32 `json:"opened,omitempty"`
+	// Number of email links clicked by recipients
+	Clicked *int32 `json:"clicked,omitempty"`
+	// Number of email recipients who unsubscribed from receiving further emails
+	Unsubscribed *int32 `json:"unsubscribed,omitempty"`
+	// Number of email recipients who marked emails as spam
+	Spam *int32 `json:"spam,omitempty"`
 }
 
-// NewIPPoolCreateRequest instantiates a new IPPoolCreateRequest object
+// NewStatStat instantiates a new StatStat object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPPoolCreateRequest() *IPPoolCreateRequest {
-	this := IPPoolCreateRequest{}
+func NewStatStat() *StatStat {
+	this := StatStat{}
 	return &this
 }
 
-// NewIPPoolCreateRequestWithDefaults instantiates a new IPPoolCreateRequest object
+// NewStatStatWithDefaults instantiates a new StatStat object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIPPoolCreateRequestWithDefaults() *IPPoolCreateRequest {
-	this := IPPoolCreateRequest{}
+func NewStatStatWithDefaults() *StatStat {
+	this := StatStat{}
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *IPPoolCreateRequest) SetName(v string) {
-	o.Name = &v
-}
-
-// GetIps returns the Ips field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetIps() []EIP {
-	if o == nil || IsNil(o.Ips) {
-		var ret []EIP
-		return ret
-	}
-	return o.Ips
-}
-
-// GetIpsOk returns a tuple with the Ips field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetIpsOk() ([]EIP, bool) {
-	if o == nil || IsNil(o.Ips) {
-		return nil, false
-	}
-	return o.Ips, true
-}
-
-// HasIps returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasIps() bool {
-	if o != nil && !IsNil(o.Ips) {
-		return true
-	}
-
-	return false
-}
-
-// SetIps gets a reference to the given []EIP and assigns it to the Ips field.
-func (o *IPPoolCreateRequest) SetIps(v []EIP) {
-	o.Ips = v
-}
-
-// GetTpsps returns the Tpsps field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetTpsps() []int32 {
-	if o == nil || IsNil(o.Tpsps) {
-		var ret []int32
-		return ret
-	}
-	return o.Tpsps
-}
-
-// GetTpspsOk returns a tuple with the Tpsps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetTpspsOk() ([]int32, bool) {
-	if o == nil || IsNil(o.Tpsps) {
-		return nil, false
-	}
-	return o.Tpsps, true
-}
-
-// HasTpsps returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasTpsps() bool {
-	if o != nil && !IsNil(o.Tpsps) {
-		return true
-	}
-
-	return false
-}
-
-// SetTpsps gets a reference to the given []int32 and assigns it to the Tpsps field.
-func (o *IPPoolCreateRequest) SetTpsps(v []int32) {
-	o.Tpsps = v
-}
-
-// GetRoutingStrategy returns the RoutingStrategy field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetRoutingStrategy() int32 {
-	if o == nil || IsNil(o.RoutingStrategy) {
+// GetProcessed returns the Processed field value if set, zero value otherwise.
+func (o *StatStat) GetProcessed() int32 {
+	if o == nil || IsNil(o.Processed) {
 		var ret int32
 		return ret
 	}
-	return *o.RoutingStrategy
+	return *o.Processed
 }
 
-// GetRoutingStrategyOk returns a tuple with the RoutingStrategy field value if set, nil otherwise
+// GetProcessedOk returns a tuple with the Processed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetRoutingStrategyOk() (*int32, bool) {
-	if o == nil || IsNil(o.RoutingStrategy) {
+func (o *StatStat) GetProcessedOk() (*int32, bool) {
+	if o == nil || IsNil(o.Processed) {
 		return nil, false
 	}
-	return o.RoutingStrategy, true
+	return o.Processed, true
 }
 
-// HasRoutingStrategy returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasRoutingStrategy() bool {
-	if o != nil && !IsNil(o.RoutingStrategy) {
+// HasProcessed returns a boolean if a field has been set.
+func (o *StatStat) HasProcessed() bool {
+	if o != nil && !IsNil(o.Processed) {
 		return true
 	}
 
 	return false
 }
 
-// SetRoutingStrategy gets a reference to the given int32 and assigns it to the RoutingStrategy field.
-func (o *IPPoolCreateRequest) SetRoutingStrategy(v int32) {
-	o.RoutingStrategy = &v
+// SetProcessed gets a reference to the given int32 and assigns it to the Processed field.
+func (o *StatStat) SetProcessed(v int32) {
+	o.Processed = &v
 }
 
-// GetRoutingMetaData returns the RoutingMetaData field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetRoutingMetaData() string {
-	if o == nil || IsNil(o.RoutingMetaData) {
-		var ret string
-		return ret
-	}
-	return *o.RoutingMetaData
-}
-
-// GetRoutingMetaDataOk returns a tuple with the RoutingMetaData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetRoutingMetaDataOk() (*string, bool) {
-	if o == nil || IsNil(o.RoutingMetaData) {
-		return nil, false
-	}
-	return o.RoutingMetaData, true
-}
-
-// HasRoutingMetaData returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasRoutingMetaData() bool {
-	if o != nil && !IsNil(o.RoutingMetaData) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoutingMetaData gets a reference to the given string and assigns it to the RoutingMetaData field.
-func (o *IPPoolCreateRequest) SetRoutingMetaData(v string) {
-	o.RoutingMetaData = &v
-}
-
-// GetOverflowPool returns the OverflowPool field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetOverflowPool() bool {
-	if o == nil || IsNil(o.OverflowPool) {
-		var ret bool
-		return ret
-	}
-	return *o.OverflowPool
-}
-
-// GetOverflowPoolOk returns a tuple with the OverflowPool field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetOverflowPoolOk() (*bool, bool) {
-	if o == nil || IsNil(o.OverflowPool) {
-		return nil, false
-	}
-	return o.OverflowPool, true
-}
-
-// HasOverflowPool returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasOverflowPool() bool {
-	if o != nil && !IsNil(o.OverflowPool) {
-		return true
-	}
-
-	return false
-}
-
-// SetOverflowPool gets a reference to the given bool and assigns it to the OverflowPool field.
-func (o *IPPoolCreateRequest) SetOverflowPool(v bool) {
-	o.OverflowPool = &v
-}
-
-// GetWarmupInterval returns the WarmupInterval field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetWarmupInterval() int32 {
-	if o == nil || IsNil(o.WarmupInterval) {
+// GetSent returns the Sent field value if set, zero value otherwise.
+func (o *StatStat) GetSent() int32 {
+	if o == nil || IsNil(o.Sent) {
 		var ret int32
 		return ret
 	}
-	return *o.WarmupInterval
+	return *o.Sent
 }
 
-// GetWarmupIntervalOk returns a tuple with the WarmupInterval field value if set, nil otherwise
+// GetSentOk returns a tuple with the Sent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetWarmupIntervalOk() (*int32, bool) {
-	if o == nil || IsNil(o.WarmupInterval) {
+func (o *StatStat) GetSentOk() (*int32, bool) {
+	if o == nil || IsNil(o.Sent) {
 		return nil, false
 	}
-	return o.WarmupInterval, true
+	return o.Sent, true
 }
 
-// HasWarmupInterval returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasWarmupInterval() bool {
-	if o != nil && !IsNil(o.WarmupInterval) {
+// HasSent returns a boolean if a field has been set.
+func (o *StatStat) HasSent() bool {
+	if o != nil && !IsNil(o.Sent) {
 		return true
 	}
 
 	return false
 }
 
-// SetWarmupInterval gets a reference to the given int32 and assigns it to the WarmupInterval field.
-func (o *IPPoolCreateRequest) SetWarmupInterval(v int32) {
-	o.WarmupInterval = &v
+// SetSent gets a reference to the given int32 and assigns it to the Sent field.
+func (o *StatStat) SetSent(v int32) {
+	o.Sent = &v
 }
 
-// GetOverflowStrategy returns the OverflowStrategy field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetOverflowStrategy() int32 {
-	if o == nil || IsNil(o.OverflowStrategy) {
+// GetDelivered returns the Delivered field value if set, zero value otherwise.
+func (o *StatStat) GetDelivered() int32 {
+	if o == nil || IsNil(o.Delivered) {
 		var ret int32
 		return ret
 	}
-	return *o.OverflowStrategy
+	return *o.Delivered
 }
 
-// GetOverflowStrategyOk returns a tuple with the OverflowStrategy field value if set, nil otherwise
+// GetDeliveredOk returns a tuple with the Delivered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetOverflowStrategyOk() (*int32, bool) {
-	if o == nil || IsNil(o.OverflowStrategy) {
+func (o *StatStat) GetDeliveredOk() (*int32, bool) {
+	if o == nil || IsNil(o.Delivered) {
 		return nil, false
 	}
-	return o.OverflowStrategy, true
+	return o.Delivered, true
 }
 
-// HasOverflowStrategy returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasOverflowStrategy() bool {
-	if o != nil && !IsNil(o.OverflowStrategy) {
+// HasDelivered returns a boolean if a field has been set.
+func (o *StatStat) HasDelivered() bool {
+	if o != nil && !IsNil(o.Delivered) {
 		return true
 	}
 
 	return false
 }
 
-// SetOverflowStrategy gets a reference to the given int32 and assigns it to the OverflowStrategy field.
-func (o *IPPoolCreateRequest) SetOverflowStrategy(v int32) {
-	o.OverflowStrategy = &v
+// SetDelivered gets a reference to the given int32 and assigns it to the Delivered field.
+func (o *StatStat) SetDelivered(v int32) {
+	o.Delivered = &v
 }
 
-// GetOverflowPoolName returns the OverflowPoolName field value if set, zero value otherwise.
-func (o *IPPoolCreateRequest) GetOverflowPoolName() string {
-	if o == nil || IsNil(o.OverflowPoolName) {
-		var ret string
+// GetDropped returns the Dropped field value if set, zero value otherwise.
+func (o *StatStat) GetDropped() int32 {
+	if o == nil || IsNil(o.Dropped) {
+		var ret int32
 		return ret
 	}
-	return *o.OverflowPoolName
+	return *o.Dropped
 }
 
-// GetOverflowPoolNameOk returns a tuple with the OverflowPoolName field value if set, nil otherwise
+// GetDroppedOk returns a tuple with the Dropped field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPPoolCreateRequest) GetOverflowPoolNameOk() (*string, bool) {
-	if o == nil || IsNil(o.OverflowPoolName) {
+func (o *StatStat) GetDroppedOk() (*int32, bool) {
+	if o == nil || IsNil(o.Dropped) {
 		return nil, false
 	}
-	return o.OverflowPoolName, true
+	return o.Dropped, true
 }
 
-// HasOverflowPoolName returns a boolean if a field has been set.
-func (o *IPPoolCreateRequest) HasOverflowPoolName() bool {
-	if o != nil && !IsNil(o.OverflowPoolName) {
+// HasDropped returns a boolean if a field has been set.
+func (o *StatStat) HasDropped() bool {
+	if o != nil && !IsNil(o.Dropped) {
 		return true
 	}
 
 	return false
 }
 
-// SetOverflowPoolName gets a reference to the given string and assigns it to the OverflowPoolName field.
-func (o *IPPoolCreateRequest) SetOverflowPoolName(v string) {
-	o.OverflowPoolName = &v
+// SetDropped gets a reference to the given int32 and assigns it to the Dropped field.
+func (o *StatStat) SetDropped(v int32) {
+	o.Dropped = &v
 }
 
-func (o IPPoolCreateRequest) MarshalJSON() ([]byte, error) {
+// GetSmtpDropped returns the SmtpDropped field value if set, zero value otherwise.
+func (o *StatStat) GetSmtpDropped() int32 {
+	if o == nil || IsNil(o.SmtpDropped) {
+		var ret int32
+		return ret
+	}
+	return *o.SmtpDropped
+}
+
+// GetSmtpDroppedOk returns a tuple with the SmtpDropped field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatStat) GetSmtpDroppedOk() (*int32, bool) {
+	if o == nil || IsNil(o.SmtpDropped) {
+		return nil, false
+	}
+	return o.SmtpDropped, true
+}
+
+// HasSmtpDropped returns a boolean if a field has been set.
+func (o *StatStat) HasSmtpDropped() bool {
+	if o != nil && !IsNil(o.SmtpDropped) {
+		return true
+	}
+
+	return false
+}
+
+// SetSmtpDropped gets a reference to the given int32 and assigns it to the SmtpDropped field.
+func (o *StatStat) SetSmtpDropped(v int32) {
+	o.SmtpDropped = &v
+}
+
+// GetHardBounced returns the HardBounced field value if set, zero value otherwise.
+func (o *StatStat) GetHardBounced() int32 {
+	if o == nil || IsNil(o.HardBounced) {
+		var ret int32
+		return ret
+	}
+	return *o.HardBounced
+}
+
+// GetHardBouncedOk returns a tuple with the HardBounced field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatStat) GetHardBouncedOk() (*int32, bool) {
+	if o == nil || IsNil(o.HardBounced) {
+		return nil, false
+	}
+	return o.HardBounced, true
+}
+
+// HasHardBounced returns a boolean if a field has been set.
+func (o *StatStat) HasHardBounced() bool {
+	if o != nil && !IsNil(o.HardBounced) {
+		return true
+	}
+
+	return false
+}
+
+// SetHardBounced gets a reference to the given int32 and assigns it to the HardBounced field.
+func (o *StatStat) SetHardBounced(v int32) {
+	o.HardBounced = &v
+}
+
+// GetSoftBounced returns the SoftBounced field value if set, zero value otherwise.
+func (o *StatStat) GetSoftBounced() int32 {
+	if o == nil || IsNil(o.SoftBounced) {
+		var ret int32
+		return ret
+	}
+	return *o.SoftBounced
+}
+
+// GetSoftBouncedOk returns a tuple with the SoftBounced field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatStat) GetSoftBouncedOk() (*int32, bool) {
+	if o == nil || IsNil(o.SoftBounced) {
+		return nil, false
+	}
+	return o.SoftBounced, true
+}
+
+// HasSoftBounced returns a boolean if a field has been set.
+func (o *StatStat) HasSoftBounced() bool {
+	if o != nil && !IsNil(o.SoftBounced) {
+		return true
+	}
+
+	return false
+}
+
+// SetSoftBounced gets a reference to the given int32 and assigns it to the SoftBounced field.
+func (o *StatStat) SetSoftBounced(v int32) {
+	o.SoftBounced = &v
+}
+
+// GetOpened returns the Opened field value if set, zero value otherwise.
+func (o *StatStat) GetOpened() int32 {
+	if o == nil || IsNil(o.Opened) {
+		var ret int32
+		return ret
+	}
+	return *o.Opened
+}
+
+// GetOpenedOk returns a tuple with the Opened field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatStat) GetOpenedOk() (*int32, bool) {
+	if o == nil || IsNil(o.Opened) {
+		return nil, false
+	}
+	return o.Opened, true
+}
+
+// HasOpened returns a boolean if a field has been set.
+func (o *StatStat) HasOpened() bool {
+	if o != nil && !IsNil(o.Opened) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpened gets a reference to the given int32 and assigns it to the Opened field.
+func (o *StatStat) SetOpened(v int32) {
+	o.Opened = &v
+}
+
+// GetClicked returns the Clicked field value if set, zero value otherwise.
+func (o *StatStat) GetClicked() int32 {
+	if o == nil || IsNil(o.Clicked) {
+		var ret int32
+		return ret
+	}
+	return *o.Clicked
+}
+
+// GetClickedOk returns a tuple with the Clicked field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatStat) GetClickedOk() (*int32, bool) {
+	if o == nil || IsNil(o.Clicked) {
+		return nil, false
+	}
+	return o.Clicked, true
+}
+
+// HasClicked returns a boolean if a field has been set.
+func (o *StatStat) HasClicked() bool {
+	if o != nil && !IsNil(o.Clicked) {
+		return true
+	}
+
+	return false
+}
+
+// SetClicked gets a reference to the given int32 and assigns it to the Clicked field.
+func (o *StatStat) SetClicked(v int32) {
+	o.Clicked = &v
+}
+
+// GetUnsubscribed returns the Unsubscribed field value if set, zero value otherwise.
+func (o *StatStat) GetUnsubscribed() int32 {
+	if o == nil || IsNil(o.Unsubscribed) {
+		var ret int32
+		return ret
+	}
+	return *o.Unsubscribed
+}
+
+// GetUnsubscribedOk returns a tuple with the Unsubscribed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatStat) GetUnsubscribedOk() (*int32, bool) {
+	if o == nil || IsNil(o.Unsubscribed) {
+		return nil, false
+	}
+	return o.Unsubscribed, true
+}
+
+// HasUnsubscribed returns a boolean if a field has been set.
+func (o *StatStat) HasUnsubscribed() bool {
+	if o != nil && !IsNil(o.Unsubscribed) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnsubscribed gets a reference to the given int32 and assigns it to the Unsubscribed field.
+func (o *StatStat) SetUnsubscribed(v int32) {
+	o.Unsubscribed = &v
+}
+
+// GetSpam returns the Spam field value if set, zero value otherwise.
+func (o *StatStat) GetSpam() int32 {
+	if o == nil || IsNil(o.Spam) {
+		var ret int32
+		return ret
+	}
+	return *o.Spam
+}
+
+// GetSpamOk returns a tuple with the Spam field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatStat) GetSpamOk() (*int32, bool) {
+	if o == nil || IsNil(o.Spam) {
+		return nil, false
+	}
+	return o.Spam, true
+}
+
+// HasSpam returns a boolean if a field has been set.
+func (o *StatStat) HasSpam() bool {
+	if o != nil && !IsNil(o.Spam) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpam gets a reference to the given int32 and assigns it to the Spam field.
+func (o *StatStat) SetSpam(v int32) {
+	o.Spam = &v
+}
+
+func (o StatStat) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -346,70 +420,76 @@ func (o IPPoolCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o IPPoolCreateRequest) ToMap() (map[string]interface{}, error) {
+func (o StatStat) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if !IsNil(o.Processed) {
+		toSerialize["processed"] = o.Processed
 	}
-	if !IsNil(o.Ips) {
-		toSerialize["ips"] = o.Ips
+	if !IsNil(o.Sent) {
+		toSerialize["sent"] = o.Sent
 	}
-	if !IsNil(o.Tpsps) {
-		toSerialize["tpsps"] = o.Tpsps
+	if !IsNil(o.Delivered) {
+		toSerialize["delivered"] = o.Delivered
 	}
-	if !IsNil(o.RoutingStrategy) {
-		toSerialize["routingStrategy"] = o.RoutingStrategy
+	if !IsNil(o.Dropped) {
+		toSerialize["dropped"] = o.Dropped
 	}
-	if !IsNil(o.RoutingMetaData) {
-		toSerialize["routingMetaData"] = o.RoutingMetaData
+	if !IsNil(o.SmtpDropped) {
+		toSerialize["smtpDropped"] = o.SmtpDropped
 	}
-	if !IsNil(o.OverflowPool) {
-		toSerialize["overflowPool"] = o.OverflowPool
+	if !IsNil(o.HardBounced) {
+		toSerialize["hardBounced"] = o.HardBounced
 	}
-	if !IsNil(o.WarmupInterval) {
-		toSerialize["warmupInterval"] = o.WarmupInterval
+	if !IsNil(o.SoftBounced) {
+		toSerialize["softBounced"] = o.SoftBounced
 	}
-	if !IsNil(o.OverflowStrategy) {
-		toSerialize["overflowStrategy"] = o.OverflowStrategy
+	if !IsNil(o.Opened) {
+		toSerialize["opened"] = o.Opened
 	}
-	if !IsNil(o.OverflowPoolName) {
-		toSerialize["overflowPoolName"] = o.OverflowPoolName
+	if !IsNil(o.Clicked) {
+		toSerialize["clicked"] = o.Clicked
+	}
+	if !IsNil(o.Unsubscribed) {
+		toSerialize["unsubscribed"] = o.Unsubscribed
+	}
+	if !IsNil(o.Spam) {
+		toSerialize["spam"] = o.Spam
 	}
 	return toSerialize, nil
 }
 
-type NullableIPPoolCreateRequest struct {
-	value *IPPoolCreateRequest
+type NullableStatStat struct {
+	value *StatStat
 	isSet bool
 }
 
-func (v NullableIPPoolCreateRequest) Get() *IPPoolCreateRequest {
+func (v NullableStatStat) Get() *StatStat {
 	return v.value
 }
 
-func (v *NullableIPPoolCreateRequest) Set(val *IPPoolCreateRequest) {
+func (v *NullableStatStat) Set(val *StatStat) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIPPoolCreateRequest) IsSet() bool {
+func (v NullableStatStat) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIPPoolCreateRequest) Unset() {
+func (v *NullableStatStat) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIPPoolCreateRequest(val *IPPoolCreateRequest) *NullableIPPoolCreateRequest {
-	return &NullableIPPoolCreateRequest{value: val, isSet: true}
+func NewNullableStatStat(val *StatStat) *NullableStatStat {
+	return &NullableStatStat{value: val, isSet: true}
 }
 
-func (v NullableIPPoolCreateRequest) MarshalJSON() ([]byte, error) {
+func (v NullableStatStat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIPPoolCreateRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableStatStat) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

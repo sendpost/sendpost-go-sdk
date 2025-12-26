@@ -21,7 +21,7 @@ var _ MappedNullable = &Stat{}
 type Stat struct {
 	// Date for which stats are retrieved (UTC).
 	Date *string `json:"date,omitempty"`
-	Stats *StatStats `json:"stats,omitempty"`
+	Stat *StatStat `json:"stat,omitempty"`
 }
 
 // NewStat instantiates a new Stat object
@@ -73,36 +73,36 @@ func (o *Stat) SetDate(v string) {
 	o.Date = &v
 }
 
-// GetStats returns the Stats field value if set, zero value otherwise.
-func (o *Stat) GetStats() StatStats {
-	if o == nil || IsNil(o.Stats) {
-		var ret StatStats
+// GetStat returns the Stat field value if set, zero value otherwise.
+func (o *Stat) GetStat() StatStat {
+	if o == nil || IsNil(o.Stat) {
+		var ret StatStat
 		return ret
 	}
-	return *o.Stats
+	return *o.Stat
 }
 
-// GetStatsOk returns a tuple with the Stats field value if set, nil otherwise
+// GetStatOk returns a tuple with the Stat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Stat) GetStatsOk() (*StatStats, bool) {
-	if o == nil || IsNil(o.Stats) {
+func (o *Stat) GetStatOk() (*StatStat, bool) {
+	if o == nil || IsNil(o.Stat) {
 		return nil, false
 	}
-	return o.Stats, true
+	return o.Stat, true
 }
 
-// HasStats returns a boolean if a field has been set.
-func (o *Stat) HasStats() bool {
-	if o != nil && !IsNil(o.Stats) {
+// HasStat returns a boolean if a field has been set.
+func (o *Stat) HasStat() bool {
+	if o != nil && !IsNil(o.Stat) {
 		return true
 	}
 
 	return false
 }
 
-// SetStats gets a reference to the given StatStats and assigns it to the Stats field.
-func (o *Stat) SetStats(v StatStats) {
-	o.Stats = &v
+// SetStat gets a reference to the given StatStat and assigns it to the Stat field.
+func (o *Stat) SetStat(v StatStat) {
+	o.Stat = &v
 }
 
 func (o Stat) MarshalJSON() ([]byte, error) {
@@ -118,8 +118,8 @@ func (o Stat) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Date) {
 		toSerialize["date"] = o.Date
 	}
-	if !IsNil(o.Stats) {
-		toSerialize["stats"] = o.Stats
+	if !IsNil(o.Stat) {
+		toSerialize["stat"] = o.Stat
 	}
 	return toSerialize, nil
 }

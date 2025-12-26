@@ -12,7 +12,6 @@ api_stats_a.go
 api_sub_account.go
 api_suppression.go
 api_webhook.go
-api_webhook_reference.go
 client.go
 configuration.go
 docs/AccountStats.md
@@ -21,6 +20,7 @@ docs/AggregateStat.md
 docs/AggregateStats.md
 docs/AggregatedEmailStats.md
 docs/Attachment.md
+docs/AutoWarmupPlan.md
 docs/CopyTo.md
 docs/CreateDomainRequest.md
 docs/CreateSubAccountRequest.md
@@ -42,6 +42,7 @@ docs/DomainDkim.md
 docs/DomainDmarc.md
 docs/DomainGpt.md
 docs/DomainReturnPath.md
+docs/DomainSpf.md
 docs/DomainTrack.md
 docs/EIP.md
 docs/EmailAPI.md
@@ -70,6 +71,7 @@ docs/IPPoolDeleteResponse.md
 docs/IPPoolUpdateRequest.md
 docs/IPPoolsAPI.md
 docs/IPUpdateRequest.md
+docs/Label.md
 docs/Member.md
 docs/Message.md
 docs/MessageAPI.md
@@ -80,7 +82,7 @@ docs/Person.md
 docs/Recipient.md
 docs/SMTPAuth.md
 docs/Stat.md
-docs/StatStats.md
+docs/StatStat.md
 docs/StatsAAPI.md
 docs/StatsAPI.md
 docs/SubAccount.md
@@ -93,8 +95,6 @@ docs/UpdateWebhook.md
 docs/UserAgent.md
 docs/Webhook.md
 docs/WebhookAPI.md
-docs/WebhookObject.md
-docs/WebhookReferenceAPI.md
 git_push.sh
 go.mod
 go.sum
@@ -104,6 +104,7 @@ model_aggregate_stat.go
 model_aggregate_stats.go
 model_aggregated_email_stats.go
 model_attachment.go
+model_auto_warmup_plan.go
 model_copy_to.go
 model_create_domain_request.go
 model_create_sub_account_request.go
@@ -124,6 +125,7 @@ model_domain_dkim.go
 model_domain_dmarc.go
 model_domain_gpt.go
 model_domain_return_path.go
+model_domain_spf.go
 model_domain_track.go
 model_eip.go
 model_email_address.go
@@ -149,6 +151,7 @@ model_ip_pool_create_request.go
 model_ip_pool_delete_response.go
 model_ip_pool_update_request.go
 model_ip_update_request.go
+model_label.go
 model_member.go
 model_message.go
 model_message_header_to.go
@@ -158,7 +161,7 @@ model_person.go
 model_recipient.go
 model_smtp_auth.go
 model_stat.go
-model_stat_stats.go
+model_stat_stat.go
 model_sub_account.go
 model_suppression.go
 model_third_party_sending_provider.go
@@ -166,6 +169,5 @@ model_update_sub_account.go
 model_update_webhook.go
 model_user_agent.go
 model_webhook.go
-model_webhook_object.go
 response.go
 utils.go

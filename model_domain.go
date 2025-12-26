@@ -24,6 +24,7 @@ type Domain struct {
 	// Name of the domain.
 	Name *string `json:"name,omitempty"`
 	Dkim *DomainDkim `json:"dkim,omitempty"`
+	Spf *DomainSpf `json:"spf,omitempty"`
 	ReturnPath *DomainReturnPath `json:"returnPath,omitempty"`
 	Track *DomainTrack `json:"track,omitempty"`
 	Dmarc *DomainDmarc `json:"dmarc,omitempty"`
@@ -31,6 +32,10 @@ type Domain struct {
 	DkimConfig *string `json:"dkimConfig,omitempty"`
 	// Status of DKIM verification ( true or false )
 	DkimVerified *bool `json:"dkimVerified,omitempty"`
+	// Status of SPF verification ( true or false )
+	SpfVerified *bool `json:"spfVerified,omitempty"`
+	// Status of Mailbox verification ( true or false )
+	MailboxVerified *bool `json:"mailboxVerified,omitempty"`
 	// Status of DMARC verification ( true or false)
 	DmarcVerified *bool `json:"dmarcVerified,omitempty"`
 	// Status of ReturnPath verification ( true or false )
@@ -167,6 +172,38 @@ func (o *Domain) HasDkim() bool {
 // SetDkim gets a reference to the given DomainDkim and assigns it to the Dkim field.
 func (o *Domain) SetDkim(v DomainDkim) {
 	o.Dkim = &v
+}
+
+// GetSpf returns the Spf field value if set, zero value otherwise.
+func (o *Domain) GetSpf() DomainSpf {
+	if o == nil || IsNil(o.Spf) {
+		var ret DomainSpf
+		return ret
+	}
+	return *o.Spf
+}
+
+// GetSpfOk returns a tuple with the Spf field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetSpfOk() (*DomainSpf, bool) {
+	if o == nil || IsNil(o.Spf) {
+		return nil, false
+	}
+	return o.Spf, true
+}
+
+// HasSpf returns a boolean if a field has been set.
+func (o *Domain) HasSpf() bool {
+	if o != nil && !IsNil(o.Spf) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpf gets a reference to the given DomainSpf and assigns it to the Spf field.
+func (o *Domain) SetSpf(v DomainSpf) {
+	o.Spf = &v
 }
 
 // GetReturnPath returns the ReturnPath field value if set, zero value otherwise.
@@ -327,6 +364,70 @@ func (o *Domain) HasDkimVerified() bool {
 // SetDkimVerified gets a reference to the given bool and assigns it to the DkimVerified field.
 func (o *Domain) SetDkimVerified(v bool) {
 	o.DkimVerified = &v
+}
+
+// GetSpfVerified returns the SpfVerified field value if set, zero value otherwise.
+func (o *Domain) GetSpfVerified() bool {
+	if o == nil || IsNil(o.SpfVerified) {
+		var ret bool
+		return ret
+	}
+	return *o.SpfVerified
+}
+
+// GetSpfVerifiedOk returns a tuple with the SpfVerified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetSpfVerifiedOk() (*bool, bool) {
+	if o == nil || IsNil(o.SpfVerified) {
+		return nil, false
+	}
+	return o.SpfVerified, true
+}
+
+// HasSpfVerified returns a boolean if a field has been set.
+func (o *Domain) HasSpfVerified() bool {
+	if o != nil && !IsNil(o.SpfVerified) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpfVerified gets a reference to the given bool and assigns it to the SpfVerified field.
+func (o *Domain) SetSpfVerified(v bool) {
+	o.SpfVerified = &v
+}
+
+// GetMailboxVerified returns the MailboxVerified field value if set, zero value otherwise.
+func (o *Domain) GetMailboxVerified() bool {
+	if o == nil || IsNil(o.MailboxVerified) {
+		var ret bool
+		return ret
+	}
+	return *o.MailboxVerified
+}
+
+// GetMailboxVerifiedOk returns a tuple with the MailboxVerified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetMailboxVerifiedOk() (*bool, bool) {
+	if o == nil || IsNil(o.MailboxVerified) {
+		return nil, false
+	}
+	return o.MailboxVerified, true
+}
+
+// HasMailboxVerified returns a boolean if a field has been set.
+func (o *Domain) HasMailboxVerified() bool {
+	if o != nil && !IsNil(o.MailboxVerified) {
+		return true
+	}
+
+	return false
+}
+
+// SetMailboxVerified gets a reference to the given bool and assigns it to the MailboxVerified field.
+func (o *Domain) SetMailboxVerified(v bool) {
+	o.MailboxVerified = &v
 }
 
 // GetDmarcVerified returns the DmarcVerified field value if set, zero value otherwise.
@@ -732,6 +833,9 @@ func (o Domain) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Dkim) {
 		toSerialize["dkim"] = o.Dkim
 	}
+	if !IsNil(o.Spf) {
+		toSerialize["spf"] = o.Spf
+	}
 	if !IsNil(o.ReturnPath) {
 		toSerialize["returnPath"] = o.ReturnPath
 	}
@@ -746,6 +850,12 @@ func (o Domain) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DkimVerified) {
 		toSerialize["dkimVerified"] = o.DkimVerified
+	}
+	if !IsNil(o.SpfVerified) {
+		toSerialize["spfVerified"] = o.SpfVerified
+	}
+	if !IsNil(o.MailboxVerified) {
+		toSerialize["mailboxVerified"] = o.MailboxVerified
 	}
 	if !IsNil(o.DmarcVerified) {
 		toSerialize["dmarcVerified"] = o.DmarcVerified
