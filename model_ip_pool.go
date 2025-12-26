@@ -21,9 +21,13 @@ var _ MappedNullable = &IPPool{}
 type IPPool struct {
 	Id *int32 `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	// Type of IP pool (0 = Shared, 1 = Dedicated)
+	Type *int32 `json:"type,omitempty"`
 	Created *int64 `json:"created,omitempty"`
 	Ips []IP `json:"ips,omitempty"`
 	ThirdPartySendingProviders []ThirdPartySendingProvider `json:"thirdPartySendingProviders,omitempty"`
+	// Related account IP pools
+	ToAccountIPPools []IPPool `json:"toAccountIPPools,omitempty"`
 	RoutingStrategy *int32 `json:"routingStrategy,omitempty"`
 	RoutingMetaData *string `json:"routingMetaData,omitempty"`
 	AutoWarmupEnabled *bool `json:"autoWarmupEnabled,omitempty"`
@@ -116,6 +120,38 @@ func (o *IPPool) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *IPPool) SetName(v string) {
 	o.Name = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *IPPool) GetType() int32 {
+	if o == nil || IsNil(o.Type) {
+		var ret int32
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPPool) GetTypeOk() (*int32, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *IPPool) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given int32 and assigns it to the Type field.
+func (o *IPPool) SetType(v int32) {
+	o.Type = &v
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
@@ -212,6 +248,38 @@ func (o *IPPool) HasThirdPartySendingProviders() bool {
 // SetThirdPartySendingProviders gets a reference to the given []ThirdPartySendingProvider and assigns it to the ThirdPartySendingProviders field.
 func (o *IPPool) SetThirdPartySendingProviders(v []ThirdPartySendingProvider) {
 	o.ThirdPartySendingProviders = v
+}
+
+// GetToAccountIPPools returns the ToAccountIPPools field value if set, zero value otherwise.
+func (o *IPPool) GetToAccountIPPools() []IPPool {
+	if o == nil || IsNil(o.ToAccountIPPools) {
+		var ret []IPPool
+		return ret
+	}
+	return o.ToAccountIPPools
+}
+
+// GetToAccountIPPoolsOk returns a tuple with the ToAccountIPPools field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPPool) GetToAccountIPPoolsOk() ([]IPPool, bool) {
+	if o == nil || IsNil(o.ToAccountIPPools) {
+		return nil, false
+	}
+	return o.ToAccountIPPools, true
+}
+
+// HasToAccountIPPools returns a boolean if a field has been set.
+func (o *IPPool) HasToAccountIPPools() bool {
+	if o != nil && !IsNil(o.ToAccountIPPools) {
+		return true
+	}
+
+	return false
+}
+
+// SetToAccountIPPools gets a reference to the given []IPPool and assigns it to the ToAccountIPPools field.
+func (o *IPPool) SetToAccountIPPools(v []IPPool) {
+	o.ToAccountIPPools = v
 }
 
 // GetRoutingStrategy returns the RoutingStrategy field value if set, zero value otherwise.
@@ -486,6 +554,9 @@ func (o IPPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	if !IsNil(o.Created) {
 		toSerialize["created"] = o.Created
 	}
@@ -494,6 +565,9 @@ func (o IPPool) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ThirdPartySendingProviders) {
 		toSerialize["thirdPartySendingProviders"] = o.ThirdPartySendingProviders
+	}
+	if !IsNil(o.ToAccountIPPools) {
+		toSerialize["toAccountIPPools"] = o.ToAccountIPPools
 	}
 	if !IsNil(o.RoutingStrategy) {
 		toSerialize["routingStrategy"] = o.RoutingStrategy

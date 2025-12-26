@@ -29,7 +29,8 @@ type AccountStatsStat struct {
 	Opened *int32 `json:"opened,omitempty"`
 	Clicked *int32 `json:"clicked,omitempty"`
 	Unsubscribed *int32 `json:"unsubscribed,omitempty"`
-	Spams *int32 `json:"spams,omitempty"`
+	// Number of spam complaints
+	Spam *int32 `json:"spam,omitempty"`
 }
 
 // NewAccountStatsStat instantiates a new AccountStatsStat object
@@ -369,36 +370,36 @@ func (o *AccountStatsStat) SetUnsubscribed(v int32) {
 	o.Unsubscribed = &v
 }
 
-// GetSpams returns the Spams field value if set, zero value otherwise.
-func (o *AccountStatsStat) GetSpams() int32 {
-	if o == nil || IsNil(o.Spams) {
+// GetSpam returns the Spam field value if set, zero value otherwise.
+func (o *AccountStatsStat) GetSpam() int32 {
+	if o == nil || IsNil(o.Spam) {
 		var ret int32
 		return ret
 	}
-	return *o.Spams
+	return *o.Spam
 }
 
-// GetSpamsOk returns a tuple with the Spams field value if set, nil otherwise
+// GetSpamOk returns a tuple with the Spam field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountStatsStat) GetSpamsOk() (*int32, bool) {
-	if o == nil || IsNil(o.Spams) {
+func (o *AccountStatsStat) GetSpamOk() (*int32, bool) {
+	if o == nil || IsNil(o.Spam) {
 		return nil, false
 	}
-	return o.Spams, true
+	return o.Spam, true
 }
 
-// HasSpams returns a boolean if a field has been set.
-func (o *AccountStatsStat) HasSpams() bool {
-	if o != nil && !IsNil(o.Spams) {
+// HasSpam returns a boolean if a field has been set.
+func (o *AccountStatsStat) HasSpam() bool {
+	if o != nil && !IsNil(o.Spam) {
 		return true
 	}
 
 	return false
 }
 
-// SetSpams gets a reference to the given int32 and assigns it to the Spams field.
-func (o *AccountStatsStat) SetSpams(v int32) {
-	o.Spams = &v
+// SetSpam gets a reference to the given int32 and assigns it to the Spam field.
+func (o *AccountStatsStat) SetSpam(v int32) {
+	o.Spam = &v
 }
 
 func (o AccountStatsStat) MarshalJSON() ([]byte, error) {
@@ -441,8 +442,8 @@ func (o AccountStatsStat) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Unsubscribed) {
 		toSerialize["unsubscribed"] = o.Unsubscribed
 	}
-	if !IsNil(o.Spams) {
-		toSerialize["spams"] = o.Spams
+	if !IsNil(o.Spam) {
+		toSerialize["spam"] = o.Spam
 	}
 	return toSerialize, nil
 }

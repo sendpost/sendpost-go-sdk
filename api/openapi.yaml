@@ -3254,8 +3254,12 @@ components:
           type: 1
           oauthToken: ""
           key: ""
+        toAccountIPPools:
+        - null
+        - null
         created: 1597511124804000
         routingMetaData: "{}"
+        type: 0
         ips:
         - trendmicroSettings: "{\"name\":\"trendmicro\",\"maxConcurrentConnections\"\
             :1,...}"
@@ -3517,6 +3521,10 @@ components:
         name:
           example: Transactional
           type: string
+        type:
+          description: "Type of IP pool (0 = Shared, 1 = Dedicated)"
+          example: 0
+          type: integer
         created:
           example: 1597511124804000
           format: int64
@@ -3529,6 +3537,12 @@ components:
           items:
             $ref: '#/components/schemas/ThirdPartySendingProvider'
           type: array
+        toAccountIPPools:
+          description: Related account IP pools
+          items:
+            $ref: '#/components/schemas/IPPool'
+          type: array
+          nullable: true
         routingStrategy:
           example: 0
           type: integer
@@ -3702,12 +3716,12 @@ components:
           processed: 1225
           smtpDropped: 5
           unsubscribed: 15
-          spams: 12
           hardBounced: 10
           dropped: 10
           softBounced: 5
           delivered: 1200
           opened: 150
+          spam: 12
           sent: 1220
           clicked: 130
       properties:
@@ -5031,12 +5045,12 @@ components:
         processed: 1225
         smtpDropped: 5
         unsubscribed: 15
-        spams: 12
         hardBounced: 10
         dropped: 10
         softBounced: 5
         delivered: 1200
         opened: 150
+        spam: 12
         sent: 1220
         clicked: 130
       properties:
@@ -5070,7 +5084,8 @@ components:
         unsubscribed:
           example: 15
           type: integer
-        spams:
+        spam:
+          description: Number of spam complaints
           example: 12
           type: integer
     EmailMessage_from:
