@@ -4,19 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Created** | Pointer to **int64** |  | [optional] 
-**Ips** | Pointer to [**[]IP**](IP.md) |  | [optional] 
-**ThirdPartySendingProviders** | Pointer to [**[]ThirdPartySendingProvider**](ThirdPartySendingProvider.md) |  | [optional] 
-**RoutingStrategy** | Pointer to **int32** |  | [optional] 
-**RoutingMetaData** | Pointer to **string** |  | [optional] 
-**AutoWarmupEnabled** | Pointer to **bool** |  | [optional] 
-**InfraMonitor** | Pointer to **bool** |  | [optional] 
-**IpDomainWarmupStatus** | Pointer to **string** |  | [optional] 
-**ShouldOverflow** | Pointer to **bool** | Indicates whether the IP should overflow, once email capacity of the IP Pool has been reached, should we send remaining emails over shared IP or not | [optional] 
-**OverflowPoolName** | Pointer to **string** | The name of the overflow pool | [optional] 
-**WarmupInterval** | Pointer to **int32** | The interval for the warmup | [optional] 
+**Id** | Pointer to **int64** | Unique identifier for the IP pool | [optional] 
+**Name** | Pointer to **string** | Display name for the IP pool. Must be unique within your account. Use descriptive names like \&quot;transactional\&quot;, \&quot;marketing\&quot;, \&quot;high-priority\&quot;.  | [optional] 
+**Type** | Pointer to **int32** | Type of IP pool: - &#x60;0&#x60; &#x3D; Shared (uses shared IPs with pooled reputation) - &#x60;1&#x60; &#x3D; Dedicated (uses dedicated IPs exclusive to your account)  | [optional] 
+**RoutingStrategy** | Pointer to **int32** | How emails are distributed across IPs/providers in this pool: - &#x60;0&#x60; &#x3D; Round Robin (equal distribution) - &#x60;1&#x60; &#x3D; Email Provider Strategy (route by recipient domain like Gmail, Yahoo) - &#x60;2&#x60; &#x3D; Volume Percentage Strategy (weighted distribution) - &#x60;3&#x60; &#x3D; Sending Domain Strategy (route by sender domain)  See the IPPools tag description for detailed routing configuration examples.  | [optional] 
+**RoutingMetaData** | Pointer to **string** | JSON-encoded configuration for the selected routing strategy. Format depends on routingStrategy value. See IPPools documentation for examples.  For Round Robin (strategy 0): Use empty object &#x60;{}&#x60;  | [optional] 
+**ShouldOverflow** | Pointer to **bool** | Whether to automatically overflow to a backup pool when this pool is unavailable (all IPs down) or at capacity (warmup limits reached).  | [optional] 
+**OverflowPoolName** | Pointer to **string** | Name of the IP pool to overflow to when shouldOverflow is enabled. The overflow pool must exist. Common pattern: overflow to shared IP pool.  | [optional] 
+**Ips** | Pointer to [**[]IP**](IP.md) | List of dedicated IPs assigned to this pool | [optional] 
+**Created** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the IP pool was created | [optional] 
 
 ## Methods
 
@@ -39,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *IPPool) GetId() int32`
+`func (o *IPPool) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *IPPool) GetIdOk() (*int32, bool)`
+`func (o *IPPool) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *IPPool) SetId(v int32)`
+`func (o *IPPool) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -87,80 +83,30 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetCreated
+### GetType
 
-`func (o *IPPool) GetCreated() int64`
+`func (o *IPPool) GetType() int32`
 
-GetCreated returns the Created field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCreatedOk
+### GetTypeOk
 
-`func (o *IPPool) GetCreatedOk() (*int64, bool)`
+`func (o *IPPool) GetTypeOk() (*int32, bool)`
 
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreated
+### SetType
 
-`func (o *IPPool) SetCreated(v int64)`
+`func (o *IPPool) SetType(v int32)`
 
-SetCreated sets Created field to given value.
+SetType sets Type field to given value.
 
-### HasCreated
+### HasType
 
-`func (o *IPPool) HasCreated() bool`
+`func (o *IPPool) HasType() bool`
 
-HasCreated returns a boolean if a field has been set.
-
-### GetIps
-
-`func (o *IPPool) GetIps() []IP`
-
-GetIps returns the Ips field if non-nil, zero value otherwise.
-
-### GetIpsOk
-
-`func (o *IPPool) GetIpsOk() (*[]IP, bool)`
-
-GetIpsOk returns a tuple with the Ips field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIps
-
-`func (o *IPPool) SetIps(v []IP)`
-
-SetIps sets Ips field to given value.
-
-### HasIps
-
-`func (o *IPPool) HasIps() bool`
-
-HasIps returns a boolean if a field has been set.
-
-### GetThirdPartySendingProviders
-
-`func (o *IPPool) GetThirdPartySendingProviders() []ThirdPartySendingProvider`
-
-GetThirdPartySendingProviders returns the ThirdPartySendingProviders field if non-nil, zero value otherwise.
-
-### GetThirdPartySendingProvidersOk
-
-`func (o *IPPool) GetThirdPartySendingProvidersOk() (*[]ThirdPartySendingProvider, bool)`
-
-GetThirdPartySendingProvidersOk returns a tuple with the ThirdPartySendingProviders field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThirdPartySendingProviders
-
-`func (o *IPPool) SetThirdPartySendingProviders(v []ThirdPartySendingProvider)`
-
-SetThirdPartySendingProviders sets ThirdPartySendingProviders field to given value.
-
-### HasThirdPartySendingProviders
-
-`func (o *IPPool) HasThirdPartySendingProviders() bool`
-
-HasThirdPartySendingProviders returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
 
 ### GetRoutingStrategy
 
@@ -212,81 +158,6 @@ SetRoutingMetaData sets RoutingMetaData field to given value.
 
 HasRoutingMetaData returns a boolean if a field has been set.
 
-### GetAutoWarmupEnabled
-
-`func (o *IPPool) GetAutoWarmupEnabled() bool`
-
-GetAutoWarmupEnabled returns the AutoWarmupEnabled field if non-nil, zero value otherwise.
-
-### GetAutoWarmupEnabledOk
-
-`func (o *IPPool) GetAutoWarmupEnabledOk() (*bool, bool)`
-
-GetAutoWarmupEnabledOk returns a tuple with the AutoWarmupEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoWarmupEnabled
-
-`func (o *IPPool) SetAutoWarmupEnabled(v bool)`
-
-SetAutoWarmupEnabled sets AutoWarmupEnabled field to given value.
-
-### HasAutoWarmupEnabled
-
-`func (o *IPPool) HasAutoWarmupEnabled() bool`
-
-HasAutoWarmupEnabled returns a boolean if a field has been set.
-
-### GetInfraMonitor
-
-`func (o *IPPool) GetInfraMonitor() bool`
-
-GetInfraMonitor returns the InfraMonitor field if non-nil, zero value otherwise.
-
-### GetInfraMonitorOk
-
-`func (o *IPPool) GetInfraMonitorOk() (*bool, bool)`
-
-GetInfraMonitorOk returns a tuple with the InfraMonitor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfraMonitor
-
-`func (o *IPPool) SetInfraMonitor(v bool)`
-
-SetInfraMonitor sets InfraMonitor field to given value.
-
-### HasInfraMonitor
-
-`func (o *IPPool) HasInfraMonitor() bool`
-
-HasInfraMonitor returns a boolean if a field has been set.
-
-### GetIpDomainWarmupStatus
-
-`func (o *IPPool) GetIpDomainWarmupStatus() string`
-
-GetIpDomainWarmupStatus returns the IpDomainWarmupStatus field if non-nil, zero value otherwise.
-
-### GetIpDomainWarmupStatusOk
-
-`func (o *IPPool) GetIpDomainWarmupStatusOk() (*string, bool)`
-
-GetIpDomainWarmupStatusOk returns a tuple with the IpDomainWarmupStatus field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpDomainWarmupStatus
-
-`func (o *IPPool) SetIpDomainWarmupStatus(v string)`
-
-SetIpDomainWarmupStatus sets IpDomainWarmupStatus field to given value.
-
-### HasIpDomainWarmupStatus
-
-`func (o *IPPool) HasIpDomainWarmupStatus() bool`
-
-HasIpDomainWarmupStatus returns a boolean if a field has been set.
-
 ### GetShouldOverflow
 
 `func (o *IPPool) GetShouldOverflow() bool`
@@ -337,30 +208,55 @@ SetOverflowPoolName sets OverflowPoolName field to given value.
 
 HasOverflowPoolName returns a boolean if a field has been set.
 
-### GetWarmupInterval
+### GetIps
 
-`func (o *IPPool) GetWarmupInterval() int32`
+`func (o *IPPool) GetIps() []IP`
 
-GetWarmupInterval returns the WarmupInterval field if non-nil, zero value otherwise.
+GetIps returns the Ips field if non-nil, zero value otherwise.
 
-### GetWarmupIntervalOk
+### GetIpsOk
 
-`func (o *IPPool) GetWarmupIntervalOk() (*int32, bool)`
+`func (o *IPPool) GetIpsOk() (*[]IP, bool)`
 
-GetWarmupIntervalOk returns a tuple with the WarmupInterval field if it's non-nil, zero value otherwise
+GetIpsOk returns a tuple with the Ips field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWarmupInterval
+### SetIps
 
-`func (o *IPPool) SetWarmupInterval(v int32)`
+`func (o *IPPool) SetIps(v []IP)`
 
-SetWarmupInterval sets WarmupInterval field to given value.
+SetIps sets Ips field to given value.
 
-### HasWarmupInterval
+### HasIps
 
-`func (o *IPPool) HasWarmupInterval() bool`
+`func (o *IPPool) HasIps() bool`
 
-HasWarmupInterval returns a boolean if a field has been set.
+HasIps returns a boolean if a field has been set.
+
+### GetCreated
+
+`func (o *IPPool) GetCreated() int64`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *IPPool) GetCreatedOk() (*int64, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreated
+
+`func (o *IPPool) SetCreated(v int64)`
+
+SetCreated sets Created field to given value.
+
+### HasCreated
+
+`func (o *IPPool) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

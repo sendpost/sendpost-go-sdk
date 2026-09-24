@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CityID** | Pointer to **string** |  | [optional] 
-**ContinentCode** | Pointer to **string** |  | [optional] 
-**CountryCode** | Pointer to **string** |  | [optional] 
-**PostalCode** | Pointer to **string** |  | [optional] 
-**TimeZone** | Pointer to **string** |  | [optional] 
+**CityId** | Pointer to **int32** | GeoNames city identifier | [optional] 
+**CountryCode** | Pointer to **string** | Two-letter ISO 3166-1 alpha-2 country code | [optional] 
+**ContinentCode** | Pointer to **string** | Two-letter continent code: AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), NA (North America), OC (Oceania), SA (South America)  | [optional] 
+**PostalCode** | Pointer to **string** | Postal/ZIP code | [optional] 
+**TimeZone** | Pointer to **string** | IANA timezone identifier | [optional] 
 
 ## Methods
 
@@ -29,55 +29,30 @@ NewGeoLocationWithDefaults instantiates a new GeoLocation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCityID
+### GetCityId
 
-`func (o *GeoLocation) GetCityID() string`
+`func (o *GeoLocation) GetCityId() int32`
 
-GetCityID returns the CityID field if non-nil, zero value otherwise.
+GetCityId returns the CityId field if non-nil, zero value otherwise.
 
-### GetCityIDOk
+### GetCityIdOk
 
-`func (o *GeoLocation) GetCityIDOk() (*string, bool)`
+`func (o *GeoLocation) GetCityIdOk() (*int32, bool)`
 
-GetCityIDOk returns a tuple with the CityID field if it's non-nil, zero value otherwise
+GetCityIdOk returns a tuple with the CityId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCityID
+### SetCityId
 
-`func (o *GeoLocation) SetCityID(v string)`
+`func (o *GeoLocation) SetCityId(v int32)`
 
-SetCityID sets CityID field to given value.
+SetCityId sets CityId field to given value.
 
-### HasCityID
+### HasCityId
 
-`func (o *GeoLocation) HasCityID() bool`
+`func (o *GeoLocation) HasCityId() bool`
 
-HasCityID returns a boolean if a field has been set.
-
-### GetContinentCode
-
-`func (o *GeoLocation) GetContinentCode() string`
-
-GetContinentCode returns the ContinentCode field if non-nil, zero value otherwise.
-
-### GetContinentCodeOk
-
-`func (o *GeoLocation) GetContinentCodeOk() (*string, bool)`
-
-GetContinentCodeOk returns a tuple with the ContinentCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContinentCode
-
-`func (o *GeoLocation) SetContinentCode(v string)`
-
-SetContinentCode sets ContinentCode field to given value.
-
-### HasContinentCode
-
-`func (o *GeoLocation) HasContinentCode() bool`
-
-HasContinentCode returns a boolean if a field has been set.
+HasCityId returns a boolean if a field has been set.
 
 ### GetCountryCode
 
@@ -103,6 +78,31 @@ SetCountryCode sets CountryCode field to given value.
 `func (o *GeoLocation) HasCountryCode() bool`
 
 HasCountryCode returns a boolean if a field has been set.
+
+### GetContinentCode
+
+`func (o *GeoLocation) GetContinentCode() string`
+
+GetContinentCode returns the ContinentCode field if non-nil, zero value otherwise.
+
+### GetContinentCodeOk
+
+`func (o *GeoLocation) GetContinentCodeOk() (*string, bool)`
+
+GetContinentCodeOk returns a tuple with the ContinentCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContinentCode
+
+`func (o *GeoLocation) SetContinentCode(v string)`
+
+SetContinentCode sets ContinentCode field to given value.
+
+### HasContinentCode
+
+`func (o *GeoLocation) HasContinentCode() bool`
+
+HasContinentCode returns a boolean if a field has been set.
 
 ### GetPostalCode
 

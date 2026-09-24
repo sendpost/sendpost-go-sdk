@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateWebhook
 
-> Webhook CreateWebhook(ctx).CreateWebhookRequest(createWebhookRequest).Execute()
+> Webhook CreateWebhook(ctx).NewWebhookRequest(newWebhookRequest).Execute()
 
 Create Webhook
 
@@ -29,15 +29,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	createWebhookRequest := *openapiclient.NewCreateWebhookRequest() // CreateWebhookRequest | 
+	newWebhookRequest := *openapiclient.NewNewWebhookRequest("https://app.hooli.com/api/webhooks/sendpost") // NewWebhookRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhookAPI.CreateWebhook(context.Background()).CreateWebhookRequest(createWebhookRequest).Execute()
+	resp, r, err := apiClient.WebhookAPI.CreateWebhook(context.Background()).NewWebhookRequest(newWebhookRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhookAPI.CreateWebhook``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateWebhookRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createWebhookRequest** | [**CreateWebhookRequest**](CreateWebhookRequest.md) |  | 
+ **newWebhookRequest** | [**NewWebhookRequest**](NewWebhookRequest.md) |  | 
 
 ### Return type
 
@@ -95,11 +95,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	webhookId := int32(117) // int32 | ID of the webhook to delete.
+	webhookId := int32(117) // int32 | The unique ID of the webhook to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32** | ID of the webhook to delete. | 
+**webhookId** | **int32** | The unique ID of the webhook to delete. | 
 
 ### Other Parameters
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## GetAllWebhooks
 
-> []Webhook GetAllWebhooks(ctx).Limit(limit).Offset(offset).Search(search).Execute()
+> []AccountWebhookWithStats GetAllWebhooks(ctx).Limit(limit).Offset(offset).Search(search).Execute()
 
 List Webhooks
 
@@ -165,13 +165,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	limit := int32(10) // int32 | Number of records to return per request. (optional)
-	offset := int32(0) // int32 | Number of initial records to skip. (optional)
-	search := "hooli" // string | Case insensitive search against webhook URL. (optional)
+	limit := int32(10) // int32 | Number of records to return per request. Default 20. (optional) (default to 20)
+	offset := int32(0) // int32 | Number of initial records to skip for pagination. (optional) (default to 0)
+	search := "api.yoursite.com" // string | Case insensitive search against webhook URLs. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhookAPI.GetAllWebhooks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetAllWebhooks`: []Webhook
+	// response from `GetAllWebhooks`: []AccountWebhookWithStats
 	fmt.Fprintf(os.Stdout, "Response from `WebhookAPI.GetAllWebhooks`: %v\n", resp)
 }
 ```
@@ -196,13 +196,13 @@ Other parameters are passed through a pointer to a apiGetAllWebhooksRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** | Number of records to return per request. | 
- **offset** | **int32** | Number of initial records to skip. | 
- **search** | **string** | Case insensitive search against webhook URL. | 
+ **limit** | **int32** | Number of records to return per request. Default 20. | [default to 20]
+ **offset** | **int32** | Number of initial records to skip for pagination. | [default to 0]
+ **search** | **string** | Case insensitive search against webhook URLs. | 
 
 ### Return type
 
-[**[]Webhook**](Webhook.md)
+[**[]AccountWebhookWithStats**](AccountWebhookWithStats.md)
 
 ### Authorization
 
@@ -235,11 +235,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	webhookId := int32(117) // int32 | The ID of the webhook to retrieve.
+	webhookId := int32(117) // int32 | The unique ID of the webhook to retrieve.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -259,7 +259,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32** | The ID of the webhook to retrieve. | 
+**webhookId** | **int32** | The unique ID of the webhook to retrieve. | 
 
 ### Other Parameters
 
@@ -305,12 +305,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	updateWebhook := *openapiclient.NewUpdateWebhook() // UpdateWebhook | 
-	webhookId := int32(117) // int32 | ID of the webhook to update.
+	updateWebhook := *openapiclient.NewUpdateWebhook("https://app.hooli.com/api/webhooks/sendpost") // UpdateWebhook | 
+	webhookId := int32(117) // int32 | The unique ID of the webhook to update.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -330,7 +330,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32** | ID of the webhook to update. | 
+**webhookId** | **int32** | The unique ID of the webhook to update. | 
 
 ### Other Parameters
 

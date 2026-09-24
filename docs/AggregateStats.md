@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Processed** | Pointer to **int32** |  | [optional] 
-**Sent** | Pointer to **int32** |  | [optional] 
-**Delivered** | Pointer to **int32** |  | [optional] 
-**Dropped** | Pointer to **int32** |  | [optional] 
-**SmtpDropped** | Pointer to **int32** |  | [optional] 
-**HardBounced** | Pointer to **int32** |  | [optional] 
-**SoftBounced** | Pointer to **int32** |  | [optional] 
-**Opened** | Pointer to **int32** |  | [optional] 
-**Clicked** | Pointer to **int32** |  | [optional] 
-**Unsubscribed** | Pointer to **int32** |  | [optional] 
-**Spams** | Pointer to **int32** |  | [optional] 
+**Processed** | Pointer to **int64** | Total number of emails accepted by SendPost API for processing. This is the starting point - all emails submitted through the API.  | [optional] 
+**Sent** | Pointer to **int64** | Number of emails sent to recipient mail servers. sent &#x3D; processed - dropped - smtpDropped  | [optional] 
+**Dropped** | Pointer to **int64** | Number of emails dropped before sending. Common reasons: - Recipient email in suppression list (hard bounce, spam complaint, unsubscribe) - Invalid recipient email format - Sender domain not verified  | [optional] 
+**SmtpDropped** | Pointer to **int64** | Number of emails dropped at SMTP level due to policy violations or rate limiting by the receiving server before delivery attempt completed.  | [optional] 
+**Delivered** | Pointer to **int64** | Number of emails successfully delivered to recipient mail servers. Note: Delivered means accepted by the server, not necessarily in inbox.  | [optional] 
+**SoftBounced** | Pointer to **int64** | Number of temporary delivery failures (soft bounces). Common causes: - Recipient mailbox full - Server temporarily unavailable - Message too large SendPost automatically retries soft bounces.  | [optional] 
+**HardBounced** | Pointer to **int64** | Number of permanent delivery failures (hard bounces). Common causes: - Recipient email doesn&#39;t exist - Domain doesn&#39;t exist - Recipient has blocked sender Hard bounced addresses are automatically added to suppression list.  | [optional] 
+**Opened** | Pointer to **int64** | Number of emails opened (tracking pixel loaded). Requires trackOpens&#x3D;true. Note: Some email clients block tracking pixels.  | [optional] 
+**Clicked** | Pointer to **int64** | Number of emails with at least one link clicked. Requires trackClicks&#x3D;true.  | [optional] 
+**Unsubscribed** | Pointer to **int64** | Number of recipients who clicked the unsubscribe link. Unsubscribed addresses are automatically added to suppression list.  | [optional] 
+**Spam** | Pointer to **int64** | Number of spam complaints (recipient marked email as spam). High spam rates can severely impact your sender reputation. Target: Keep spam rate below 0.1%.  | [optional] 
 
 ## Methods
 
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetProcessed
 
-`func (o *AggregateStats) GetProcessed() int32`
+`func (o *AggregateStats) GetProcessed() int64`
 
 GetProcessed returns the Processed field if non-nil, zero value otherwise.
 
 ### GetProcessedOk
 
-`func (o *AggregateStats) GetProcessedOk() (*int32, bool)`
+`func (o *AggregateStats) GetProcessedOk() (*int64, bool)`
 
 GetProcessedOk returns a tuple with the Processed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProcessed
 
-`func (o *AggregateStats) SetProcessed(v int32)`
+`func (o *AggregateStats) SetProcessed(v int64)`
 
 SetProcessed sets Processed field to given value.
 
@@ -62,20 +62,20 @@ HasProcessed returns a boolean if a field has been set.
 
 ### GetSent
 
-`func (o *AggregateStats) GetSent() int32`
+`func (o *AggregateStats) GetSent() int64`
 
 GetSent returns the Sent field if non-nil, zero value otherwise.
 
 ### GetSentOk
 
-`func (o *AggregateStats) GetSentOk() (*int32, bool)`
+`func (o *AggregateStats) GetSentOk() (*int64, bool)`
 
 GetSentOk returns a tuple with the Sent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSent
 
-`func (o *AggregateStats) SetSent(v int32)`
+`func (o *AggregateStats) SetSent(v int64)`
 
 SetSent sets Sent field to given value.
 
@@ -85,47 +85,22 @@ SetSent sets Sent field to given value.
 
 HasSent returns a boolean if a field has been set.
 
-### GetDelivered
-
-`func (o *AggregateStats) GetDelivered() int32`
-
-GetDelivered returns the Delivered field if non-nil, zero value otherwise.
-
-### GetDeliveredOk
-
-`func (o *AggregateStats) GetDeliveredOk() (*int32, bool)`
-
-GetDeliveredOk returns a tuple with the Delivered field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDelivered
-
-`func (o *AggregateStats) SetDelivered(v int32)`
-
-SetDelivered sets Delivered field to given value.
-
-### HasDelivered
-
-`func (o *AggregateStats) HasDelivered() bool`
-
-HasDelivered returns a boolean if a field has been set.
-
 ### GetDropped
 
-`func (o *AggregateStats) GetDropped() int32`
+`func (o *AggregateStats) GetDropped() int64`
 
 GetDropped returns the Dropped field if non-nil, zero value otherwise.
 
 ### GetDroppedOk
 
-`func (o *AggregateStats) GetDroppedOk() (*int32, bool)`
+`func (o *AggregateStats) GetDroppedOk() (*int64, bool)`
 
 GetDroppedOk returns a tuple with the Dropped field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDropped
 
-`func (o *AggregateStats) SetDropped(v int32)`
+`func (o *AggregateStats) SetDropped(v int64)`
 
 SetDropped sets Dropped field to given value.
 
@@ -137,20 +112,20 @@ HasDropped returns a boolean if a field has been set.
 
 ### GetSmtpDropped
 
-`func (o *AggregateStats) GetSmtpDropped() int32`
+`func (o *AggregateStats) GetSmtpDropped() int64`
 
 GetSmtpDropped returns the SmtpDropped field if non-nil, zero value otherwise.
 
 ### GetSmtpDroppedOk
 
-`func (o *AggregateStats) GetSmtpDroppedOk() (*int32, bool)`
+`func (o *AggregateStats) GetSmtpDroppedOk() (*int64, bool)`
 
 GetSmtpDroppedOk returns a tuple with the SmtpDropped field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSmtpDropped
 
-`func (o *AggregateStats) SetSmtpDropped(v int32)`
+`func (o *AggregateStats) SetSmtpDropped(v int64)`
 
 SetSmtpDropped sets SmtpDropped field to given value.
 
@@ -160,47 +135,47 @@ SetSmtpDropped sets SmtpDropped field to given value.
 
 HasSmtpDropped returns a boolean if a field has been set.
 
-### GetHardBounced
+### GetDelivered
 
-`func (o *AggregateStats) GetHardBounced() int32`
+`func (o *AggregateStats) GetDelivered() int64`
 
-GetHardBounced returns the HardBounced field if non-nil, zero value otherwise.
+GetDelivered returns the Delivered field if non-nil, zero value otherwise.
 
-### GetHardBouncedOk
+### GetDeliveredOk
 
-`func (o *AggregateStats) GetHardBouncedOk() (*int32, bool)`
+`func (o *AggregateStats) GetDeliveredOk() (*int64, bool)`
 
-GetHardBouncedOk returns a tuple with the HardBounced field if it's non-nil, zero value otherwise
+GetDeliveredOk returns a tuple with the Delivered field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHardBounced
+### SetDelivered
 
-`func (o *AggregateStats) SetHardBounced(v int32)`
+`func (o *AggregateStats) SetDelivered(v int64)`
 
-SetHardBounced sets HardBounced field to given value.
+SetDelivered sets Delivered field to given value.
 
-### HasHardBounced
+### HasDelivered
 
-`func (o *AggregateStats) HasHardBounced() bool`
+`func (o *AggregateStats) HasDelivered() bool`
 
-HasHardBounced returns a boolean if a field has been set.
+HasDelivered returns a boolean if a field has been set.
 
 ### GetSoftBounced
 
-`func (o *AggregateStats) GetSoftBounced() int32`
+`func (o *AggregateStats) GetSoftBounced() int64`
 
 GetSoftBounced returns the SoftBounced field if non-nil, zero value otherwise.
 
 ### GetSoftBouncedOk
 
-`func (o *AggregateStats) GetSoftBouncedOk() (*int32, bool)`
+`func (o *AggregateStats) GetSoftBouncedOk() (*int64, bool)`
 
 GetSoftBouncedOk returns a tuple with the SoftBounced field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSoftBounced
 
-`func (o *AggregateStats) SetSoftBounced(v int32)`
+`func (o *AggregateStats) SetSoftBounced(v int64)`
 
 SetSoftBounced sets SoftBounced field to given value.
 
@@ -210,22 +185,47 @@ SetSoftBounced sets SoftBounced field to given value.
 
 HasSoftBounced returns a boolean if a field has been set.
 
+### GetHardBounced
+
+`func (o *AggregateStats) GetHardBounced() int64`
+
+GetHardBounced returns the HardBounced field if non-nil, zero value otherwise.
+
+### GetHardBouncedOk
+
+`func (o *AggregateStats) GetHardBouncedOk() (*int64, bool)`
+
+GetHardBouncedOk returns a tuple with the HardBounced field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHardBounced
+
+`func (o *AggregateStats) SetHardBounced(v int64)`
+
+SetHardBounced sets HardBounced field to given value.
+
+### HasHardBounced
+
+`func (o *AggregateStats) HasHardBounced() bool`
+
+HasHardBounced returns a boolean if a field has been set.
+
 ### GetOpened
 
-`func (o *AggregateStats) GetOpened() int32`
+`func (o *AggregateStats) GetOpened() int64`
 
 GetOpened returns the Opened field if non-nil, zero value otherwise.
 
 ### GetOpenedOk
 
-`func (o *AggregateStats) GetOpenedOk() (*int32, bool)`
+`func (o *AggregateStats) GetOpenedOk() (*int64, bool)`
 
 GetOpenedOk returns a tuple with the Opened field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOpened
 
-`func (o *AggregateStats) SetOpened(v int32)`
+`func (o *AggregateStats) SetOpened(v int64)`
 
 SetOpened sets Opened field to given value.
 
@@ -237,20 +237,20 @@ HasOpened returns a boolean if a field has been set.
 
 ### GetClicked
 
-`func (o *AggregateStats) GetClicked() int32`
+`func (o *AggregateStats) GetClicked() int64`
 
 GetClicked returns the Clicked field if non-nil, zero value otherwise.
 
 ### GetClickedOk
 
-`func (o *AggregateStats) GetClickedOk() (*int32, bool)`
+`func (o *AggregateStats) GetClickedOk() (*int64, bool)`
 
 GetClickedOk returns a tuple with the Clicked field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClicked
 
-`func (o *AggregateStats) SetClicked(v int32)`
+`func (o *AggregateStats) SetClicked(v int64)`
 
 SetClicked sets Clicked field to given value.
 
@@ -262,20 +262,20 @@ HasClicked returns a boolean if a field has been set.
 
 ### GetUnsubscribed
 
-`func (o *AggregateStats) GetUnsubscribed() int32`
+`func (o *AggregateStats) GetUnsubscribed() int64`
 
 GetUnsubscribed returns the Unsubscribed field if non-nil, zero value otherwise.
 
 ### GetUnsubscribedOk
 
-`func (o *AggregateStats) GetUnsubscribedOk() (*int32, bool)`
+`func (o *AggregateStats) GetUnsubscribedOk() (*int64, bool)`
 
 GetUnsubscribedOk returns a tuple with the Unsubscribed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnsubscribed
 
-`func (o *AggregateStats) SetUnsubscribed(v int32)`
+`func (o *AggregateStats) SetUnsubscribed(v int64)`
 
 SetUnsubscribed sets Unsubscribed field to given value.
 
@@ -285,30 +285,30 @@ SetUnsubscribed sets Unsubscribed field to given value.
 
 HasUnsubscribed returns a boolean if a field has been set.
 
-### GetSpams
+### GetSpam
 
-`func (o *AggregateStats) GetSpams() int32`
+`func (o *AggregateStats) GetSpam() int64`
 
-GetSpams returns the Spams field if non-nil, zero value otherwise.
+GetSpam returns the Spam field if non-nil, zero value otherwise.
 
-### GetSpamsOk
+### GetSpamOk
 
-`func (o *AggregateStats) GetSpamsOk() (*int32, bool)`
+`func (o *AggregateStats) GetSpamOk() (*int64, bool)`
 
-GetSpamsOk returns a tuple with the Spams field if it's non-nil, zero value otherwise
+GetSpamOk returns a tuple with the Spam field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSpams
+### SetSpam
 
-`func (o *AggregateStats) SetSpams(v int32)`
+`func (o *AggregateStats) SetSpam(v int64)`
 
-SetSpams sets Spams field to given value.
+SetSpam sets Spam field to given value.
 
-### HasSpams
+### HasSpam
 
-`func (o *AggregateStats) HasSpams() bool`
+`func (o *AggregateStats) HasSpam() bool`
 
-HasSpams returns a boolean if a field has been set.
+HasSpam returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

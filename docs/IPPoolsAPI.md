@@ -29,11 +29,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	iPPoolCreateRequest := *openapiclient.NewIPPoolCreateRequest() // IPPoolCreateRequest | 
+	iPPoolCreateRequest := *openapiclient.NewIPPoolCreateRequest("Marketing Promotional") // IPPoolCreateRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -95,11 +95,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	ippoolId := int32(756) // int32 | The ID of the IPPool to delete
+	ippoolId := int32(756) // int32 | The unique ID of the IP pool to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ippoolId** | **int32** | The ID of the IPPool to delete | 
+**ippoolId** | **int32** | The unique ID of the IP pool to delete. | 
 
 ### Other Parameters
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[accountAuth](../README.md#accountAuth)
 
 ### HTTP request headers
 
@@ -165,13 +165,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	limit := int32(10) // int32 | Number of records to return per request (optional)
-	offset := int32(0) // int32 | Number of initial records to skip (optional)
-	search := "Transactional" // string | Case insensitive search against IPPool name (optional)
+	limit := int32(10) // int32 | Number of records to return per request. Default 20. (optional) (default to 20)
+	offset := int32(0) // int32 | Number of initial records to skip for pagination. (optional) (default to 0)
+	search := "Transactional" // string | Case insensitive search against IP pool names. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -196,9 +196,9 @@ Other parameters are passed through a pointer to a apiGetAllIPPoolsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** | Number of records to return per request | 
- **offset** | **int32** | Number of initial records to skip | 
- **search** | **string** | Case insensitive search against IPPool name | 
+ **limit** | **int32** | Number of records to return per request. Default 20. | [default to 20]
+ **offset** | **int32** | Number of initial records to skip for pagination. | [default to 0]
+ **search** | **string** | Case insensitive search against IP pool names. | 
 
 ### Return type
 
@@ -235,11 +235,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	ippoolId := int32(74) // int32 | The ID of the IPPool whose information you want to retrieve
+	ippoolId := int32(74) // int32 | The unique ID of the IP pool to retrieve.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -259,7 +259,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ippoolId** | **int32** | The ID of the IPPool whose information you want to retrieve | 
+**ippoolId** | **int32** | The unique ID of the IP pool to retrieve. | 
 
 ### Other Parameters
 
@@ -305,12 +305,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
 	iPPoolUpdateRequest := *openapiclient.NewIPPoolUpdateRequest() // IPPoolUpdateRequest | 
-	ippoolId := int32(756) // int32 | The ID of the IPPool to update
+	ippoolId := int32(756) // int32 | The unique ID of the IP pool to update.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -330,7 +330,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ippoolId** | **int32** | The ID of the IPPool to update | 
+**ippoolId** | **int32** | The unique ID of the IP pool to update. | 
 
 ### Other Parameters
 

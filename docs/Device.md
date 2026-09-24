@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Family** | Pointer to **string** |  | [optional] 
+**Family** | Pointer to **string** | Device type or model family. Common values: Mac, iPhone, iPad, Windows Desktop, Android, Other  | [optional] 
 
 ## Methods
 

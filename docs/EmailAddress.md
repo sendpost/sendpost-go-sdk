@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Email** | **string** | The email address (must be a valid email format) | 
+**Name** | Pointer to **string** | Display name shown in email clients. Will appear as \&quot;Name &lt;email@example.com&gt;\&quot; in the From/To fields.  | [optional] 
 
 ## Methods
 
 ### NewEmailAddress
 
-`func NewEmailAddress() *EmailAddress`
+`func NewEmailAddress(email string, ) *EmailAddress`
 
 NewEmailAddress instantiates a new EmailAddress object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *EmailAddress) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetName
 

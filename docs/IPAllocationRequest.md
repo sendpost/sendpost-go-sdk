@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OverflowPool** | **bool** | Determines whether emails should be sent over shared IP when the IP pool is full | 
-**Ips** | **[]string** |  | 
+**Ips** | **[]string** | List of IP addresses to allocate. These must be available IPs from SendPost&#39;s IP pool. Contact support to request IP allocation.  | 
+**AutoWarmupEnabled** | Pointer to **bool** | Enable automatic IP warmup for newly allocated IPs. Recommended: true for new IPs to gradually build sender reputation.  | [optional] [default to true]
 
 ## Methods
 
 ### NewIPAllocationRequest
 
-`func NewIPAllocationRequest(overflowPool bool, ips []string, ) *IPAllocationRequest`
+`func NewIPAllocationRequest(ips []string, ) *IPAllocationRequest`
 
 NewIPAllocationRequest instantiates a new IPAllocationRequest object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewIPAllocationRequestWithDefaults instantiates a new IPAllocationRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetOverflowPool
-
-`func (o *IPAllocationRequest) GetOverflowPool() bool`
-
-GetOverflowPool returns the OverflowPool field if non-nil, zero value otherwise.
-
-### GetOverflowPoolOk
-
-`func (o *IPAllocationRequest) GetOverflowPoolOk() (*bool, bool)`
-
-GetOverflowPoolOk returns a tuple with the OverflowPool field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOverflowPool
-
-`func (o *IPAllocationRequest) SetOverflowPool(v bool)`
-
-SetOverflowPool sets OverflowPool field to given value.
-
 
 ### GetIps
 
@@ -65,6 +45,31 @@ and a boolean to check if the value has been set.
 
 SetIps sets Ips field to given value.
 
+
+### GetAutoWarmupEnabled
+
+`func (o *IPAllocationRequest) GetAutoWarmupEnabled() bool`
+
+GetAutoWarmupEnabled returns the AutoWarmupEnabled field if non-nil, zero value otherwise.
+
+### GetAutoWarmupEnabledOk
+
+`func (o *IPAllocationRequest) GetAutoWarmupEnabledOk() (*bool, bool)`
+
+GetAutoWarmupEnabledOk returns a tuple with the AutoWarmupEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoWarmupEnabled
+
+`func (o *IPAllocationRequest) SetAutoWarmupEnabled(v bool)`
+
+SetAutoWarmupEnabled sets AutoWarmupEnabled field to given value.
+
+### HasAutoWarmupEnabled
+
+`func (o *IPAllocationRequest) HasAutoWarmupEnabled() bool`
+
+HasAutoWarmupEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

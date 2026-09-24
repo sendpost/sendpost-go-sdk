@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int64** | ID of the deleted IP pool | [optional] 
+**Message** | Pointer to **string** | Confirmation message | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *IPPoolDeleteResponse) GetId() int32`
+`func (o *IPPoolDeleteResponse) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *IPPoolDeleteResponse) GetIdOk() (*int32, bool)`
+`func (o *IPPoolDeleteResponse) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *IPPoolDeleteResponse) SetId(v int32)`
+`func (o *IPPoolDeleteResponse) SetId(v int64)`
 
 SetId sets Id field to given value.
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | Pointer to **string** |  | [optional] 
-**Stat** | Pointer to [**AccountStatsStat**](AccountStatsStat.md) |  | [optional] 
+**Date** | Pointer to **string** | The date for these statistics (UTC) | [optional] 
+**Stat** | Pointer to [**DailyStatistics**](DailyStatistics.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasDate returns a boolean if a field has been set.
 
 ### GetStat
 
-`func (o *AccountStats) GetStat() AccountStatsStat`
+`func (o *AccountStats) GetStat() DailyStatistics`
 
 GetStat returns the Stat field if non-nil, zero value otherwise.
 
 ### GetStatOk
 
-`func (o *AccountStats) GetStatOk() (*AccountStatsStat, bool)`
+`func (o *AccountStats) GetStatOk() (*DailyStatistics, bool)`
 
 GetStatOk returns a tuple with the Stat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStat
 
-`func (o *AccountStats) SetStat(v AccountStatsStat)`
+`func (o *AccountStats) SetStat(v DailyStatistics)`
 
 SetStat sets Stat field to given value.
 

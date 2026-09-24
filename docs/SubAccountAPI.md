@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateSubAccount
 
-> SubAccount CreateSubAccount(ctx).CreateSubAccountRequest(createSubAccountRequest).Execute()
+> SubAccount CreateSubAccount(ctx).NewSubAccountRequest(newSubAccountRequest).Execute()
 
 Create Sub-Account
 
@@ -29,15 +29,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	createSubAccountRequest := *openapiclient.NewCreateSubAccountRequest() // CreateSubAccountRequest | 
+	newSubAccountRequest := *openapiclient.NewNewSubAccountRequest("Marketing - Production") // NewSubAccountRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubAccountAPI.CreateSubAccount(context.Background()).CreateSubAccountRequest(createSubAccountRequest).Execute()
+	resp, r, err := apiClient.SubAccountAPI.CreateSubAccount(context.Background()).NewSubAccountRequest(newSubAccountRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountAPI.CreateSubAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateSubAccountRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createSubAccountRequest** | [**CreateSubAccountRequest**](CreateSubAccountRequest.md) |  | 
+ **newSubAccountRequest** | [**NewSubAccountRequest**](NewSubAccountRequest.md) |  | 
 
 ### Return type
 
@@ -95,11 +95,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	subaccountId := int32(12) // int32 | The ID of the sub-account to delete.
+	subaccountId := int32(12) // int32 | The unique ID of the sub-account to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subaccountId** | **int32** | The ID of the sub-account to delete. | 
+**subaccountId** | **int32** | The unique ID of the sub-account to delete. | 
 
 ### Other Parameters
 
@@ -165,13 +165,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	limit := int32(10) // int32 | Number of records to return per request. (optional)
-	offset := int32(0) // int32 | Number of initial records to skip. (optional)
-	search := "Hooli" // string | Case-insensitive search against the sub-account name. (optional)
+	limit := int32(10) // int32 | Number of records to return per request. Default 20. (optional) (default to 20)
+	offset := int32(0) // int32 | Number of initial records to skip for pagination. (optional) (default to 0)
+	search := "Production" // string | Case-insensitive search against sub-account names. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -196,9 +196,9 @@ Other parameters are passed through a pointer to a apiGetAllSubAccountsRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** | Number of records to return per request. | 
- **offset** | **int32** | Number of initial records to skip. | 
- **search** | **string** | Case-insensitive search against the sub-account name. | 
+ **limit** | **int32** | Number of records to return per request. Default 20. | [default to 20]
+ **offset** | **int32** | Number of initial records to skip for pagination. | [default to 0]
+ **search** | **string** | Case-insensitive search against sub-account names. | 
 
 ### Return type
 
@@ -235,11 +235,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	subaccountId := int32(11) // int32 | The ID of the sub-account to retrieve.
+	subaccountId := int32(11) // int32 | The unique ID of the sub-account to retrieve.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -259,7 +259,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subaccountId** | **int32** | The ID of the sub-account to retrieve. | 
+**subaccountId** | **int32** | The unique ID of the sub-account to retrieve. | 
 
 ### Other Parameters
 
@@ -305,12 +305,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
 	updateSubAccount := *openapiclient.NewUpdateSubAccount() // UpdateSubAccount | 
-	subaccountId := int32(12) // int32 | The ID of the sub-account to update.
+	subaccountId := int32(12) // int32 | The unique ID of the sub-account to update.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -330,7 +330,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subaccountId** | **int32** | The ID of the sub-account to update. | 
+**subaccountId** | **int32** | The unique ID of the sub-account to update. | 
 
 ### Other Parameters
 

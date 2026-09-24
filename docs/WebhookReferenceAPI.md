@@ -23,7 +23,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {

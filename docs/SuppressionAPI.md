@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSuppression
 
-> []DeleteSuppression200ResponseInner DeleteSuppression(ctx).DeleteSuppressionRequest(deleteSuppressionRequest).Execute()
+> DeleteSuppression200Response DeleteSuppression(ctx).DeleteSuppressionRequest(deleteSuppressionRequest).Execute()
 
 Delete Suppressions
 
@@ -93,7 +93,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
@@ -106,7 +106,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SuppressionAPI.DeleteSuppression``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteSuppression`: []DeleteSuppression200ResponseInner
+	// response from `DeleteSuppression`: DeleteSuppression200Response
 	fmt.Fprintf(os.Stdout, "Response from `SuppressionAPI.DeleteSuppression`: %v\n", resp)
 }
 ```
@@ -126,7 +126,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]DeleteSuppression200ResponseInner**](DeleteSuppression200ResponseInner.md)
+[**DeleteSuppression200Response**](DeleteSuppression200Response.md)
 
 ### Authorization
 
@@ -160,16 +160,16 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	from := time.Now() // string | Start date for the suppression records
-	to := time.Now() // string | End date for the suppression records (Note: `from` should be earlier than `to` and the date range should not exceed 60 days) 
-	limit := int32(56) // int32 | Number of records to return per request (optional) (default to 20)
-	offset := int32(56) // int32 | Number of initial records to skip (optional) (default to 0)
-	search := "search_example" // string | Case-insensitive search against suppression email (optional)
-	type_ := "type__example" // string | Type of suppression. Valid values: `hardBounce`, `manual`, `spamComplaint`, `unsubscribe`  (optional)
+	from := time.Now() // string | Start date for suppression records (inclusive). Format YYYY-MM-DD.
+	to := time.Now() // string | End date for suppression records (inclusive). Max 60 days from `from` date.
+	limit := int32(50) // int32 | Number of records to return per request. Default 20, max 100. (optional) (default to 20)
+	offset := int32(0) // int32 | Number of initial records to skip for pagination. (optional) (default to 0)
+	search := "@example.com" // string | Case-insensitive search against suppression email addresses. (optional)
+	type_ := "hardBounce" // string | Filter by suppression type. Omit to return all types. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -194,12 +194,12 @@ Other parameters are passed through a pointer to a apiGetSuppressionListRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | Start date for the suppression records | 
- **to** | **string** | End date for the suppression records (Note: &#x60;from&#x60; should be earlier than &#x60;to&#x60; and the date range should not exceed 60 days)  | 
- **limit** | **int32** | Number of records to return per request | [default to 20]
- **offset** | **int32** | Number of initial records to skip | [default to 0]
- **search** | **string** | Case-insensitive search against suppression email | 
- **type_** | **string** | Type of suppression. Valid values: &#x60;hardBounce&#x60;, &#x60;manual&#x60;, &#x60;spamComplaint&#x60;, &#x60;unsubscribe&#x60;  | 
+ **from** | **string** | Start date for suppression records (inclusive). Format YYYY-MM-DD. | 
+ **to** | **string** | End date for suppression records (inclusive). Max 60 days from &#x60;from&#x60; date. | 
+ **limit** | **int32** | Number of records to return per request. Default 20, max 100. | [default to 20]
+ **offset** | **int32** | Number of initial records to skip for pagination. | [default to 0]
+ **search** | **string** | Case-insensitive search against suppression email addresses. | 
+ **type_** | **string** | Filter by suppression type. Omit to return all types. | 
 
 ### Return type
 

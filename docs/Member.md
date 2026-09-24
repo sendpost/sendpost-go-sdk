@@ -4,18 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for the member | [optional] 
-**IsVerified** | Pointer to **bool** | Indicates whether the member is verified | [optional] 
-**IsForbidden** | Pointer to **bool** | Indicates whether the member is forbidden | [optional] 
-**FirebaseUID** | Pointer to **string** | Firebase UID for the member | [optional] 
-**Email** | Pointer to **string** | Email for the member | [optional] 
-**Name** | Pointer to **string** | Name for the member | [optional] 
-**Url** | Pointer to **string** | Logo URL for the member | [optional] 
-**CompanyName** | Pointer to **string** | Company name for the member | [optional] 
-**OnboardQAnswered** | Pointer to **bool** | Indicates whether the member has answered onboarding question | [optional] 
-**PhoneNumber** | Pointer to **string** | Phone number for the member | [optional] 
-**NotesColor** | Pointer to **string** | Color for the member&#39;s notes | [optional] 
-**Created** | Pointer to **int64** | UNIX epoch nano timestamp when the member was created | [optional] 
+**Id** | Pointer to **int64** | Unique identifier for the team member | [optional] 
+**Email** | Pointer to **string** | Email address of the team member (used for login) | [optional] 
+**Name** | Pointer to **string** | Display name of the team member | [optional] 
+**IsVerified** | Pointer to **bool** | Whether the member has verified their email address. Unverified members have limited access until verification is complete.  | [optional] 
+**LogoUrl** | Pointer to **string** | URL of the member&#39;s profile picture/avatar | [optional] 
+**CompanyName** | Pointer to **string** | Company or organization name | [optional] 
+**OnboardQAnswered** | Pointer to **bool** | Whether the member has completed the onboarding questionnaire | [optional] 
+**PhoneNumber** | Pointer to **string** | Contact phone number in E.164 format. Used for account recovery and important notifications.  | [optional] 
+**Created** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the member was added | [optional] 
 
 ## Methods
 
@@ -38,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Member) GetId() int32`
+`func (o *Member) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Member) GetIdOk() (*int32, bool)`
+`func (o *Member) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Member) SetId(v int32)`
+`func (o *Member) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -60,81 +57,6 @@ SetId sets Id field to given value.
 `func (o *Member) HasId() bool`
 
 HasId returns a boolean if a field has been set.
-
-### GetIsVerified
-
-`func (o *Member) GetIsVerified() bool`
-
-GetIsVerified returns the IsVerified field if non-nil, zero value otherwise.
-
-### GetIsVerifiedOk
-
-`func (o *Member) GetIsVerifiedOk() (*bool, bool)`
-
-GetIsVerifiedOk returns a tuple with the IsVerified field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsVerified
-
-`func (o *Member) SetIsVerified(v bool)`
-
-SetIsVerified sets IsVerified field to given value.
-
-### HasIsVerified
-
-`func (o *Member) HasIsVerified() bool`
-
-HasIsVerified returns a boolean if a field has been set.
-
-### GetIsForbidden
-
-`func (o *Member) GetIsForbidden() bool`
-
-GetIsForbidden returns the IsForbidden field if non-nil, zero value otherwise.
-
-### GetIsForbiddenOk
-
-`func (o *Member) GetIsForbiddenOk() (*bool, bool)`
-
-GetIsForbiddenOk returns a tuple with the IsForbidden field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsForbidden
-
-`func (o *Member) SetIsForbidden(v bool)`
-
-SetIsForbidden sets IsForbidden field to given value.
-
-### HasIsForbidden
-
-`func (o *Member) HasIsForbidden() bool`
-
-HasIsForbidden returns a boolean if a field has been set.
-
-### GetFirebaseUID
-
-`func (o *Member) GetFirebaseUID() string`
-
-GetFirebaseUID returns the FirebaseUID field if non-nil, zero value otherwise.
-
-### GetFirebaseUIDOk
-
-`func (o *Member) GetFirebaseUIDOk() (*string, bool)`
-
-GetFirebaseUIDOk returns a tuple with the FirebaseUID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirebaseUID
-
-`func (o *Member) SetFirebaseUID(v string)`
-
-SetFirebaseUID sets FirebaseUID field to given value.
-
-### HasFirebaseUID
-
-`func (o *Member) HasFirebaseUID() bool`
-
-HasFirebaseUID returns a boolean if a field has been set.
 
 ### GetEmail
 
@@ -186,30 +108,55 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetUrl
+### GetIsVerified
 
-`func (o *Member) GetUrl() string`
+`func (o *Member) GetIsVerified() bool`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetIsVerified returns the IsVerified field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetIsVerifiedOk
 
-`func (o *Member) GetUrlOk() (*string, bool)`
+`func (o *Member) GetIsVerifiedOk() (*bool, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetIsVerifiedOk returns a tuple with the IsVerified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUrl
+### SetIsVerified
 
-`func (o *Member) SetUrl(v string)`
+`func (o *Member) SetIsVerified(v bool)`
 
-SetUrl sets Url field to given value.
+SetIsVerified sets IsVerified field to given value.
 
-### HasUrl
+### HasIsVerified
 
-`func (o *Member) HasUrl() bool`
+`func (o *Member) HasIsVerified() bool`
 
-HasUrl returns a boolean if a field has been set.
+HasIsVerified returns a boolean if a field has been set.
+
+### GetLogoUrl
+
+`func (o *Member) GetLogoUrl() string`
+
+GetLogoUrl returns the LogoUrl field if non-nil, zero value otherwise.
+
+### GetLogoUrlOk
+
+`func (o *Member) GetLogoUrlOk() (*string, bool)`
+
+GetLogoUrlOk returns a tuple with the LogoUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogoUrl
+
+`func (o *Member) SetLogoUrl(v string)`
+
+SetLogoUrl sets LogoUrl field to given value.
+
+### HasLogoUrl
+
+`func (o *Member) HasLogoUrl() bool`
+
+HasLogoUrl returns a boolean if a field has been set.
 
 ### GetCompanyName
 
@@ -285,31 +232,6 @@ SetPhoneNumber sets PhoneNumber field to given value.
 `func (o *Member) HasPhoneNumber() bool`
 
 HasPhoneNumber returns a boolean if a field has been set.
-
-### GetNotesColor
-
-`func (o *Member) GetNotesColor() string`
-
-GetNotesColor returns the NotesColor field if non-nil, zero value otherwise.
-
-### GetNotesColorOk
-
-`func (o *Member) GetNotesColorOk() (*string, bool)`
-
-GetNotesColorOk returns a tuple with the NotesColor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotesColor
-
-`func (o *Member) SetNotesColor(v string)`
-
-SetNotesColor sets NotesColor field to given value.
-
-### HasNotesColor
-
-`func (o *Member) HasNotesColor() bool`
-
-HasNotesColor returns a boolean if a field has been set.
 
 ### GetCreated
 

@@ -4,27 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** | Is the webhook active or in a paused state? | [optional] 
-**Url** | Pointer to **string** | URL endpoint to which webhook calls are sent. | [optional] 
-**Processed** | Pointer to **bool** | Trigger webhook on email message being processed. | [optional] 
-**Delivered** | Pointer to **bool** | Trigger webhook on email message being delivered. | [optional] 
-**Dropped** | Pointer to **bool** | Trigger webhook on email message being dropped. | [optional] 
-**SoftBounced** | Pointer to **bool** | Trigger webhook on email message being soft bounced. | [optional] 
-**HardBounced** | Pointer to **bool** | Trigger webhook on email message being hard bounced. | [optional] 
-**Opened** | Pointer to **bool** | Trigger webhook on email message being opened. | [optional] 
-**Clicked** | Pointer to **bool** | Trigger webhook on email message link being clicked. | [optional] 
-**Unsubscribed** | Pointer to **bool** | Trigger webhook on email message being unsubscribed. | [optional] 
-**Spam** | Pointer to **bool** | Trigger webhook on email message being marked as spam. | [optional] 
-**Sent** | Pointer to **bool** | Trigger webhook on email message being sent. | [optional] 
-**SmtpDropped** | Pointer to **bool** | Trigger webhook on email message being dropped by SMTP. | [optional] 
-**UniqueOpen** | Pointer to **bool** | Trigger webhook on unique email opens. | [optional] 
-**UniqueClick** | Pointer to **bool** | Trigger webhook on unique email clicks. | [optional] 
+**Enabled** | Pointer to **bool** | Whether the webhook is active immediately after creation. Set to false to configure and test before activating.  | [optional] [default to true]
+**Url** | **string** | HTTPS URL endpoint to receive webhook POST requests. Must: - Use HTTPS (HTTP not allowed for security) - Be publicly accessible - Return 2xx status within 10 seconds - Handle duplicate deliveries (use eventId for idempotency)  | 
+**Processed** | Pointer to **bool** | Fire when email is accepted by SendPost API | [optional] [default to false]
+**Sent** | Pointer to **bool** | Fire when email is sent to recipient&#39;s mail server | [optional] [default to false]
+**Delivered** | Pointer to **bool** | Fire when email is accepted by recipient&#39;s mail server | [optional] [default to true]
+**Dropped** | Pointer to **bool** | Fire when email is not sent (suppression, invalid, etc.) | [optional] [default to true]
+**SmtpDropped** | Pointer to **bool** | Fire when email is rejected at SMTP level | [optional] [default to false]
+**SoftBounced** | Pointer to **bool** | Fire on temporary delivery failure (will retry) | [optional] [default to true]
+**HardBounced** | Pointer to **bool** | Fire on permanent delivery failure | [optional] [default to true]
+**Opened** | Pointer to **bool** | Fire when email is opened. Fires on EVERY open. Consider using &#x60;uniqueOpen&#x60; instead to reduce volume.  | [optional] [default to true]
+**Clicked** | Pointer to **bool** | Fire when a link is clicked. Fires on EVERY click. Consider using &#x60;uniqueClick&#x60; instead to reduce volume.  | [optional] [default to true]
+**Unsubscribed** | Pointer to **bool** | Fire when recipient clicks unsubscribe link | [optional] [default to true]
+**Spam** | Pointer to **bool** | Fire when recipient marks email as spam | [optional] [default to true]
+**UniqueOpen** | Pointer to **bool** | Fire only on FIRST open of each email (unique opens). More efficient than &#x60;opened&#x60; if you only need engagement metrics.  | [optional] [default to false]
+**UniqueClick** | Pointer to **bool** | Fire only on FIRST click of each email (unique clicks). More efficient than &#x60;clicked&#x60; if you only need engagement metrics.  | [optional] [default to false]
 
 ## Methods
 
 ### NewUpdateWebhook
 
-`func NewUpdateWebhook() *UpdateWebhook`
+`func NewUpdateWebhook(url string, ) *UpdateWebhook`
 
 NewUpdateWebhook instantiates a new UpdateWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -83,11 +83,6 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
-### HasUrl
-
-`func (o *UpdateWebhook) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
 
 ### GetProcessed
 
@@ -113,6 +108,31 @@ SetProcessed sets Processed field to given value.
 `func (o *UpdateWebhook) HasProcessed() bool`
 
 HasProcessed returns a boolean if a field has been set.
+
+### GetSent
+
+`func (o *UpdateWebhook) GetSent() bool`
+
+GetSent returns the Sent field if non-nil, zero value otherwise.
+
+### GetSentOk
+
+`func (o *UpdateWebhook) GetSentOk() (*bool, bool)`
+
+GetSentOk returns a tuple with the Sent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSent
+
+`func (o *UpdateWebhook) SetSent(v bool)`
+
+SetSent sets Sent field to given value.
+
+### HasSent
+
+`func (o *UpdateWebhook) HasSent() bool`
+
+HasSent returns a boolean if a field has been set.
 
 ### GetDelivered
 
@@ -163,6 +183,31 @@ SetDropped sets Dropped field to given value.
 `func (o *UpdateWebhook) HasDropped() bool`
 
 HasDropped returns a boolean if a field has been set.
+
+### GetSmtpDropped
+
+`func (o *UpdateWebhook) GetSmtpDropped() bool`
+
+GetSmtpDropped returns the SmtpDropped field if non-nil, zero value otherwise.
+
+### GetSmtpDroppedOk
+
+`func (o *UpdateWebhook) GetSmtpDroppedOk() (*bool, bool)`
+
+GetSmtpDroppedOk returns a tuple with the SmtpDropped field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSmtpDropped
+
+`func (o *UpdateWebhook) SetSmtpDropped(v bool)`
+
+SetSmtpDropped sets SmtpDropped field to given value.
+
+### HasSmtpDropped
+
+`func (o *UpdateWebhook) HasSmtpDropped() bool`
+
+HasSmtpDropped returns a boolean if a field has been set.
 
 ### GetSoftBounced
 
@@ -313,56 +358,6 @@ SetSpam sets Spam field to given value.
 `func (o *UpdateWebhook) HasSpam() bool`
 
 HasSpam returns a boolean if a field has been set.
-
-### GetSent
-
-`func (o *UpdateWebhook) GetSent() bool`
-
-GetSent returns the Sent field if non-nil, zero value otherwise.
-
-### GetSentOk
-
-`func (o *UpdateWebhook) GetSentOk() (*bool, bool)`
-
-GetSentOk returns a tuple with the Sent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSent
-
-`func (o *UpdateWebhook) SetSent(v bool)`
-
-SetSent sets Sent field to given value.
-
-### HasSent
-
-`func (o *UpdateWebhook) HasSent() bool`
-
-HasSent returns a boolean if a field has been set.
-
-### GetSmtpDropped
-
-`func (o *UpdateWebhook) GetSmtpDropped() bool`
-
-GetSmtpDropped returns the SmtpDropped field if non-nil, zero value otherwise.
-
-### GetSmtpDroppedOk
-
-`func (o *UpdateWebhook) GetSmtpDroppedOk() (*bool, bool)`
-
-GetSmtpDroppedOk returns a tuple with the SmtpDropped field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSmtpDropped
-
-`func (o *UpdateWebhook) SetSmtpDropped(v bool)`
-
-SetSmtpDropped sets SmtpDropped field to given value.
-
-### HasSmtpDropped
-
-`func (o *UpdateWebhook) HasSmtpDropped() bool`
-
-HasSmtpDropped returns a boolean if a field has been set.
 
 ### GetUniqueOpen
 

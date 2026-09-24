@@ -28,13 +28,13 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	from := time.Now() // string | Start date for stats retrieval.
-	to := time.Now() // string | Date to which stats should be retrieved ( Note than from date should be earlier than to date. Also the difference between from and to date shouldn't ne more than 60 days ) 
-	subaccountId := int64(11) // int64 | The ID of the subaccount to retrieve
+	from := time.Now() // string | Start date for aggregation (inclusive). Format YYYY-MM-DD.
+	to := time.Now() // string | End date for aggregation (inclusive). Max 366 days from `from` date.
+	subaccountId := int64(11) // int64 | The unique ID of the sub-account.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subaccountId** | **int64** | The ID of the subaccount to retrieve | 
+**subaccountId** | **int64** | The unique ID of the sub-account. | 
 
 ### Other Parameters
 
@@ -63,8 +63,8 @@ Other parameters are passed through a pointer to a apiAccountSubaccountStatSubac
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | Start date for stats retrieval. | 
- **to** | **string** | Date to which stats should be retrieved ( Note than from date should be earlier than to date. Also the difference between from and to date shouldn&#39;t ne more than 60 days )  | 
+ **from** | **string** | Start date for aggregation (inclusive). Format YYYY-MM-DD. | 
+ **to** | **string** | End date for aggregation (inclusive). Max 366 days from &#x60;from&#x60; date. | 
 
 
 ### Return type
@@ -103,13 +103,13 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	from := time.Now() // string | Start date for stats retrieval.
-	to := time.Now() // string | Date to which stats should be retrieved ( Note than from date should be earlier than to date. Also the difference between from and to date shouldn't ne more than 60 days ) 
-	subaccountId := int64(11) // int64 | The ID of the subaccount to retrieve
+	from := time.Now() // string | Start date for stats retrieval (inclusive). Format YYYY-MM-DD.
+	to := time.Now() // string | End date for stats retrieval (inclusive). Must be after `from` date with max 31 days range.
+	subaccountId := int64(11) // int64 | The unique ID of the sub-account to retrieve stats for.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -129,7 +129,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subaccountId** | **int64** | The ID of the subaccount to retrieve | 
+**subaccountId** | **int64** | The unique ID of the sub-account to retrieve stats for. | 
 
 ### Other Parameters
 
@@ -138,8 +138,8 @@ Other parameters are passed through a pointer to a apiAccountSubaccountStatSubac
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | Start date for stats retrieval. | 
- **to** | **string** | Date to which stats should be retrieved ( Note than from date should be earlier than to date. Also the difference between from and to date shouldn&#39;t ne more than 60 days )  | 
+ **from** | **string** | Start date for stats retrieval (inclusive). Format YYYY-MM-DD. | 
+ **to** | **string** | End date for stats retrieval (inclusive). Must be after &#x60;from&#x60; date with max 31 days range. | 
 
 
 ### Return type
@@ -178,12 +178,12 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	group := "group_example" // string | Group whose aggregated stats need to be retrieved
-	from := time.Now() // string | The starting date for the aggregated stats
+	group := "order-confirmations" // string | The group/tag name to filter statistics by. Must match the group name used when sending emails.
+	from := time.Now() // string | Start date for aggregation (inclusive). Format YYYY-MM-DD.
 	to := time.Now() // string | The ending date for the aggregated stats (Note: `from` should be earlier than `to` and the date range should not exceed 366 days) 
 	subaccountId := int64(11) // int64 | The ID of the subaccount to retrieve
 
@@ -214,8 +214,8 @@ Other parameters are passed through a pointer to a apiGetAggregateStatsByGroupRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group** | **string** | Group whose aggregated stats need to be retrieved | 
- **from** | **string** | The starting date for the aggregated stats | 
+ **group** | **string** | The group/tag name to filter statistics by. Must match the group name used when sending emails. | 
+ **from** | **string** | Start date for aggregation (inclusive). Format YYYY-MM-DD. | 
  **to** | **string** | The ending date for the aggregated stats (Note: &#x60;from&#x60; should be earlier than &#x60;to&#x60; and the date range should not exceed 366 days)  | 
 
 

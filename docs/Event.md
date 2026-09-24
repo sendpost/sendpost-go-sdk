@@ -4,25 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EventID** | Pointer to **string** |  | [optional] 
-**Groups** | Pointer to **[]string** |  | [optional] 
-**IpID** | Pointer to **int32** |  | [optional] 
-**IpPoolID** | Pointer to **int32** |  | [optional] 
-**DomainID** | Pointer to **int32** |  | [optional] 
-**TpspId** | Pointer to **int32** |  | [optional] 
-**MessageType** | Pointer to **string** |  | [optional] 
-**MessageSubject** | Pointer to **string** |  | [optional] 
-**AccountID** | Pointer to **int32** |  | [optional] 
-**SubAccountID** | Pointer to **int32** |  | [optional] 
-**MessageID** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int32** |  | [optional] 
-**From** | Pointer to **string** |  | [optional] 
-**FromName** | Pointer to **string** |  | [optional] 
-**To** | Pointer to **string** |  | [optional] 
-**ToName** | Pointer to **string** |  | [optional] 
-**SubmittedAt** | Pointer to **int32** |  | [optional] 
-**SmtpCode** | Pointer to **int32** |  | [optional] 
-**SmtpDescription** | Pointer to **string** |  | [optional] 
+**EventId** | Pointer to **string** | Unique identifier for this specific event. Use this for idempotency - the same event may be delivered multiple times.  | [optional] 
+**MessageId** | Pointer to **string** | Unique identifier of the email message this event belongs to. Use this to correlate events with the original send request.  | [optional] 
+**Type** | Pointer to **int64** | Numeric event type code: - &#x60;0&#x60; &#x3D; processed (email accepted by API) - &#x60;1&#x60; &#x3D; dropped (not sent - suppression, invalid, etc.) - &#x60;2&#x60; &#x3D; delivered (accepted by recipient&#39;s mail server) - &#x60;3&#x60; &#x3D; softBounced (temporary failure, will retry) - &#x60;4&#x60; &#x3D; hardBounced (permanent failure) - &#x60;5&#x60; &#x3D; opened (tracking pixel loaded) - &#x60;6&#x60; &#x3D; clicked (link clicked) - &#x60;7&#x60; &#x3D; unsubscribed (clicked unsubscribe link) - &#x60;8&#x60; &#x3D; spam (marked as spam by recipient) - &#x60;9&#x60; &#x3D; sent (sent to mail server) - &#x60;10&#x60; &#x3D; smtpDropped (dropped at SMTP level)  | [optional] 
+**TypeName** | Pointer to **string** | Human-readable event type name | [optional] 
+**From** | Pointer to **string** | Sender email address | [optional] 
+**To** | Pointer to **string** | Recipient email address | [optional] 
+**Subject** | Pointer to **string** | Email subject line (useful for identifying the email) | [optional] 
+**Groups** | Pointer to **[]string** | Tags/groups that were associated with the email | [optional] 
+**SubmittedAt** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the email was originally submitted | [optional] 
+**Timestamp** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when this event occurred | [optional] 
 **EventMetadata** | Pointer to [**EventMetadata**](EventMetadata.md) |  | [optional] 
 
 ## Methods
@@ -44,297 +35,72 @@ NewEventWithDefaults instantiates a new Event object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEventID
+### GetEventId
 
-`func (o *Event) GetEventID() string`
+`func (o *Event) GetEventId() string`
 
-GetEventID returns the EventID field if non-nil, zero value otherwise.
+GetEventId returns the EventId field if non-nil, zero value otherwise.
 
-### GetEventIDOk
+### GetEventIdOk
 
-`func (o *Event) GetEventIDOk() (*string, bool)`
+`func (o *Event) GetEventIdOk() (*string, bool)`
 
-GetEventIDOk returns a tuple with the EventID field if it's non-nil, zero value otherwise
+GetEventIdOk returns a tuple with the EventId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEventID
+### SetEventId
 
-`func (o *Event) SetEventID(v string)`
+`func (o *Event) SetEventId(v string)`
 
-SetEventID sets EventID field to given value.
+SetEventId sets EventId field to given value.
 
-### HasEventID
+### HasEventId
 
-`func (o *Event) HasEventID() bool`
+`func (o *Event) HasEventId() bool`
 
-HasEventID returns a boolean if a field has been set.
+HasEventId returns a boolean if a field has been set.
 
-### GetGroups
+### GetMessageId
 
-`func (o *Event) GetGroups() []string`
+`func (o *Event) GetMessageId() string`
 
-GetGroups returns the Groups field if non-nil, zero value otherwise.
+GetMessageId returns the MessageId field if non-nil, zero value otherwise.
 
-### GetGroupsOk
+### GetMessageIdOk
 
-`func (o *Event) GetGroupsOk() (*[]string, bool)`
+`func (o *Event) GetMessageIdOk() (*string, bool)`
 
-GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
+GetMessageIdOk returns a tuple with the MessageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGroups
+### SetMessageId
 
-`func (o *Event) SetGroups(v []string)`
+`func (o *Event) SetMessageId(v string)`
 
-SetGroups sets Groups field to given value.
+SetMessageId sets MessageId field to given value.
 
-### HasGroups
+### HasMessageId
 
-`func (o *Event) HasGroups() bool`
+`func (o *Event) HasMessageId() bool`
 
-HasGroups returns a boolean if a field has been set.
-
-### GetIpID
-
-`func (o *Event) GetIpID() int32`
-
-GetIpID returns the IpID field if non-nil, zero value otherwise.
-
-### GetIpIDOk
-
-`func (o *Event) GetIpIDOk() (*int32, bool)`
-
-GetIpIDOk returns a tuple with the IpID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpID
-
-`func (o *Event) SetIpID(v int32)`
-
-SetIpID sets IpID field to given value.
-
-### HasIpID
-
-`func (o *Event) HasIpID() bool`
-
-HasIpID returns a boolean if a field has been set.
-
-### GetIpPoolID
-
-`func (o *Event) GetIpPoolID() int32`
-
-GetIpPoolID returns the IpPoolID field if non-nil, zero value otherwise.
-
-### GetIpPoolIDOk
-
-`func (o *Event) GetIpPoolIDOk() (*int32, bool)`
-
-GetIpPoolIDOk returns a tuple with the IpPoolID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpPoolID
-
-`func (o *Event) SetIpPoolID(v int32)`
-
-SetIpPoolID sets IpPoolID field to given value.
-
-### HasIpPoolID
-
-`func (o *Event) HasIpPoolID() bool`
-
-HasIpPoolID returns a boolean if a field has been set.
-
-### GetDomainID
-
-`func (o *Event) GetDomainID() int32`
-
-GetDomainID returns the DomainID field if non-nil, zero value otherwise.
-
-### GetDomainIDOk
-
-`func (o *Event) GetDomainIDOk() (*int32, bool)`
-
-GetDomainIDOk returns a tuple with the DomainID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDomainID
-
-`func (o *Event) SetDomainID(v int32)`
-
-SetDomainID sets DomainID field to given value.
-
-### HasDomainID
-
-`func (o *Event) HasDomainID() bool`
-
-HasDomainID returns a boolean if a field has been set.
-
-### GetTpspId
-
-`func (o *Event) GetTpspId() int32`
-
-GetTpspId returns the TpspId field if non-nil, zero value otherwise.
-
-### GetTpspIdOk
-
-`func (o *Event) GetTpspIdOk() (*int32, bool)`
-
-GetTpspIdOk returns a tuple with the TpspId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTpspId
-
-`func (o *Event) SetTpspId(v int32)`
-
-SetTpspId sets TpspId field to given value.
-
-### HasTpspId
-
-`func (o *Event) HasTpspId() bool`
-
-HasTpspId returns a boolean if a field has been set.
-
-### GetMessageType
-
-`func (o *Event) GetMessageType() string`
-
-GetMessageType returns the MessageType field if non-nil, zero value otherwise.
-
-### GetMessageTypeOk
-
-`func (o *Event) GetMessageTypeOk() (*string, bool)`
-
-GetMessageTypeOk returns a tuple with the MessageType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessageType
-
-`func (o *Event) SetMessageType(v string)`
-
-SetMessageType sets MessageType field to given value.
-
-### HasMessageType
-
-`func (o *Event) HasMessageType() bool`
-
-HasMessageType returns a boolean if a field has been set.
-
-### GetMessageSubject
-
-`func (o *Event) GetMessageSubject() string`
-
-GetMessageSubject returns the MessageSubject field if non-nil, zero value otherwise.
-
-### GetMessageSubjectOk
-
-`func (o *Event) GetMessageSubjectOk() (*string, bool)`
-
-GetMessageSubjectOk returns a tuple with the MessageSubject field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessageSubject
-
-`func (o *Event) SetMessageSubject(v string)`
-
-SetMessageSubject sets MessageSubject field to given value.
-
-### HasMessageSubject
-
-`func (o *Event) HasMessageSubject() bool`
-
-HasMessageSubject returns a boolean if a field has been set.
-
-### GetAccountID
-
-`func (o *Event) GetAccountID() int32`
-
-GetAccountID returns the AccountID field if non-nil, zero value otherwise.
-
-### GetAccountIDOk
-
-`func (o *Event) GetAccountIDOk() (*int32, bool)`
-
-GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccountID
-
-`func (o *Event) SetAccountID(v int32)`
-
-SetAccountID sets AccountID field to given value.
-
-### HasAccountID
-
-`func (o *Event) HasAccountID() bool`
-
-HasAccountID returns a boolean if a field has been set.
-
-### GetSubAccountID
-
-`func (o *Event) GetSubAccountID() int32`
-
-GetSubAccountID returns the SubAccountID field if non-nil, zero value otherwise.
-
-### GetSubAccountIDOk
-
-`func (o *Event) GetSubAccountIDOk() (*int32, bool)`
-
-GetSubAccountIDOk returns a tuple with the SubAccountID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubAccountID
-
-`func (o *Event) SetSubAccountID(v int32)`
-
-SetSubAccountID sets SubAccountID field to given value.
-
-### HasSubAccountID
-
-`func (o *Event) HasSubAccountID() bool`
-
-HasSubAccountID returns a boolean if a field has been set.
-
-### GetMessageID
-
-`func (o *Event) GetMessageID() string`
-
-GetMessageID returns the MessageID field if non-nil, zero value otherwise.
-
-### GetMessageIDOk
-
-`func (o *Event) GetMessageIDOk() (*string, bool)`
-
-GetMessageIDOk returns a tuple with the MessageID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessageID
-
-`func (o *Event) SetMessageID(v string)`
-
-SetMessageID sets MessageID field to given value.
-
-### HasMessageID
-
-`func (o *Event) HasMessageID() bool`
-
-HasMessageID returns a boolean if a field has been set.
+HasMessageId returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Event) GetType() int32`
+`func (o *Event) GetType() int64`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Event) GetTypeOk() (*int32, bool)`
+`func (o *Event) GetTypeOk() (*int64, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Event) SetType(v int32)`
+`func (o *Event) SetType(v int64)`
 
 SetType sets Type field to given value.
 
@@ -343,6 +109,31 @@ SetType sets Type field to given value.
 `func (o *Event) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetTypeName
+
+`func (o *Event) GetTypeName() string`
+
+GetTypeName returns the TypeName field if non-nil, zero value otherwise.
+
+### GetTypeNameOk
+
+`func (o *Event) GetTypeNameOk() (*string, bool)`
+
+GetTypeNameOk returns a tuple with the TypeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTypeName
+
+`func (o *Event) SetTypeName(v string)`
+
+SetTypeName sets TypeName field to given value.
+
+### HasTypeName
+
+`func (o *Event) HasTypeName() bool`
+
+HasTypeName returns a boolean if a field has been set.
 
 ### GetFrom
 
@@ -369,31 +160,6 @@ SetFrom sets From field to given value.
 
 HasFrom returns a boolean if a field has been set.
 
-### GetFromName
-
-`func (o *Event) GetFromName() string`
-
-GetFromName returns the FromName field if non-nil, zero value otherwise.
-
-### GetFromNameOk
-
-`func (o *Event) GetFromNameOk() (*string, bool)`
-
-GetFromNameOk returns a tuple with the FromName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFromName
-
-`func (o *Event) SetFromName(v string)`
-
-SetFromName sets FromName field to given value.
-
-### HasFromName
-
-`func (o *Event) HasFromName() bool`
-
-HasFromName returns a boolean if a field has been set.
-
 ### GetTo
 
 `func (o *Event) GetTo() string`
@@ -419,47 +185,72 @@ SetTo sets To field to given value.
 
 HasTo returns a boolean if a field has been set.
 
-### GetToName
+### GetSubject
 
-`func (o *Event) GetToName() string`
+`func (o *Event) GetSubject() string`
 
-GetToName returns the ToName field if non-nil, zero value otherwise.
+GetSubject returns the Subject field if non-nil, zero value otherwise.
 
-### GetToNameOk
+### GetSubjectOk
 
-`func (o *Event) GetToNameOk() (*string, bool)`
+`func (o *Event) GetSubjectOk() (*string, bool)`
 
-GetToNameOk returns a tuple with the ToName field if it's non-nil, zero value otherwise
+GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetToName
+### SetSubject
 
-`func (o *Event) SetToName(v string)`
+`func (o *Event) SetSubject(v string)`
 
-SetToName sets ToName field to given value.
+SetSubject sets Subject field to given value.
 
-### HasToName
+### HasSubject
 
-`func (o *Event) HasToName() bool`
+`func (o *Event) HasSubject() bool`
 
-HasToName returns a boolean if a field has been set.
+HasSubject returns a boolean if a field has been set.
+
+### GetGroups
+
+`func (o *Event) GetGroups() []string`
+
+GetGroups returns the Groups field if non-nil, zero value otherwise.
+
+### GetGroupsOk
+
+`func (o *Event) GetGroupsOk() (*[]string, bool)`
+
+GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroups
+
+`func (o *Event) SetGroups(v []string)`
+
+SetGroups sets Groups field to given value.
+
+### HasGroups
+
+`func (o *Event) HasGroups() bool`
+
+HasGroups returns a boolean if a field has been set.
 
 ### GetSubmittedAt
 
-`func (o *Event) GetSubmittedAt() int32`
+`func (o *Event) GetSubmittedAt() int64`
 
 GetSubmittedAt returns the SubmittedAt field if non-nil, zero value otherwise.
 
 ### GetSubmittedAtOk
 
-`func (o *Event) GetSubmittedAtOk() (*int32, bool)`
+`func (o *Event) GetSubmittedAtOk() (*int64, bool)`
 
 GetSubmittedAtOk returns a tuple with the SubmittedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubmittedAt
 
-`func (o *Event) SetSubmittedAt(v int32)`
+`func (o *Event) SetSubmittedAt(v int64)`
 
 SetSubmittedAt sets SubmittedAt field to given value.
 
@@ -469,55 +260,30 @@ SetSubmittedAt sets SubmittedAt field to given value.
 
 HasSubmittedAt returns a boolean if a field has been set.
 
-### GetSmtpCode
+### GetTimestamp
 
-`func (o *Event) GetSmtpCode() int32`
+`func (o *Event) GetTimestamp() int64`
 
-GetSmtpCode returns the SmtpCode field if non-nil, zero value otherwise.
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
-### GetSmtpCodeOk
+### GetTimestampOk
 
-`func (o *Event) GetSmtpCodeOk() (*int32, bool)`
+`func (o *Event) GetTimestampOk() (*int64, bool)`
 
-GetSmtpCodeOk returns a tuple with the SmtpCode field if it's non-nil, zero value otherwise
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSmtpCode
+### SetTimestamp
 
-`func (o *Event) SetSmtpCode(v int32)`
+`func (o *Event) SetTimestamp(v int64)`
 
-SetSmtpCode sets SmtpCode field to given value.
+SetTimestamp sets Timestamp field to given value.
 
-### HasSmtpCode
+### HasTimestamp
 
-`func (o *Event) HasSmtpCode() bool`
+`func (o *Event) HasTimestamp() bool`
 
-HasSmtpCode returns a boolean if a field has been set.
-
-### GetSmtpDescription
-
-`func (o *Event) GetSmtpDescription() string`
-
-GetSmtpDescription returns the SmtpDescription field if non-nil, zero value otherwise.
-
-### GetSmtpDescriptionOk
-
-`func (o *Event) GetSmtpDescriptionOk() (*string, bool)`
-
-GetSmtpDescriptionOk returns a tuple with the SmtpDescription field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSmtpDescription
-
-`func (o *Event) SetSmtpDescription(v string)`
-
-SetSmtpDescription sets SmtpDescription field to given value.
-
-### HasSmtpDescription
-
-`func (o *Event) HasSmtpDescription() bool`
-
-HasSmtpDescription returns a boolean if a field has been set.
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetEventMetadata
 

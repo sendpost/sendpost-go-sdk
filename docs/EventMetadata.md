@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SmtpCode** | Pointer to **int32** |  | [optional] 
-**SmtpDescription** | Pointer to **string** |  | [optional] 
-**UserAgent** | Pointer to [**UserAgent**](UserAgent.md) |  | [optional] 
-**Os** | Pointer to [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
-**Device** | Pointer to [**Device**](Device.md) |  | [optional] 
-**Geo** | Pointer to [**GeoLocation**](GeoLocation.md) |  | [optional] 
-**ClickedURL** | Pointer to **string** |  | [optional] 
-**TrackedIP** | Pointer to **string** |  | [optional] 
-**RawUserAgent** | Pointer to **string** |  | [optional] 
+**SmtpCode** | Pointer to **int64** | SMTP response code from the receiving mail server. - 250: Success - 4xx: Temporary failure (soft bounce) - 5xx: Permanent failure (hard bounce)  | [optional] 
+**SmtpDescription** | Pointer to **string** | Full SMTP response message from the receiving server. Useful for diagnosing delivery issues.  | [optional] 
+**UserAgent** | Pointer to [**UserAgent**](UserAgent.md) | Parsed browser/email client information (for open/click events) | [optional] 
+**Os** | Pointer to [**Os**](Os.md) | Parsed operating system information (for open/click events) | [optional] 
+**Device** | Pointer to [**Device**](Device.md) | Device type information (for open/click events) | [optional] 
+**Geo** | Pointer to [**GeoLocation**](GeoLocation.md) | Geographic location based on IP address (for open/click events) | [optional] 
+**ClickedUrl** | Pointer to **string** | The original URL that was clicked (only for click events) | [optional] 
+**TrackedIp** | Pointer to **string** | IP address of the user who triggered the event (open/click) | [optional] 
+**RawUserAgent** | Pointer to **string** | Raw User-Agent header string from the HTTP request | [optional] 
 
 ## Methods
 
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSmtpCode
 
-`func (o *EventMetadata) GetSmtpCode() int32`
+`func (o *EventMetadata) GetSmtpCode() int64`
 
 GetSmtpCode returns the SmtpCode field if non-nil, zero value otherwise.
 
 ### GetSmtpCodeOk
 
-`func (o *EventMetadata) GetSmtpCodeOk() (*int32, bool)`
+`func (o *EventMetadata) GetSmtpCodeOk() (*int64, bool)`
 
 GetSmtpCodeOk returns a tuple with the SmtpCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSmtpCode
 
-`func (o *EventMetadata) SetSmtpCode(v int32)`
+`func (o *EventMetadata) SetSmtpCode(v int64)`
 
 SetSmtpCode sets SmtpCode field to given value.
 
@@ -110,20 +110,20 @@ HasUserAgent returns a boolean if a field has been set.
 
 ### GetOs
 
-`func (o *EventMetadata) GetOs() OperatingSystem`
+`func (o *EventMetadata) GetOs() Os`
 
 GetOs returns the Os field if non-nil, zero value otherwise.
 
 ### GetOsOk
 
-`func (o *EventMetadata) GetOsOk() (*OperatingSystem, bool)`
+`func (o *EventMetadata) GetOsOk() (*Os, bool)`
 
 GetOsOk returns a tuple with the Os field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOs
 
-`func (o *EventMetadata) SetOs(v OperatingSystem)`
+`func (o *EventMetadata) SetOs(v Os)`
 
 SetOs sets Os field to given value.
 
@@ -183,55 +183,55 @@ SetGeo sets Geo field to given value.
 
 HasGeo returns a boolean if a field has been set.
 
-### GetClickedURL
+### GetClickedUrl
 
-`func (o *EventMetadata) GetClickedURL() string`
+`func (o *EventMetadata) GetClickedUrl() string`
 
-GetClickedURL returns the ClickedURL field if non-nil, zero value otherwise.
+GetClickedUrl returns the ClickedUrl field if non-nil, zero value otherwise.
 
-### GetClickedURLOk
+### GetClickedUrlOk
 
-`func (o *EventMetadata) GetClickedURLOk() (*string, bool)`
+`func (o *EventMetadata) GetClickedUrlOk() (*string, bool)`
 
-GetClickedURLOk returns a tuple with the ClickedURL field if it's non-nil, zero value otherwise
+GetClickedUrlOk returns a tuple with the ClickedUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClickedURL
+### SetClickedUrl
 
-`func (o *EventMetadata) SetClickedURL(v string)`
+`func (o *EventMetadata) SetClickedUrl(v string)`
 
-SetClickedURL sets ClickedURL field to given value.
+SetClickedUrl sets ClickedUrl field to given value.
 
-### HasClickedURL
+### HasClickedUrl
 
-`func (o *EventMetadata) HasClickedURL() bool`
+`func (o *EventMetadata) HasClickedUrl() bool`
 
-HasClickedURL returns a boolean if a field has been set.
+HasClickedUrl returns a boolean if a field has been set.
 
-### GetTrackedIP
+### GetTrackedIp
 
-`func (o *EventMetadata) GetTrackedIP() string`
+`func (o *EventMetadata) GetTrackedIp() string`
 
-GetTrackedIP returns the TrackedIP field if non-nil, zero value otherwise.
+GetTrackedIp returns the TrackedIp field if non-nil, zero value otherwise.
 
-### GetTrackedIPOk
+### GetTrackedIpOk
 
-`func (o *EventMetadata) GetTrackedIPOk() (*string, bool)`
+`func (o *EventMetadata) GetTrackedIpOk() (*string, bool)`
 
-GetTrackedIPOk returns a tuple with the TrackedIP field if it's non-nil, zero value otherwise
+GetTrackedIpOk returns a tuple with the TrackedIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTrackedIP
+### SetTrackedIp
 
-`func (o *EventMetadata) SetTrackedIP(v string)`
+`func (o *EventMetadata) SetTrackedIp(v string)`
 
-SetTrackedIP sets TrackedIP field to given value.
+SetTrackedIp sets TrackedIp field to given value.
 
-### HasTrackedIP
+### HasTrackedIp
 
-`func (o *EventMetadata) HasTrackedIP() bool`
+`func (o *EventMetadata) HasTrackedIp() bool`
 
-HasTrackedIP returns a boolean if a field has been set.
+HasTrackedIp returns a boolean if a field has been set.
 
 ### GetRawUserAgent
 

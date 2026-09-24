@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The unique ID of the IP | 
-**Message** | **string** | The confirmation message after deletion | 
+**Id** | **int64** | ID of the deleted IP | 
+**Message** | **string** | Confirmation message | 
 
 ## Methods
 
 ### NewIPDeletionResponse
 
-`func NewIPDeletionResponse(id int32, message string, ) *IPDeletionResponse`
+`func NewIPDeletionResponse(id int64, message string, ) *IPDeletionResponse`
 
 NewIPDeletionResponse instantiates a new IPDeletionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *IPDeletionResponse) GetId() int32`
+`func (o *IPDeletionResponse) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *IPDeletionResponse) GetIdOk() (*int32, bool)`
+`func (o *IPDeletionResponse) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *IPDeletionResponse) SetId(v int32)`
+`func (o *IPDeletionResponse) SetId(v int64)`
 
 SetId sets Id field to given value.
 

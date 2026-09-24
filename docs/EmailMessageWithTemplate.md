@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**From** | Pointer to [**EmailAddress**](EmailAddress.md) |  | [optional] 
-**ReplyTo** | Pointer to [**EmailAddress**](EmailAddress.md) |  | [optional] 
-**To** | Pointer to [**[]Recipient**](Recipient.md) |  | [optional] 
-**Subject** | Pointer to **string** |  | [optional] 
-**PreText** | Pointer to **string** |  | [optional] 
-**HtmlBody** | Pointer to **string** |  | [optional] 
-**TextBody** | Pointer to **string** |  | [optional] 
-**AmpBody** | Pointer to **string** |  | [optional] 
-**Ippool** | Pointer to **string** |  | [optional] 
-**Headers** | Pointer to **map[string]string** |  | [optional] 
-**TrackOpens** | Pointer to **bool** |  | [optional] 
-**TrackClicks** | Pointer to **bool** |  | [optional] 
-**Groups** | Pointer to **[]string** |  | [optional] 
-**Attachments** | Pointer to [**[]Attachment**](Attachment.md) |  | [optional] 
-**WebhookEndpoint** | Pointer to **string** |  | [optional] 
+**From** | [**EmailAddress**](EmailAddress.md) | The sender&#39;s email address and optional display name | 
+**ReplyTo** | Pointer to [**EmailAddress**](EmailAddress.md) | The reply-to email address. If not specified, replies will go to the &#x60;from&#x60; address | [optional] 
+**To** | [**[]Recipient**](Recipient.md) | List of recipients. Each recipient can have their own CC, BCC, and custom fields for personalization. Maximum 1000 recipients per API call.  | 
+**Subject** | Pointer to **string** | Email subject line. Supports Handlebars templating for personalization. Example: \&quot;Hello, {{firstName}}! Your order is ready\&quot;  | [optional] 
+**PreText** | Pointer to **string** | Preview text (preheader) shown in email clients before opening the email. This text appears after the subject line in most email clients&#39; inbox view.  | [optional] 
+**HtmlBody** | Pointer to **string** | HTML content of the email. Supports Handlebars templating for personalization. Use {{customFieldName}} to insert recipient-specific values.  | [optional] 
+**TextBody** | Pointer to **string** | Plain text content of the email. Used as fallback when HTML cannot be rendered. Also improves deliverability as some spam filters prefer multipart emails.  | [optional] 
+**AmpBody** | Pointer to **string** | AMP HTML content for supported email clients (Gmail, Yahoo). Enables interactive email experiences like carousels, forms, and real-time content. See https://amp.dev/about/email/ for more details.  | [optional] 
 **Template** | Pointer to **string** |  | [optional] 
+**Ippool** | Pointer to **string** | Name of the IP pool to use for sending this email. If not specified, the default IP pool for the sub-account will be used.  | [optional] 
+**Headers** | Pointer to **map[string]string** | Custom email headers to include in the message. Common uses: adding List-Unsubscribe headers, custom tracking IDs, or priority flags. Note: Some headers like From, To, Subject are set automatically and cannot be overridden.  | [optional] 
+**TrackOpens** | Pointer to **bool** | Whether to track email opens using a tracking pixel. When enabled, a 1x1 transparent image is inserted into the HTML body. Default: true (if not specified)  | [optional] [default to true]
+**TrackClicks** | Pointer to **bool** | Whether to track link clicks by rewriting URLs through SendPost&#39;s tracking domain. When enabled, all links in htmlBody are replaced with tracking URLs. Default: true (if not specified)  | [optional] [default to true]
+**Groups** | Pointer to **[]string** | Tags/groups to categorize this email for analytics and reporting. Use groups to segment your email statistics (e.g., by campaign, email type, or customer segment).  | [optional] 
+**Attachments** | Pointer to [**[]Attachment**](Attachment.md) | File attachments to include with the email. Maximum total attachment size: 25MB. Supported formats: PDF, images, documents, etc.  | [optional] 
+**WebhookEndpoint** | Pointer to **string** | Custom webhook URL to receive events for this specific email. Overrides the default webhook configured at the account level. Useful for per-email or per-customer webhook routing.  | [optional] 
 **TemplateId** | Pointer to **string** | Template ID for the email template | [optional] 
 **TemplateVariables** | Pointer to **map[string]string** | Key-Value pair of template variables | [optional] 
 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewEmailMessageWithTemplate
 
-`func NewEmailMessageWithTemplate() *EmailMessageWithTemplate`
+`func NewEmailMessageWithTemplate(from EmailAddress, to []Recipient, ) *EmailMessageWithTemplate`
 
 NewEmailMessageWithTemplate instantiates a new EmailMessageWithTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -61,11 +61,6 @@ and a boolean to check if the value has been set.
 
 SetFrom sets From field to given value.
 
-### HasFrom
-
-`func (o *EmailMessageWithTemplate) HasFrom() bool`
-
-HasFrom returns a boolean if a field has been set.
 
 ### GetReplyTo
 
@@ -111,11 +106,6 @@ and a boolean to check if the value has been set.
 
 SetTo sets To field to given value.
 
-### HasTo
-
-`func (o *EmailMessageWithTemplate) HasTo() bool`
-
-HasTo returns a boolean if a field has been set.
 
 ### GetSubject
 
@@ -241,6 +231,31 @@ SetAmpBody sets AmpBody field to given value.
 `func (o *EmailMessageWithTemplate) HasAmpBody() bool`
 
 HasAmpBody returns a boolean if a field has been set.
+
+### GetTemplate
+
+`func (o *EmailMessageWithTemplate) GetTemplate() string`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *EmailMessageWithTemplate) GetTemplateOk() (*string, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *EmailMessageWithTemplate) SetTemplate(v string)`
+
+SetTemplate sets Template field to given value.
+
+### HasTemplate
+
+`func (o *EmailMessageWithTemplate) HasTemplate() bool`
+
+HasTemplate returns a boolean if a field has been set.
 
 ### GetIppool
 
@@ -416,31 +431,6 @@ SetWebhookEndpoint sets WebhookEndpoint field to given value.
 `func (o *EmailMessageWithTemplate) HasWebhookEndpoint() bool`
 
 HasWebhookEndpoint returns a boolean if a field has been set.
-
-### GetTemplate
-
-`func (o *EmailMessageWithTemplate) GetTemplate() string`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *EmailMessageWithTemplate) GetTemplateOk() (*string, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *EmailMessageWithTemplate) SetTemplate(v string)`
-
-SetTemplate sets Template field to given value.
-
-### HasTemplate
-
-`func (o *EmailMessageWithTemplate) HasTemplate() bool`
-
-HasTemplate returns a boolean if a field has been set.
 
 ### GetTemplateId
 

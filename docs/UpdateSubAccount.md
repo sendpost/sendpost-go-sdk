@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | New name for the sub-account. | [optional] 
+**Name** | Pointer to **string** | New display name for the sub-account | [optional] 
 
 ## Methods
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Event** | Pointer to [**Event**](Event.md) |  | [optional] 
-**EmailMessage** | Pointer to [**EmailMessage**](EmailMessage.md) |  | [optional] 
+**Event** | Pointer to [**Event**](Event.md) | Details about the email event that triggered this webhook | [optional] 
+**EmailMessage** | Pointer to [**EmailMessage**](EmailMessage.md) | The original email message associated with this event | [optional] 
 
 ## Methods
 

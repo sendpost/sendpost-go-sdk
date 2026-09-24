@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Cc** | Pointer to [**[]CopyTo**](CopyTo.md) |  | [optional] 
-**Bcc** | Pointer to [**[]CopyTo**](CopyTo.md) |  | [optional] 
-**CustomFields** | Pointer to **map[string]interface{}** | Custom fields for personalization | [optional] 
+**Email** | **string** | The recipient&#39;s email address | 
+**Name** | Pointer to **string** | The recipient&#39;s display name | [optional] 
+**Cc** | Pointer to [**[]CopyTo**](CopyTo.md) | Carbon copy recipients for this specific recipient&#39;s email. CC addresses will be visible to all recipients of this email copy.  | [optional] 
+**Bcc** | Pointer to [**[]CopyTo**](CopyTo.md) | Blind carbon copy recipients for this specific recipient&#39;s email. BCC addresses are hidden from all other recipients.  | [optional] 
+**CustomFields** | Pointer to **map[string]interface{}** | Custom fields for personalizing the email content for this recipient. Use Handlebars syntax ({{fieldName}}) in subject, htmlBody, or textBody to insert values. Reserved field names: &#x60;unsubscribe&#x60; (auto-generated unsubscribe link).  | [optional] 
 
 ## Methods
 
 ### NewRecipient
 
-`func NewRecipient() *Recipient`
+`func NewRecipient(email string, ) *Recipient`
 
 NewRecipient instantiates a new Recipient object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *Recipient) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetName
 

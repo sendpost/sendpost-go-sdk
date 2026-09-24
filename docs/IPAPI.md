@@ -29,11 +29,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	iPAllocationRequest := *openapiclient.NewIPAllocationRequest(true, []string{"34.21.14.11"}) // IPAllocationRequest | 
+	iPAllocationRequest := *openapiclient.NewIPAllocationRequest([]string{"Ips_example"}) // IPAllocationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -95,11 +95,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	ipId := int32(56) // int32 | The ID of the IP resource to delete
+	ipId := int32(11322) // int32 | The unique ID of the IP resource to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ipId** | **int32** | The ID of the IP resource to delete | 
+**ipId** | **int32** | The unique ID of the IP resource to delete. | 
 
 ### Other Parameters
 
@@ -165,13 +165,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	limit := int32(56) // int32 | Number of records to return per request (optional)
-	offset := int32(56) // int32 | Number of initial records to skip (optional)
-	search := "search_example" // string | Case insensitive search against IP's public IP address (optional)
+	limit := int32(50) // int32 | Number of records to return per request. Default 20. (optional) (default to 20)
+	offset := int32(0) // int32 | Number of initial records to skip for pagination. (optional) (default to 0)
+	search := "52.34" // string | Case insensitive search against public IP addresses. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -196,9 +196,9 @@ Other parameters are passed through a pointer to a apiGetAllIpsRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** | Number of records to return per request | 
- **offset** | **int32** | Number of initial records to skip | 
- **search** | **string** | Case insensitive search against IP&#39;s public IP address | 
+ **limit** | **int32** | Number of records to return per request. Default 20. | [default to 20]
+ **offset** | **int32** | Number of initial records to skip for pagination. | [default to 0]
+ **search** | **string** | Case insensitive search against public IP addresses. | 
 
 ### Return type
 
@@ -235,11 +235,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	ipId := int32(56) // int32 | The ID of the IP resource to retrieve
+	ipId := int32(11322) // int32 | The unique ID of the IP resource to retrieve.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -259,7 +259,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ipId** | **int32** | The ID of the IP resource to retrieve | 
+**ipId** | **int32** | The unique ID of the IP resource to retrieve. | 
 
 ### Other Parameters
 
@@ -305,12 +305,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	iPUpdateRequest := *openapiclient.NewIPUpdateRequest(false) // IPUpdateRequest | 
-	ipId := int32(56) // int32 | The ID of the IP resource to update
+	iPUpdateRequest := *openapiclient.NewIPUpdateRequest() // IPUpdateRequest | 
+	ipId := int32(11322) // int32 | The unique ID of the IP resource to update.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -330,7 +330,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ipId** | **int32** | The ID of the IP resource to update | 
+**ipId** | **int32** | The unique ID of the IP resource to update. | 
 
 ### Other Parameters
 

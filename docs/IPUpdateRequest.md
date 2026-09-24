@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AutoWarmupEnabled** | **bool** | Whether the IP warmup should happen automatically or be managed manually | 
+**AutoWarmupEnabled** | Pointer to **bool** | Toggle automatic IP warmup on or off. - &#x60;true&#x60;: SendPost automatically manages daily sending limits - &#x60;false&#x60;: You manage sending volume manually (advanced users)  Warning: Disabling warmup and sending high volume on a new IP can damage sender reputation.  | [optional] 
 
 ## Methods
 
 ### NewIPUpdateRequest
 
-`func NewIPUpdateRequest(autoWarmupEnabled bool, ) *IPUpdateRequest`
+`func NewIPUpdateRequest() *IPUpdateRequest`
 
 NewIPUpdateRequest instantiates a new IPUpdateRequest object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetAutoWarmupEnabled sets AutoWarmupEnabled field to given value.
 
+### HasAutoWarmupEnabled
+
+`func (o *IPUpdateRequest) HasAutoWarmupEnabled() bool`
+
+HasAutoWarmupEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

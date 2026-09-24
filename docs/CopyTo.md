@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**CustomFields** | Pointer to **map[string]interface{}** | Custom fields for personalization | [optional] 
+**Email** | **string** | The CC/BCC recipient&#39;s email address | 
+**Name** | Pointer to **string** | The CC/BCC recipient&#39;s display name | [optional] 
+**CustomFields** | Pointer to **map[string]interface{}** | Custom fields specific to this CC/BCC recipient. Allows personalization in CC/BCC copies of the email.  | [optional] 
 
 ## Methods
 
 ### NewCopyTo
 
-`func NewCopyTo() *CopyTo`
+`func NewCopyTo(email string, ) *CopyTo`
 
 NewCopyTo instantiates a new CopyTo object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *CopyTo) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetName
 

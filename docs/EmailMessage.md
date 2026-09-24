@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MessageID** | Pointer to **string** |  | [optional] 
-**AccountID** | Pointer to **int32** |  | [optional] 
-**SubAccountID** | Pointer to **int32** |  | [optional] 
-**IpID** | Pointer to **int32** |  | [optional] 
-**PublicIP** | Pointer to **string** |  | [optional] 
-**LocalIP** | Pointer to **string** |  | [optional] 
-**EmailType** | Pointer to **string** |  | [optional] 
-**SubmittedAt** | Pointer to **int32** |  | [optional] 
-**From** | Pointer to [**EmailMessageFrom**](EmailMessageFrom.md) |  | [optional] 
-**ReplyTo** | Pointer to [**EmailMessageReplyTo**](EmailMessageReplyTo.md) |  | [optional] 
-**To** | Pointer to [**[]EmailMessageToInner**](EmailMessageToInner.md) |  | [optional] 
-**Groups** | Pointer to **[]string** |  | [optional] 
-**IpPool** | Pointer to **string** |  | [optional] 
-**Headers** | Pointer to **map[string]string** |  | [optional] 
-**CustomFields** | Pointer to **map[string]string** |  | [optional] 
-**TrackOpens** | Pointer to **bool** |  | [optional] 
-**TrackClicks** | Pointer to **bool** |  | [optional] 
-**WebhookEndpoint** | Pointer to **string** |  | [optional] 
+**MessageID** | Pointer to **string** | Unique identifier for this email message | [optional] 
+**AccountID** | Pointer to **int64** | ID of the SendPost account that sent this email | [optional] 
+**SubAccountID** | Pointer to **int64** | ID of the sub-account that sent this email | [optional] 
+**IpID** | Pointer to **int64** | ID of the dedicated IP used for sending (0 if a shared IP was used) | [optional] 
+**PublicIP** | Pointer to **string** | The public IP address used to send this email | [optional] 
+**LocalIP** | Pointer to **string** | The internal/local IP address used to send this email | [optional] 
+**EmailType** | Pointer to **string** | Classification of the email based on recipient domain: - &#x60;gmail&#x60; - Gmail recipient - &#x60;yahoo&#x60; - Yahoo recipient - &#x60;microsoft&#x60; - Outlook/Hotmail recipient - &#x60;default&#x60; - Other email providers  | [optional] 
+**SubmittedAt** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the email was submitted | [optional] 
+**From** | Pointer to [**EmailAddress**](EmailAddress.md) | The sender&#39;s email address | [optional] 
+**ReplyTo** | Pointer to [**EmailAddress**](EmailAddress.md) | The reply-to address (if different from sender) | [optional] 
+**To** | Pointer to [**Recipient**](Recipient.md) | The envelope recipient (actual delivery address) | [optional] 
+**Groups** | Pointer to **[]string** | Tags/groups for categorization and analytics | [optional] 
+**IpPool** | Pointer to **string** | Name of the IP pool used for sending | [optional] 
+**Headers** | Pointer to **map[string]string** | Custom headers included in the email | [optional] 
+**CustomFields** | Pointer to **map[string]interface{}** | Custom fields sent with the email, available for personalization | [optional] 
+**TrackOpens** | Pointer to **bool** | Whether open tracking was enabled | [optional] 
+**TrackClicks** | Pointer to **bool** | Whether click tracking was enabled | [optional] 
+**WebhookEndpoint** | Pointer to **string** | Custom webhook endpoint for this email (if specified) | [optional] 
 
 ## Methods
 
@@ -69,20 +69,20 @@ HasMessageID returns a boolean if a field has been set.
 
 ### GetAccountID
 
-`func (o *EmailMessage) GetAccountID() int32`
+`func (o *EmailMessage) GetAccountID() int64`
 
 GetAccountID returns the AccountID field if non-nil, zero value otherwise.
 
 ### GetAccountIDOk
 
-`func (o *EmailMessage) GetAccountIDOk() (*int32, bool)`
+`func (o *EmailMessage) GetAccountIDOk() (*int64, bool)`
 
 GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountID
 
-`func (o *EmailMessage) SetAccountID(v int32)`
+`func (o *EmailMessage) SetAccountID(v int64)`
 
 SetAccountID sets AccountID field to given value.
 
@@ -94,20 +94,20 @@ HasAccountID returns a boolean if a field has been set.
 
 ### GetSubAccountID
 
-`func (o *EmailMessage) GetSubAccountID() int32`
+`func (o *EmailMessage) GetSubAccountID() int64`
 
 GetSubAccountID returns the SubAccountID field if non-nil, zero value otherwise.
 
 ### GetSubAccountIDOk
 
-`func (o *EmailMessage) GetSubAccountIDOk() (*int32, bool)`
+`func (o *EmailMessage) GetSubAccountIDOk() (*int64, bool)`
 
 GetSubAccountIDOk returns a tuple with the SubAccountID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubAccountID
 
-`func (o *EmailMessage) SetSubAccountID(v int32)`
+`func (o *EmailMessage) SetSubAccountID(v int64)`
 
 SetSubAccountID sets SubAccountID field to given value.
 
@@ -119,20 +119,20 @@ HasSubAccountID returns a boolean if a field has been set.
 
 ### GetIpID
 
-`func (o *EmailMessage) GetIpID() int32`
+`func (o *EmailMessage) GetIpID() int64`
 
 GetIpID returns the IpID field if non-nil, zero value otherwise.
 
 ### GetIpIDOk
 
-`func (o *EmailMessage) GetIpIDOk() (*int32, bool)`
+`func (o *EmailMessage) GetIpIDOk() (*int64, bool)`
 
 GetIpIDOk returns a tuple with the IpID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpID
 
-`func (o *EmailMessage) SetIpID(v int32)`
+`func (o *EmailMessage) SetIpID(v int64)`
 
 SetIpID sets IpID field to given value.
 
@@ -219,20 +219,20 @@ HasEmailType returns a boolean if a field has been set.
 
 ### GetSubmittedAt
 
-`func (o *EmailMessage) GetSubmittedAt() int32`
+`func (o *EmailMessage) GetSubmittedAt() int64`
 
 GetSubmittedAt returns the SubmittedAt field if non-nil, zero value otherwise.
 
 ### GetSubmittedAtOk
 
-`func (o *EmailMessage) GetSubmittedAtOk() (*int32, bool)`
+`func (o *EmailMessage) GetSubmittedAtOk() (*int64, bool)`
 
 GetSubmittedAtOk returns a tuple with the SubmittedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubmittedAt
 
-`func (o *EmailMessage) SetSubmittedAt(v int32)`
+`func (o *EmailMessage) SetSubmittedAt(v int64)`
 
 SetSubmittedAt sets SubmittedAt field to given value.
 
@@ -244,20 +244,20 @@ HasSubmittedAt returns a boolean if a field has been set.
 
 ### GetFrom
 
-`func (o *EmailMessage) GetFrom() EmailMessageFrom`
+`func (o *EmailMessage) GetFrom() EmailAddress`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *EmailMessage) GetFromOk() (*EmailMessageFrom, bool)`
+`func (o *EmailMessage) GetFromOk() (*EmailAddress, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *EmailMessage) SetFrom(v EmailMessageFrom)`
+`func (o *EmailMessage) SetFrom(v EmailAddress)`
 
 SetFrom sets From field to given value.
 
@@ -269,20 +269,20 @@ HasFrom returns a boolean if a field has been set.
 
 ### GetReplyTo
 
-`func (o *EmailMessage) GetReplyTo() EmailMessageReplyTo`
+`func (o *EmailMessage) GetReplyTo() EmailAddress`
 
 GetReplyTo returns the ReplyTo field if non-nil, zero value otherwise.
 
 ### GetReplyToOk
 
-`func (o *EmailMessage) GetReplyToOk() (*EmailMessageReplyTo, bool)`
+`func (o *EmailMessage) GetReplyToOk() (*EmailAddress, bool)`
 
 GetReplyToOk returns a tuple with the ReplyTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReplyTo
 
-`func (o *EmailMessage) SetReplyTo(v EmailMessageReplyTo)`
+`func (o *EmailMessage) SetReplyTo(v EmailAddress)`
 
 SetReplyTo sets ReplyTo field to given value.
 
@@ -294,20 +294,20 @@ HasReplyTo returns a boolean if a field has been set.
 
 ### GetTo
 
-`func (o *EmailMessage) GetTo() []EmailMessageToInner`
+`func (o *EmailMessage) GetTo() Recipient`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *EmailMessage) GetToOk() (*[]EmailMessageToInner, bool)`
+`func (o *EmailMessage) GetToOk() (*Recipient, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *EmailMessage) SetTo(v []EmailMessageToInner)`
+`func (o *EmailMessage) SetTo(v Recipient)`
 
 SetTo sets To field to given value.
 
@@ -394,20 +394,20 @@ HasHeaders returns a boolean if a field has been set.
 
 ### GetCustomFields
 
-`func (o *EmailMessage) GetCustomFields() map[string]string`
+`func (o *EmailMessage) GetCustomFields() map[string]interface{}`
 
 GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
 
 ### GetCustomFieldsOk
 
-`func (o *EmailMessage) GetCustomFieldsOk() (*map[string]string, bool)`
+`func (o *EmailMessage) GetCustomFieldsOk() (*map[string]interface{}, bool)`
 
 GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomFields
 
-`func (o *EmailMessage) SetCustomFields(v map[string]string)`
+`func (o *EmailMessage) SetCustomFields(v map[string]interface{})`
 
 SetCustomFields sets CustomFields field to given value.
 

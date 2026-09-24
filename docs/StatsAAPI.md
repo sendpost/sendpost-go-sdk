@@ -29,12 +29,12 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	from := time.Now() // string | The start date for retrieving aggregated stats (inclusive)
-	to := time.Now() // string | The end date for retrieving aggregated stats (inclusive). The difference between `from` and `to` should not exceed 366 days.
+	from := time.Now() // string | Start date for aggregation (inclusive). Format YYYY-MM-DD.
+	to := time.Now() // string | End date for aggregation (inclusive). Max 366 days from `from` date.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -59,8 +59,8 @@ Other parameters are passed through a pointer to a apiGetAccountAggregateStatsRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | The start date for retrieving aggregated stats (inclusive) | 
- **to** | **string** | The end date for retrieving aggregated stats (inclusive). The difference between &#x60;from&#x60; and &#x60;to&#x60; should not exceed 366 days. | 
+ **from** | **string** | Start date for aggregation (inclusive). Format YYYY-MM-DD. | 
+ **to** | **string** | End date for aggregation (inclusive). Max 366 days from &#x60;from&#x60; date. | 
 
 ### Return type
 
@@ -98,13 +98,13 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	group := "shopify" // string | Group whose aggregate stats need to be retrieved.
-	from := time.Now() // string | Date from which stats should be retrieved (should be in the format `YYYY-MM-DD`).
-	to := time.Now() // string | Date to which stats should be retrieved (should be in the format `YYYY-MM-DD`). Note that the difference between `from` and `to` should not be more than 366 days.
+	group := "shopify" // string | The group/tag name to filter and aggregate statistics by.
+	from := time.Now() // string | Start date for aggregation (inclusive). Format YYYY-MM-DD.
+	to := time.Now() // string | End date for aggregation (inclusive). Max 366 days from `from` date.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -129,9 +129,9 @@ Other parameters are passed through a pointer to a apiGetAccountAggregateStatsBy
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group** | **string** | Group whose aggregate stats need to be retrieved. | 
- **from** | **string** | Date from which stats should be retrieved (should be in the format &#x60;YYYY-MM-DD&#x60;). | 
- **to** | **string** | Date to which stats should be retrieved (should be in the format &#x60;YYYY-MM-DD&#x60;). Note that the difference between &#x60;from&#x60; and &#x60;to&#x60; should not be more than 366 days. | 
+ **group** | **string** | The group/tag name to filter and aggregate statistics by. | 
+ **from** | **string** | Start date for aggregation (inclusive). Format YYYY-MM-DD. | 
+ **to** | **string** | End date for aggregation (inclusive). Max 366 days from &#x60;from&#x60; date. | 
 
 ### Return type
 
@@ -169,13 +169,13 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	group := "shopify" // string | Group whose stats need to be retrieved
-	from := time.Now() // string | Date from which stats should be retrieved (should be in the format `YYYY-MM-DD`)
-	to := time.Now() // string | Date to which stats should be retrieved (should be in the format `YYYY-MM-DD`). Note that the difference between `from` and `to` should not be more than 31 days.
+	group := "shopify" // string | The group/tag name to filter statistics by.
+	from := time.Now() // string | Start date for stats retrieval (inclusive). Format YYYY-MM-DD.
+	to := time.Now() // string | End date for stats retrieval (inclusive). Max 31 days from `from` date.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -200,9 +200,9 @@ Other parameters are passed through a pointer to a apiGetAccountStatsByGroupRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group** | **string** | Group whose stats need to be retrieved | 
- **from** | **string** | Date from which stats should be retrieved (should be in the format &#x60;YYYY-MM-DD&#x60;) | 
- **to** | **string** | Date to which stats should be retrieved (should be in the format &#x60;YYYY-MM-DD&#x60;). Note that the difference between &#x60;from&#x60; and &#x60;to&#x60; should not be more than 31 days. | 
+ **group** | **string** | The group/tag name to filter statistics by. | 
+ **from** | **string** | Start date for stats retrieval (inclusive). Format YYYY-MM-DD. | 
+ **to** | **string** | End date for stats retrieval (inclusive). Max 31 days from &#x60;from&#x60; date. | 
 
 ### Return type
 
@@ -240,12 +240,12 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	from := time.Now() // string | The start date for retrieving stats (inclusive)
-	to := time.Now() // string | The end date for retrieving stats (inclusive). The difference between `from` and `to` should not exceed 31 days.
+	from := time.Now() // string | Start date for stats retrieval (inclusive). Format YYYY-MM-DD.
+	to := time.Now() // string | End date for stats retrieval (inclusive). Max 31 days from `from` date.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -270,8 +270,8 @@ Other parameters are passed through a pointer to a apiGetAllAccountStatsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | The start date for retrieving stats (inclusive) | 
- **to** | **string** | The end date for retrieving stats (inclusive). The difference between &#x60;from&#x60; and &#x60;to&#x60; should not exceed 31 days. | 
+ **from** | **string** | Start date for stats retrieval (inclusive). Format YYYY-MM-DD. | 
+ **to** | **string** | End date for stats retrieval (inclusive). Max 31 days from &#x60;from&#x60; date. | 
 
 ### Return type
 

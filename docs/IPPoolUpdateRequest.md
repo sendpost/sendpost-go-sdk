@@ -4,10 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Ips** | Pointer to [**[]IP**](IP.md) |  | [optional] 
-**RoutingStrategy** | Pointer to **int32** |  | [optional] 
-**RoutingMetaData** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | New display name for the IP pool | [optional] 
+**Ips** | Pointer to [**[]EIP**](EIP.md) | Updated list of IP addresses for this pool. This replaces the current IP list - include all IPs you want in the pool.  | [optional] 
+**Tpsps** | Pointer to **[]int64** | Updated list of third-party sending provider IDs | [optional] 
+**RoutingStrategy** | Pointer to **int32** | Updated routing strategy (see IPPoolCreateRequest for values) | [optional] 
+**RoutingMetaData** | Pointer to **string** | Updated routing configuration (JSON) | [optional] 
+**ShouldOverflow** | Pointer to **bool** | Whether to enable overflow to backup pool | [optional] 
+**OverflowPoolName** | Pointer to **string** | Name of the overflow pool | [optional] 
 
 ## Methods
 
@@ -55,20 +58,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetIps
 
-`func (o *IPPoolUpdateRequest) GetIps() []IP`
+`func (o *IPPoolUpdateRequest) GetIps() []EIP`
 
 GetIps returns the Ips field if non-nil, zero value otherwise.
 
 ### GetIpsOk
 
-`func (o *IPPoolUpdateRequest) GetIpsOk() (*[]IP, bool)`
+`func (o *IPPoolUpdateRequest) GetIpsOk() (*[]EIP, bool)`
 
 GetIpsOk returns a tuple with the Ips field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIps
 
-`func (o *IPPoolUpdateRequest) SetIps(v []IP)`
+`func (o *IPPoolUpdateRequest) SetIps(v []EIP)`
 
 SetIps sets Ips field to given value.
 
@@ -77,6 +80,31 @@ SetIps sets Ips field to given value.
 `func (o *IPPoolUpdateRequest) HasIps() bool`
 
 HasIps returns a boolean if a field has been set.
+
+### GetTpsps
+
+`func (o *IPPoolUpdateRequest) GetTpsps() []int64`
+
+GetTpsps returns the Tpsps field if non-nil, zero value otherwise.
+
+### GetTpspsOk
+
+`func (o *IPPoolUpdateRequest) GetTpspsOk() (*[]int64, bool)`
+
+GetTpspsOk returns a tuple with the Tpsps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTpsps
+
+`func (o *IPPoolUpdateRequest) SetTpsps(v []int64)`
+
+SetTpsps sets Tpsps field to given value.
+
+### HasTpsps
+
+`func (o *IPPoolUpdateRequest) HasTpsps() bool`
+
+HasTpsps returns a boolean if a field has been set.
 
 ### GetRoutingStrategy
 
@@ -127,6 +155,56 @@ SetRoutingMetaData sets RoutingMetaData field to given value.
 `func (o *IPPoolUpdateRequest) HasRoutingMetaData() bool`
 
 HasRoutingMetaData returns a boolean if a field has been set.
+
+### GetShouldOverflow
+
+`func (o *IPPoolUpdateRequest) GetShouldOverflow() bool`
+
+GetShouldOverflow returns the ShouldOverflow field if non-nil, zero value otherwise.
+
+### GetShouldOverflowOk
+
+`func (o *IPPoolUpdateRequest) GetShouldOverflowOk() (*bool, bool)`
+
+GetShouldOverflowOk returns a tuple with the ShouldOverflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShouldOverflow
+
+`func (o *IPPoolUpdateRequest) SetShouldOverflow(v bool)`
+
+SetShouldOverflow sets ShouldOverflow field to given value.
+
+### HasShouldOverflow
+
+`func (o *IPPoolUpdateRequest) HasShouldOverflow() bool`
+
+HasShouldOverflow returns a boolean if a field has been set.
+
+### GetOverflowPoolName
+
+`func (o *IPPoolUpdateRequest) GetOverflowPoolName() string`
+
+GetOverflowPoolName returns the OverflowPoolName field if non-nil, zero value otherwise.
+
+### GetOverflowPoolNameOk
+
+`func (o *IPPoolUpdateRequest) GetOverflowPoolNameOk() (*string, bool)`
+
+GetOverflowPoolNameOk returns a tuple with the OverflowPoolName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverflowPoolName
+
+`func (o *IPPoolUpdateRequest) SetOverflowPoolName(v string)`
+
+SetOverflowPoolName sets OverflowPoolName field to given value.
+
+### HasOverflowPoolName
+
+`func (o *IPPoolUpdateRequest) HasOverflowPoolName() bool`
+
+HasOverflowPoolName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

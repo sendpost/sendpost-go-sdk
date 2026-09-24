@@ -4,36 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MessageID** | Pointer to **string** | Unique ID for the message. | [optional] 
-**AccountID** | Pointer to **int32** | Account ID associated with the message. | [optional] 
-**SubAccountID** | Pointer to **int32** | Sub-account ID associated with the message. | [optional] 
-**IpID** | Pointer to **int32** | IP ID used for sending the message. | [optional] 
-**AccountIPPoolID** | Pointer to **int32** | Account IP Pool ID associated with the message. | [optional] 
-**PublicIP** | Pointer to **string** | Public IP address used for sending the message. | [optional] 
-**LocalIP** | Pointer to **string** | Local IP address used for sending the message. | [optional] 
-**EmailType** | Pointer to **string** | Type of email service used. | [optional] 
-**SubmittedAt** | Pointer to **int32** | UNIX epoch nano timestamp when message was submitted. | [optional] 
-**From** | Pointer to [**Person**](Person.md) | Object comprising name and email address of the sender | [optional] 
-**ReplyTo** | Pointer to [**Person**](Person.md) | Object comprising name and email addresses to which email replies will go to | [optional] 
-**To** | Pointer to [**MessageTo**](MessageTo.md) |  | [optional] 
-**HeaderTo** | Pointer to [**MessageHeaderTo**](MessageHeaderTo.md) |  | [optional] 
-**HeaderCc** | Pointer to **[]string** | List of CC recipients from email headers | [optional] 
-**HeaderBcc** | Pointer to **[]string** | List of BCC recipients from email headers | [optional] 
-**Attachments** | Pointer to **[]string** | List of attachments | [optional] 
-**Groups** | Pointer to **[]string** | List of groups associated with the message | [optional] 
-**IpPool** | Pointer to **string** | IP Pool from which emails will go out. Relevant only for customers on dedicated IP plans. | [optional] 
-**Headers** | Pointer to **map[string]string** | Key-Value pair which are added to every email message being sent and also with webhooks triggered on events such as email delivered, open, click etc. They are useful to identify email, recipient etc. in your internal system | [optional] 
-**CustomFields** | Pointer to **map[string]string** | Key-Value pair of custom fields at message level | [optional] 
-**Subject** | Pointer to **string** | Email subject line. | [optional] 
-**PreText** | Pointer to **string** | Text which appears on mobile right after email subject line. | [optional] 
-**HtmlBody** | Pointer to **string** | HTML email content. | [optional] 
-**TextBody** | Pointer to **string** | Text email content. | [optional] 
-**AmpBody** | Pointer to **string** | AMP email content. | [optional] 
-**TrackOpens** | Pointer to **bool** | Indicates if email opens need to be tracked. | [optional] 
-**TrackClicks** | Pointer to **bool** | Indicates if email clicks need to be tracked. | [optional] 
-**Attempt** | Pointer to **int32** | Number of delivery attempts made for the message. | [optional] 
-**WebhookEndpoint** | Pointer to **string** | Webhook endpoint URL for the message. | [optional] 
-**MxRecords** | Pointer to **[]string** | List of MX records for the recipient domain | [optional] 
+**MessageId** | Pointer to **string** | Unique identifier (UUID) for this email message | [optional] 
+**SubAccountId** | Pointer to **int64** | ID of the sub-account that sent this email | [optional] 
+**PublicIp** | Pointer to **string** | The public IP address used to send this email | [optional] 
+**EmailType** | Pointer to **string** | Classification of the email, e.g. \&quot;transactional\&quot; or \&quot;marketing\&quot;.  | [optional] 
+**SubmittedAt** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the email was submitted | [optional] 
+**From** | Pointer to [**EmailAddress**](EmailAddress.md) | The sender&#39;s email address and display name | [optional] 
+**ReplyTo** | Pointer to [**EmailAddress**](EmailAddress.md) | The Reply-To email address and display name | [optional] 
+**To** | Pointer to [**Recipient**](Recipient.md) | The primary recipient, including any per-recipient CC/BCC and custom fields | [optional] 
+**HeaderTo** | Pointer to [**Recipient**](Recipient.md) | The address rendered in the visible To header (may differ from the envelope recipient) | [optional] 
+**HeaderCc** | Pointer to [**[]CopyTo**](CopyTo.md) | Addresses rendered in the visible Cc header | [optional] 
+**HeaderBcc** | Pointer to [**[]CopyTo**](CopyTo.md) | Addresses rendered in the visible Bcc header | [optional] 
+**Attachments** | Pointer to [**[]Attachment**](Attachment.md) | File attachments included with the email | [optional] 
+**Groups** | Pointer to **[]string** | Tags/groups associated with this email | [optional] 
+**IpPool** | Pointer to **string** | Name of the IP pool used for sending | [optional] 
+**Headers** | Pointer to **map[string]string** | Custom SMTP headers set on the message | [optional] 
+**Subject** | Pointer to **string** | The email subject line | [optional] 
+**PreText** | Pointer to **string** | Preheader/preview text shown by many email clients after the subject | [optional] 
+**HtmlBody** | Pointer to **string** | The HTML body of the email | [optional] 
+**TextBody** | Pointer to **string** | The plain-text body of the email | [optional] 
+**AmpBody** | Pointer to **string** | The AMP for Email body, if provided | [optional] 
+**TrackOpens** | Pointer to **bool** | Whether open tracking was enabled for this email | [optional] 
+**TrackClicks** | Pointer to **bool** | Whether click tracking was enabled for this email | [optional] 
 
 ## Methods
 
@@ -54,180 +46,80 @@ NewMessageWithDefaults instantiates a new Message object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMessageID
+### GetMessageId
 
-`func (o *Message) GetMessageID() string`
+`func (o *Message) GetMessageId() string`
 
-GetMessageID returns the MessageID field if non-nil, zero value otherwise.
+GetMessageId returns the MessageId field if non-nil, zero value otherwise.
 
-### GetMessageIDOk
+### GetMessageIdOk
 
-`func (o *Message) GetMessageIDOk() (*string, bool)`
+`func (o *Message) GetMessageIdOk() (*string, bool)`
 
-GetMessageIDOk returns a tuple with the MessageID field if it's non-nil, zero value otherwise
+GetMessageIdOk returns a tuple with the MessageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMessageID
+### SetMessageId
 
-`func (o *Message) SetMessageID(v string)`
+`func (o *Message) SetMessageId(v string)`
 
-SetMessageID sets MessageID field to given value.
+SetMessageId sets MessageId field to given value.
 
-### HasMessageID
+### HasMessageId
 
-`func (o *Message) HasMessageID() bool`
+`func (o *Message) HasMessageId() bool`
 
-HasMessageID returns a boolean if a field has been set.
+HasMessageId returns a boolean if a field has been set.
 
-### GetAccountID
+### GetSubAccountId
 
-`func (o *Message) GetAccountID() int32`
+`func (o *Message) GetSubAccountId() int64`
 
-GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+GetSubAccountId returns the SubAccountId field if non-nil, zero value otherwise.
 
-### GetAccountIDOk
+### GetSubAccountIdOk
 
-`func (o *Message) GetAccountIDOk() (*int32, bool)`
+`func (o *Message) GetSubAccountIdOk() (*int64, bool)`
 
-GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+GetSubAccountIdOk returns a tuple with the SubAccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountID
+### SetSubAccountId
 
-`func (o *Message) SetAccountID(v int32)`
+`func (o *Message) SetSubAccountId(v int64)`
 
-SetAccountID sets AccountID field to given value.
+SetSubAccountId sets SubAccountId field to given value.
 
-### HasAccountID
+### HasSubAccountId
 
-`func (o *Message) HasAccountID() bool`
+`func (o *Message) HasSubAccountId() bool`
 
-HasAccountID returns a boolean if a field has been set.
+HasSubAccountId returns a boolean if a field has been set.
 
-### GetSubAccountID
+### GetPublicIp
 
-`func (o *Message) GetSubAccountID() int32`
+`func (o *Message) GetPublicIp() string`
 
-GetSubAccountID returns the SubAccountID field if non-nil, zero value otherwise.
+GetPublicIp returns the PublicIp field if non-nil, zero value otherwise.
 
-### GetSubAccountIDOk
+### GetPublicIpOk
 
-`func (o *Message) GetSubAccountIDOk() (*int32, bool)`
+`func (o *Message) GetPublicIpOk() (*string, bool)`
 
-GetSubAccountIDOk returns a tuple with the SubAccountID field if it's non-nil, zero value otherwise
+GetPublicIpOk returns a tuple with the PublicIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubAccountID
+### SetPublicIp
 
-`func (o *Message) SetSubAccountID(v int32)`
+`func (o *Message) SetPublicIp(v string)`
 
-SetSubAccountID sets SubAccountID field to given value.
+SetPublicIp sets PublicIp field to given value.
 
-### HasSubAccountID
+### HasPublicIp
 
-`func (o *Message) HasSubAccountID() bool`
+`func (o *Message) HasPublicIp() bool`
 
-HasSubAccountID returns a boolean if a field has been set.
-
-### GetIpID
-
-`func (o *Message) GetIpID() int32`
-
-GetIpID returns the IpID field if non-nil, zero value otherwise.
-
-### GetIpIDOk
-
-`func (o *Message) GetIpIDOk() (*int32, bool)`
-
-GetIpIDOk returns a tuple with the IpID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpID
-
-`func (o *Message) SetIpID(v int32)`
-
-SetIpID sets IpID field to given value.
-
-### HasIpID
-
-`func (o *Message) HasIpID() bool`
-
-HasIpID returns a boolean if a field has been set.
-
-### GetAccountIPPoolID
-
-`func (o *Message) GetAccountIPPoolID() int32`
-
-GetAccountIPPoolID returns the AccountIPPoolID field if non-nil, zero value otherwise.
-
-### GetAccountIPPoolIDOk
-
-`func (o *Message) GetAccountIPPoolIDOk() (*int32, bool)`
-
-GetAccountIPPoolIDOk returns a tuple with the AccountIPPoolID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccountIPPoolID
-
-`func (o *Message) SetAccountIPPoolID(v int32)`
-
-SetAccountIPPoolID sets AccountIPPoolID field to given value.
-
-### HasAccountIPPoolID
-
-`func (o *Message) HasAccountIPPoolID() bool`
-
-HasAccountIPPoolID returns a boolean if a field has been set.
-
-### GetPublicIP
-
-`func (o *Message) GetPublicIP() string`
-
-GetPublicIP returns the PublicIP field if non-nil, zero value otherwise.
-
-### GetPublicIPOk
-
-`func (o *Message) GetPublicIPOk() (*string, bool)`
-
-GetPublicIPOk returns a tuple with the PublicIP field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPublicIP
-
-`func (o *Message) SetPublicIP(v string)`
-
-SetPublicIP sets PublicIP field to given value.
-
-### HasPublicIP
-
-`func (o *Message) HasPublicIP() bool`
-
-HasPublicIP returns a boolean if a field has been set.
-
-### GetLocalIP
-
-`func (o *Message) GetLocalIP() string`
-
-GetLocalIP returns the LocalIP field if non-nil, zero value otherwise.
-
-### GetLocalIPOk
-
-`func (o *Message) GetLocalIPOk() (*string, bool)`
-
-GetLocalIPOk returns a tuple with the LocalIP field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocalIP
-
-`func (o *Message) SetLocalIP(v string)`
-
-SetLocalIP sets LocalIP field to given value.
-
-### HasLocalIP
-
-`func (o *Message) HasLocalIP() bool`
-
-HasLocalIP returns a boolean if a field has been set.
+HasPublicIp returns a boolean if a field has been set.
 
 ### GetEmailType
 
@@ -256,20 +148,20 @@ HasEmailType returns a boolean if a field has been set.
 
 ### GetSubmittedAt
 
-`func (o *Message) GetSubmittedAt() int32`
+`func (o *Message) GetSubmittedAt() int64`
 
 GetSubmittedAt returns the SubmittedAt field if non-nil, zero value otherwise.
 
 ### GetSubmittedAtOk
 
-`func (o *Message) GetSubmittedAtOk() (*int32, bool)`
+`func (o *Message) GetSubmittedAtOk() (*int64, bool)`
 
 GetSubmittedAtOk returns a tuple with the SubmittedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubmittedAt
 
-`func (o *Message) SetSubmittedAt(v int32)`
+`func (o *Message) SetSubmittedAt(v int64)`
 
 SetSubmittedAt sets SubmittedAt field to given value.
 
@@ -281,20 +173,20 @@ HasSubmittedAt returns a boolean if a field has been set.
 
 ### GetFrom
 
-`func (o *Message) GetFrom() Person`
+`func (o *Message) GetFrom() EmailAddress`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *Message) GetFromOk() (*Person, bool)`
+`func (o *Message) GetFromOk() (*EmailAddress, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *Message) SetFrom(v Person)`
+`func (o *Message) SetFrom(v EmailAddress)`
 
 SetFrom sets From field to given value.
 
@@ -306,20 +198,20 @@ HasFrom returns a boolean if a field has been set.
 
 ### GetReplyTo
 
-`func (o *Message) GetReplyTo() Person`
+`func (o *Message) GetReplyTo() EmailAddress`
 
 GetReplyTo returns the ReplyTo field if non-nil, zero value otherwise.
 
 ### GetReplyToOk
 
-`func (o *Message) GetReplyToOk() (*Person, bool)`
+`func (o *Message) GetReplyToOk() (*EmailAddress, bool)`
 
 GetReplyToOk returns a tuple with the ReplyTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReplyTo
 
-`func (o *Message) SetReplyTo(v Person)`
+`func (o *Message) SetReplyTo(v EmailAddress)`
 
 SetReplyTo sets ReplyTo field to given value.
 
@@ -331,20 +223,20 @@ HasReplyTo returns a boolean if a field has been set.
 
 ### GetTo
 
-`func (o *Message) GetTo() MessageTo`
+`func (o *Message) GetTo() Recipient`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *Message) GetToOk() (*MessageTo, bool)`
+`func (o *Message) GetToOk() (*Recipient, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *Message) SetTo(v MessageTo)`
+`func (o *Message) SetTo(v Recipient)`
 
 SetTo sets To field to given value.
 
@@ -356,20 +248,20 @@ HasTo returns a boolean if a field has been set.
 
 ### GetHeaderTo
 
-`func (o *Message) GetHeaderTo() MessageHeaderTo`
+`func (o *Message) GetHeaderTo() Recipient`
 
 GetHeaderTo returns the HeaderTo field if non-nil, zero value otherwise.
 
 ### GetHeaderToOk
 
-`func (o *Message) GetHeaderToOk() (*MessageHeaderTo, bool)`
+`func (o *Message) GetHeaderToOk() (*Recipient, bool)`
 
 GetHeaderToOk returns a tuple with the HeaderTo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeaderTo
 
-`func (o *Message) SetHeaderTo(v MessageHeaderTo)`
+`func (o *Message) SetHeaderTo(v Recipient)`
 
 SetHeaderTo sets HeaderTo field to given value.
 
@@ -381,20 +273,20 @@ HasHeaderTo returns a boolean if a field has been set.
 
 ### GetHeaderCc
 
-`func (o *Message) GetHeaderCc() []string`
+`func (o *Message) GetHeaderCc() []CopyTo`
 
 GetHeaderCc returns the HeaderCc field if non-nil, zero value otherwise.
 
 ### GetHeaderCcOk
 
-`func (o *Message) GetHeaderCcOk() (*[]string, bool)`
+`func (o *Message) GetHeaderCcOk() (*[]CopyTo, bool)`
 
 GetHeaderCcOk returns a tuple with the HeaderCc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeaderCc
 
-`func (o *Message) SetHeaderCc(v []string)`
+`func (o *Message) SetHeaderCc(v []CopyTo)`
 
 SetHeaderCc sets HeaderCc field to given value.
 
@@ -406,20 +298,20 @@ HasHeaderCc returns a boolean if a field has been set.
 
 ### GetHeaderBcc
 
-`func (o *Message) GetHeaderBcc() []string`
+`func (o *Message) GetHeaderBcc() []CopyTo`
 
 GetHeaderBcc returns the HeaderBcc field if non-nil, zero value otherwise.
 
 ### GetHeaderBccOk
 
-`func (o *Message) GetHeaderBccOk() (*[]string, bool)`
+`func (o *Message) GetHeaderBccOk() (*[]CopyTo, bool)`
 
 GetHeaderBccOk returns a tuple with the HeaderBcc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeaderBcc
 
-`func (o *Message) SetHeaderBcc(v []string)`
+`func (o *Message) SetHeaderBcc(v []CopyTo)`
 
 SetHeaderBcc sets HeaderBcc field to given value.
 
@@ -431,20 +323,20 @@ HasHeaderBcc returns a boolean if a field has been set.
 
 ### GetAttachments
 
-`func (o *Message) GetAttachments() []string`
+`func (o *Message) GetAttachments() []Attachment`
 
 GetAttachments returns the Attachments field if non-nil, zero value otherwise.
 
 ### GetAttachmentsOk
 
-`func (o *Message) GetAttachmentsOk() (*[]string, bool)`
+`func (o *Message) GetAttachmentsOk() (*[]Attachment, bool)`
 
 GetAttachmentsOk returns a tuple with the Attachments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttachments
 
-`func (o *Message) SetAttachments(v []string)`
+`func (o *Message) SetAttachments(v []Attachment)`
 
 SetAttachments sets Attachments field to given value.
 
@@ -528,31 +420,6 @@ SetHeaders sets Headers field to given value.
 `func (o *Message) HasHeaders() bool`
 
 HasHeaders returns a boolean if a field has been set.
-
-### GetCustomFields
-
-`func (o *Message) GetCustomFields() map[string]string`
-
-GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
-
-### GetCustomFieldsOk
-
-`func (o *Message) GetCustomFieldsOk() (*map[string]string, bool)`
-
-GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomFields
-
-`func (o *Message) SetCustomFields(v map[string]string)`
-
-SetCustomFields sets CustomFields field to given value.
-
-### HasCustomFields
-
-`func (o *Message) HasCustomFields() bool`
-
-HasCustomFields returns a boolean if a field has been set.
 
 ### GetSubject
 
@@ -728,81 +595,6 @@ SetTrackClicks sets TrackClicks field to given value.
 `func (o *Message) HasTrackClicks() bool`
 
 HasTrackClicks returns a boolean if a field has been set.
-
-### GetAttempt
-
-`func (o *Message) GetAttempt() int32`
-
-GetAttempt returns the Attempt field if non-nil, zero value otherwise.
-
-### GetAttemptOk
-
-`func (o *Message) GetAttemptOk() (*int32, bool)`
-
-GetAttemptOk returns a tuple with the Attempt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttempt
-
-`func (o *Message) SetAttempt(v int32)`
-
-SetAttempt sets Attempt field to given value.
-
-### HasAttempt
-
-`func (o *Message) HasAttempt() bool`
-
-HasAttempt returns a boolean if a field has been set.
-
-### GetWebhookEndpoint
-
-`func (o *Message) GetWebhookEndpoint() string`
-
-GetWebhookEndpoint returns the WebhookEndpoint field if non-nil, zero value otherwise.
-
-### GetWebhookEndpointOk
-
-`func (o *Message) GetWebhookEndpointOk() (*string, bool)`
-
-GetWebhookEndpointOk returns a tuple with the WebhookEndpoint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWebhookEndpoint
-
-`func (o *Message) SetWebhookEndpoint(v string)`
-
-SetWebhookEndpoint sets WebhookEndpoint field to given value.
-
-### HasWebhookEndpoint
-
-`func (o *Message) HasWebhookEndpoint() bool`
-
-HasWebhookEndpoint returns a boolean if a field has been set.
-
-### GetMxRecords
-
-`func (o *Message) GetMxRecords() []string`
-
-GetMxRecords returns the MxRecords field if non-nil, zero value otherwise.
-
-### GetMxRecordsOk
-
-`func (o *Message) GetMxRecordsOk() (*[]string, bool)`
-
-GetMxRecordsOk returns a tuple with the MxRecords field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMxRecords
-
-`func (o *Message) SetMxRecords(v []string)`
-
-SetMxRecords sets MxRecords field to given value.
-
-### HasMxRecords
-
-`func (o *Message) HasMxRecords() bool`
-
-HasMxRecords returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

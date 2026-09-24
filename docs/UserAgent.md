@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Family** | Pointer to **string** |  | [optional] 
-**Major** | Pointer to **string** |  | [optional] 
-**Minor** | Pointer to **string** |  | [optional] 
-**Patch** | Pointer to **string** |  | [optional] 
+**Family** | Pointer to **string** | Browser or email client family name. Common values: Chrome, Safari, Firefox, Outlook, Apple Mail, Gmail  | [optional] 
+**Major** | Pointer to **string** | Major version number | [optional] 
+**Minor** | Pointer to **string** | Minor version number | [optional] 
+**Patch** | Pointer to **string** | Patch version number | [optional] 
 
 ## Methods
 

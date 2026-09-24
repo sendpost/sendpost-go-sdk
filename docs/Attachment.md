@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | Pointer to **string** | Base64 encoded attachment content | [optional] 
-**Filename** | Pointer to **string** | Name of the attachment file | [optional] 
+**Content** | **string** | Base64 encoded content of the attachment file. Ensure proper encoding to avoid corruption.  | 
+**Filename** | **string** | Name of the attachment file as it will appear to recipients. Include the file extension (e.g., \&quot;report.pdf\&quot;, \&quot;image.png\&quot;).  | 
 
 ## Methods
 
 ### NewAttachment
 
-`func NewAttachment() *Attachment`
+`func NewAttachment(content string, filename string, ) *Attachment`
 
 NewAttachment instantiates a new Attachment object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetContent sets Content field to given value.
 
-### HasContent
-
-`func (o *Attachment) HasContent() bool`
-
-HasContent returns a boolean if a field has been set.
 
 ### GetFilename
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetFilename sets Filename field to given value.
 
-### HasFilename
-
-`func (o *Attachment) HasFilename() bool`
-
-HasFilename returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

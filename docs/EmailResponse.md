@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | Pointer to **string** |  | [optional] 
-**SubmittedAt** | Pointer to **int64** | UNIX epoch nano timestamp | [optional] 
-**MessageId** | Pointer to **string** | Message UUID | [optional] 
-**ErrorCode** | Pointer to **int32** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
+**To** | Pointer to **string** | The recipient email address this response corresponds to | [optional] 
+**SubmittedAt** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the email was accepted for processing. Use this for precise timing and correlation with webhook events.  | [optional] 
+**MessageId** | Pointer to **string** | Unique identifier (UUID) for this email message. Use this ID to track the email through webhooks and the message lookup API.  | [optional] 
+**ErrorCode** | Pointer to **int32** | Error code if the email submission failed. Common codes: - 0: Success (no error) - 1: Invalid recipient email - 2: Recipient in suppression list - 3: Domain not verified - 4: Rate limit exceeded - 5: Invalid sender email  | [optional] 
+**Message** | Pointer to **string** | Human-readable message describing the result. On success: \&quot;Email submitted successfully\&quot; On error: Description of what went wrong  | [optional] 
 
 ## Methods
 

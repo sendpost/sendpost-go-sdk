@@ -26,11 +26,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	emailMessageObject := *openapiclient.NewEmailMessageObject() // EmailMessageObject | Email message details
+	emailMessageObject := *openapiclient.NewEmailMessageObject(*openapiclient.NewEmailAddress("sender@example.com"), []openapiclient.Recipient{*openapiclient.NewRecipient("recipient@example.com")}) // EmailMessageObject | Email message details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -92,11 +92,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sendpost/sendpost-go-sdk"
+	openapiclient "github.com/sendpost/sendpost-go-sdk/v2"
 )
 
 func main() {
-	emailMessageWithTemplate := *openapiclient.NewEmailMessageWithTemplate() // EmailMessageWithTemplate | Email message details with template information
+	emailMessageWithTemplate := *openapiclient.NewEmailMessageWithTemplate(*openapiclient.NewEmailAddress("sender@example.com"), []openapiclient.Recipient{*openapiclient.NewRecipient("recipient@example.com")}) // EmailMessageWithTemplate | Email message details with template information
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

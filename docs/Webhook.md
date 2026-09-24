@@ -4,25 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for the webhook. | [optional] 
-**Enabled** | Pointer to **bool** | Indicates if the webhook is active or paused. | [optional] 
-**Url** | Pointer to **string** | URL endpoint to which webhook calls need to be made. | [optional] 
-**Processed** | Pointer to **bool** | Trigger webhook on email message being processed. | [optional] 
-**Delivered** | Pointer to **bool** | Trigger webhook on email message being delivered. | [optional] 
-**Dropped** | Pointer to **bool** | Trigger webhook on email message being dropped. | [optional] 
-**SoftBounced** | Pointer to **bool** | Trigger webhook on email message being soft bounced. | [optional] 
-**HardBounced** | Pointer to **bool** | Trigger webhook on email message being hard bounced. | [optional] 
-**Opened** | Pointer to **bool** | Trigger webhook on email message being opened. | [optional] 
-**Clicked** | Pointer to **bool** | Trigger webhook on email message link being clicked. | [optional] 
-**Unsubscribed** | Pointer to **bool** | Trigger webhook on email message being unsubscribed. | [optional] 
-**Spam** | Pointer to **bool** | Trigger webhook on email message being marked as spam. | [optional] 
-**Sent** | Pointer to **bool** | Trigger webhook on email message being sent. | [optional] 
-**SmtpDropped** | Pointer to **bool** | Trigger webhook on email message being dropped by SMTP. | [optional] 
-**UniqueOpen** | Pointer to **bool** | Trigger webhook on unique email opens. | [optional] 
-**UniqueClick** | Pointer to **bool** | Trigger webhook on unique email clicks. | [optional] 
-**Created** | Pointer to **int64** | UNIX epoch nano timestamp when the webhook was created. | [optional] 
-**CreatedBy** | Pointer to [**Member**](Member.md) | Member who created the webhook | [optional] 
-**UpdatedBy** | Pointer to [**Member**](Member.md) | Member who updated the webhook | [optional] 
+**Id** | Pointer to **int64** | Unique identifier for the webhook configuration | [optional] 
+**Enabled** | Pointer to **bool** | Whether the webhook is active. When false, no events will be sent to this webhook. Useful for temporarily pausing notifications during maintenance.  | [optional] 
+**Url** | Pointer to **string** | HTTPS endpoint URL to receive webhook POST requests. Must be publicly accessible and return 2xx status code.  | [optional] 
+**Processed** | Pointer to **bool** | Trigger webhook when an email is accepted for processing. Fires immediately when API call is successful.  | [optional] 
+**Sent** | Pointer to **bool** | Trigger webhook when an email is sent to the recipient&#39;s mail server. Indicates the email left SendPost&#39;s infrastructure.  | [optional] 
+**Dropped** | Pointer to **bool** | Trigger webhook when an email is dropped before sending. Common reasons: suppressed address, invalid email, unverified domain.  | [optional] 
+**SmtpDropped** | Pointer to **bool** | Trigger webhook when an email is dropped at SMTP level. Usually due to policy rejection by receiving server.  | [optional] 
+**Delivered** | Pointer to **bool** | Trigger webhook when an email is successfully delivered. Note: \&quot;Delivered\&quot; means accepted by mail server, not inbox placement.  | [optional] 
+**SoftBounced** | Pointer to **bool** | Trigger webhook on temporary delivery failure (soft bounce). SendPost will retry delivery automatically.  | [optional] 
+**HardBounced** | Pointer to **bool** | Trigger webhook on permanent delivery failure (hard bounce). The recipient is automatically added to suppression list.  | [optional] 
+**Opened** | Pointer to **bool** | Trigger webhook when recipient opens the email. Fires on every open (can fire multiple times per email).  | [optional] 
+**Clicked** | Pointer to **bool** | Trigger webhook when recipient clicks a link. Fires on every click (can fire multiple times per email).  | [optional] 
+**Unsubscribed** | Pointer to **bool** | Trigger webhook when recipient clicks the unsubscribe link. The recipient is automatically added to suppression list.  | [optional] 
+**Spam** | Pointer to **bool** | Trigger webhook when recipient marks email as spam. The recipient is automatically added to suppression list. Monitor this closely - high spam rates damage sender reputation.  | [optional] 
+**UniqueOpen** | Pointer to **bool** | Trigger webhook only on the first open of an email (unique opens). Use this instead of &#39;opened&#39; if you only care about unique engagement.  | [optional] 
+**UniqueClick** | Pointer to **bool** | Trigger webhook only on the first click of an email (unique clicks). Use this instead of &#39;clicked&#39; if you only care about unique engagement.  | [optional] 
+**Status** | Pointer to **string** | Health status of the webhook (read-only): - &#x60;active&#x60; - delivering normally - &#x60;degraded&#x60; - recent delivery failures - &#x60;disabled&#x60; - auto-disabled after repeated consecutive failures  | [optional] 
+**DisabledAt** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the webhook was auto-disabled (0 if never). Read-only. | [optional] 
+**DisabledReason** | Pointer to **string** | Human-readable reason the webhook was auto-disabled (empty if active). Read-only. | [optional] 
+**Created** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the webhook was created | [optional] 
 
 ## Methods
 
@@ -45,20 +46,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Webhook) GetId() int32`
+`func (o *Webhook) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Webhook) GetIdOk() (*int32, bool)`
+`func (o *Webhook) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Webhook) SetId(v int32)`
+`func (o *Webhook) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -143,30 +144,30 @@ SetProcessed sets Processed field to given value.
 
 HasProcessed returns a boolean if a field has been set.
 
-### GetDelivered
+### GetSent
 
-`func (o *Webhook) GetDelivered() bool`
+`func (o *Webhook) GetSent() bool`
 
-GetDelivered returns the Delivered field if non-nil, zero value otherwise.
+GetSent returns the Sent field if non-nil, zero value otherwise.
 
-### GetDeliveredOk
+### GetSentOk
 
-`func (o *Webhook) GetDeliveredOk() (*bool, bool)`
+`func (o *Webhook) GetSentOk() (*bool, bool)`
 
-GetDeliveredOk returns a tuple with the Delivered field if it's non-nil, zero value otherwise
+GetSentOk returns a tuple with the Sent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelivered
+### SetSent
 
-`func (o *Webhook) SetDelivered(v bool)`
+`func (o *Webhook) SetSent(v bool)`
 
-SetDelivered sets Delivered field to given value.
+SetSent sets Sent field to given value.
 
-### HasDelivered
+### HasSent
 
-`func (o *Webhook) HasDelivered() bool`
+`func (o *Webhook) HasSent() bool`
 
-HasDelivered returns a boolean if a field has been set.
+HasSent returns a boolean if a field has been set.
 
 ### GetDropped
 
@@ -192,6 +193,56 @@ SetDropped sets Dropped field to given value.
 `func (o *Webhook) HasDropped() bool`
 
 HasDropped returns a boolean if a field has been set.
+
+### GetSmtpDropped
+
+`func (o *Webhook) GetSmtpDropped() bool`
+
+GetSmtpDropped returns the SmtpDropped field if non-nil, zero value otherwise.
+
+### GetSmtpDroppedOk
+
+`func (o *Webhook) GetSmtpDroppedOk() (*bool, bool)`
+
+GetSmtpDroppedOk returns a tuple with the SmtpDropped field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSmtpDropped
+
+`func (o *Webhook) SetSmtpDropped(v bool)`
+
+SetSmtpDropped sets SmtpDropped field to given value.
+
+### HasSmtpDropped
+
+`func (o *Webhook) HasSmtpDropped() bool`
+
+HasSmtpDropped returns a boolean if a field has been set.
+
+### GetDelivered
+
+`func (o *Webhook) GetDelivered() bool`
+
+GetDelivered returns the Delivered field if non-nil, zero value otherwise.
+
+### GetDeliveredOk
+
+`func (o *Webhook) GetDeliveredOk() (*bool, bool)`
+
+GetDeliveredOk returns a tuple with the Delivered field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDelivered
+
+`func (o *Webhook) SetDelivered(v bool)`
+
+SetDelivered sets Delivered field to given value.
+
+### HasDelivered
+
+`func (o *Webhook) HasDelivered() bool`
+
+HasDelivered returns a boolean if a field has been set.
 
 ### GetSoftBounced
 
@@ -343,56 +394,6 @@ SetSpam sets Spam field to given value.
 
 HasSpam returns a boolean if a field has been set.
 
-### GetSent
-
-`func (o *Webhook) GetSent() bool`
-
-GetSent returns the Sent field if non-nil, zero value otherwise.
-
-### GetSentOk
-
-`func (o *Webhook) GetSentOk() (*bool, bool)`
-
-GetSentOk returns a tuple with the Sent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSent
-
-`func (o *Webhook) SetSent(v bool)`
-
-SetSent sets Sent field to given value.
-
-### HasSent
-
-`func (o *Webhook) HasSent() bool`
-
-HasSent returns a boolean if a field has been set.
-
-### GetSmtpDropped
-
-`func (o *Webhook) GetSmtpDropped() bool`
-
-GetSmtpDropped returns the SmtpDropped field if non-nil, zero value otherwise.
-
-### GetSmtpDroppedOk
-
-`func (o *Webhook) GetSmtpDroppedOk() (*bool, bool)`
-
-GetSmtpDroppedOk returns a tuple with the SmtpDropped field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSmtpDropped
-
-`func (o *Webhook) SetSmtpDropped(v bool)`
-
-SetSmtpDropped sets SmtpDropped field to given value.
-
-### HasSmtpDropped
-
-`func (o *Webhook) HasSmtpDropped() bool`
-
-HasSmtpDropped returns a boolean if a field has been set.
-
 ### GetUniqueOpen
 
 `func (o *Webhook) GetUniqueOpen() bool`
@@ -443,6 +444,81 @@ SetUniqueClick sets UniqueClick field to given value.
 
 HasUniqueClick returns a boolean if a field has been set.
 
+### GetStatus
+
+`func (o *Webhook) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *Webhook) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *Webhook) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *Webhook) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetDisabledAt
+
+`func (o *Webhook) GetDisabledAt() int64`
+
+GetDisabledAt returns the DisabledAt field if non-nil, zero value otherwise.
+
+### GetDisabledAtOk
+
+`func (o *Webhook) GetDisabledAtOk() (*int64, bool)`
+
+GetDisabledAtOk returns a tuple with the DisabledAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabledAt
+
+`func (o *Webhook) SetDisabledAt(v int64)`
+
+SetDisabledAt sets DisabledAt field to given value.
+
+### HasDisabledAt
+
+`func (o *Webhook) HasDisabledAt() bool`
+
+HasDisabledAt returns a boolean if a field has been set.
+
+### GetDisabledReason
+
+`func (o *Webhook) GetDisabledReason() string`
+
+GetDisabledReason returns the DisabledReason field if non-nil, zero value otherwise.
+
+### GetDisabledReasonOk
+
+`func (o *Webhook) GetDisabledReasonOk() (*string, bool)`
+
+GetDisabledReasonOk returns a tuple with the DisabledReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabledReason
+
+`func (o *Webhook) SetDisabledReason(v string)`
+
+SetDisabledReason sets DisabledReason field to given value.
+
+### HasDisabledReason
+
+`func (o *Webhook) HasDisabledReason() bool`
+
+HasDisabledReason returns a boolean if a field has been set.
+
 ### GetCreated
 
 `func (o *Webhook) GetCreated() int64`
@@ -467,56 +543,6 @@ SetCreated sets Created field to given value.
 `func (o *Webhook) HasCreated() bool`
 
 HasCreated returns a boolean if a field has been set.
-
-### GetCreatedBy
-
-`func (o *Webhook) GetCreatedBy() Member`
-
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
-
-### GetCreatedByOk
-
-`func (o *Webhook) GetCreatedByOk() (*Member, bool)`
-
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedBy
-
-`func (o *Webhook) SetCreatedBy(v Member)`
-
-SetCreatedBy sets CreatedBy field to given value.
-
-### HasCreatedBy
-
-`func (o *Webhook) HasCreatedBy() bool`
-
-HasCreatedBy returns a boolean if a field has been set.
-
-### GetUpdatedBy
-
-`func (o *Webhook) GetUpdatedBy() Member`
-
-GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
-
-### GetUpdatedByOk
-
-`func (o *Webhook) GetUpdatedByOk() (*Member, bool)`
-
-GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedBy
-
-`func (o *Webhook) SetUpdatedBy(v Member)`
-
-SetUpdatedBy sets UpdatedBy field to given value.
-
-### HasUpdatedBy
-
-`func (o *Webhook) HasUpdatedBy() bool`
-
-HasUpdatedBy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

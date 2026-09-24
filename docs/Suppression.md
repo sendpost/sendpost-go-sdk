@@ -4,11 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The ID of the suppression | [optional] 
-**Reason** | Pointer to **int32** | The reason for the suppression (0 &#x3D; manual, 1 &#x3D; unsubscribe, 2 &#x3D; hard bounce, 3 &#x3D; spam complaint) | [optional] 
-**SmtpError** | Pointer to **string** | SMTP error code in case of hard bounce suppression | [optional] 
-**Email** | Pointer to **string** | The email address for the suppression | [optional] 
-**Created** | Pointer to **int64** | UNIX epoch nano timestamp when the suppression was created | [optional] 
+**Id** | Pointer to **int64** | Unique identifier for the suppression record | [optional] 
+**Email** | Pointer to **string** | The suppressed email address | [optional] 
+**Reason** | Pointer to **int32** | Reason code for the suppression: - &#x60;0&#x60; &#x3D; Manual (added via API or dashboard) - &#x60;1&#x60; &#x3D; Unsubscribe (recipient clicked unsubscribe link) - &#x60;2&#x60; &#x3D; Hard Bounce (permanent delivery failure) - &#x60;3&#x60; &#x3D; Spam Complaint (recipient marked as spam) - &#x60;4&#x60; &#x3D; Hard Bounce (detected by post-send validation)  | [optional] 
+**ReasonText** | Pointer to **string** | Human-readable suppression reason | [optional] 
+**SmtpError** | Pointer to **string** | SMTP error message from the receiving server (only for hard bounce suppressions). Useful for diagnosing delivery issues.  | [optional] 
+**MessageUUID** | Pointer to **string** | UUID of the message whose bounce/complaint caused this suppression. Empty for manually added suppressions. Useful for tracing the origin.  | [optional] 
+**Created** | Pointer to **int64** | UNIX epoch timestamp in nanoseconds when the suppression was added | [optional] 
 
 ## Methods
 
@@ -31,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Suppression) GetId() int32`
+`func (o *Suppression) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Suppression) GetIdOk() (*int32, bool)`
+`func (o *Suppression) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Suppression) SetId(v int32)`
+`func (o *Suppression) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -53,6 +55,31 @@ SetId sets Id field to given value.
 `func (o *Suppression) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetEmail
+
+`func (o *Suppression) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *Suppression) GetEmailOk() (*string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *Suppression) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
+
+### HasEmail
+
+`func (o *Suppression) HasEmail() bool`
+
+HasEmail returns a boolean if a field has been set.
 
 ### GetReason
 
@@ -79,6 +106,31 @@ SetReason sets Reason field to given value.
 
 HasReason returns a boolean if a field has been set.
 
+### GetReasonText
+
+`func (o *Suppression) GetReasonText() string`
+
+GetReasonText returns the ReasonText field if non-nil, zero value otherwise.
+
+### GetReasonTextOk
+
+`func (o *Suppression) GetReasonTextOk() (*string, bool)`
+
+GetReasonTextOk returns a tuple with the ReasonText field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReasonText
+
+`func (o *Suppression) SetReasonText(v string)`
+
+SetReasonText sets ReasonText field to given value.
+
+### HasReasonText
+
+`func (o *Suppression) HasReasonText() bool`
+
+HasReasonText returns a boolean if a field has been set.
+
 ### GetSmtpError
 
 `func (o *Suppression) GetSmtpError() string`
@@ -104,30 +156,30 @@ SetSmtpError sets SmtpError field to given value.
 
 HasSmtpError returns a boolean if a field has been set.
 
-### GetEmail
+### GetMessageUUID
 
-`func (o *Suppression) GetEmail() string`
+`func (o *Suppression) GetMessageUUID() string`
 
-GetEmail returns the Email field if non-nil, zero value otherwise.
+GetMessageUUID returns the MessageUUID field if non-nil, zero value otherwise.
 
-### GetEmailOk
+### GetMessageUUIDOk
 
-`func (o *Suppression) GetEmailOk() (*string, bool)`
+`func (o *Suppression) GetMessageUUIDOk() (*string, bool)`
 
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+GetMessageUUIDOk returns a tuple with the MessageUUID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEmail
+### SetMessageUUID
 
-`func (o *Suppression) SetEmail(v string)`
+`func (o *Suppression) SetMessageUUID(v string)`
 
-SetEmail sets Email field to given value.
+SetMessageUUID sets MessageUUID field to given value.
 
-### HasEmail
+### HasMessageUUID
 
-`func (o *Suppression) HasEmail() bool`
+`func (o *Suppression) HasMessageUUID() bool`
 
-HasEmail returns a boolean if a field has been set.
+HasMessageUUID returns a boolean if a field has been set.
 
 ### GetCreated
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Suppressions** | Pointer to [**[]CreateSuppressionRequestSpamComplaintInner**](CreateSuppressionRequestSpamComplaintInner.md) |  | [optional] 
+**Suppressions** | Pointer to [**[]DeleteSuppressionRequestSuppressionsInner**](DeleteSuppressionRequestSuppressionsInner.md) | List of email addresses to remove from suppression. Each email will be removed regardless of suppression type. | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSuppressions
 
-`func (o *DeleteSuppressionRequest) GetSuppressions() []CreateSuppressionRequestSpamComplaintInner`
+`func (o *DeleteSuppressionRequest) GetSuppressions() []DeleteSuppressionRequestSuppressionsInner`
 
 GetSuppressions returns the Suppressions field if non-nil, zero value otherwise.
 
 ### GetSuppressionsOk
 
-`func (o *DeleteSuppressionRequest) GetSuppressionsOk() (*[]CreateSuppressionRequestSpamComplaintInner, bool)`
+`func (o *DeleteSuppressionRequest) GetSuppressionsOk() (*[]DeleteSuppressionRequestSuppressionsInner, bool)`
 
 GetSuppressionsOk returns a tuple with the Suppressions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSuppressions
 
-`func (o *DeleteSuppressionRequest) SetSuppressions(v []CreateSuppressionRequestSpamComplaintInner)`
+`func (o *DeleteSuppressionRequest) SetSuppressions(v []DeleteSuppressionRequestSuppressionsInner)`
 
 SetSuppressions sets Suppressions field to given value.
 
